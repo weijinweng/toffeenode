@@ -6,7 +6,7 @@ var web = "./web";
 function front(req, res)
 	{
 		
-		fs.readFile(web+ 'front.html',function(err, data){
+		fs.readFile('./web/front.html',function(err, data){
 			if(err)
 			{
 				error(req,res);
