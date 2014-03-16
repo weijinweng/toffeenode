@@ -5,6 +5,7 @@ var handlers = require('./server/handler');
 var database = require('./server/database');
 var io = require('socket.io').listen(https);
 var nodemailer = require('nodemailer');
+var crypto = require("crypto");
 var transport = nodemailer.createTransport("SMTP", {
 				service: "Gmail",
 				auth: {
@@ -15,7 +16,7 @@ var transport = nodemailer.createTransport("SMTP", {
 
 https.listen(8000);
 
-
+//email template
 //transport.sendMail(mailOptions, function(error, response)
 //			{
 //				if(error){
@@ -47,34 +48,39 @@ function onRequest(req,res)
 
 
 io.sockets.on('connection', function (socket) {	
-	
 	socket.on('signup', function(Email){
-		var check = database.User.count({email:Email}, function(err, count)
-		{
+		var check = database.User.count({email:Email}, function(err, count){
 			if(count== 0)
 			{
 				console.log("document doesnt exist");
-				var newAcc = new database.User({email:Email,password:"not set", username:"not set"});
+				var newAcc = new database.User({email:Email,password:"not set", username:"not set", validated: false});
 				newAcc.save(function(err){
 					if(err)
 						return console.log("an error has occured");
 					console.log("User Signed up");
+					var validationcode = crypto.randomBytes(64).toString('base64');
+					
+					var code = new database.Validation({email:Email, validationCode: validationcode});
+					
+					code.save(function(){
+					
 					var mailOptions = {
 						from:"toffeebot@gmail.com",
 						to: Email,
-						subject:"Hello",
-						text:"It works",
+						subject:"Hello,",
+						text:"Here is your validation code: " + validationcode,
 						}
 						transport.sendMail(mailOptions, function(error, response)
 						{
-							if(error){
-								console.log(error);
-							}else{
-								console.log("Message sent: " + response.message);
-							}
-						});
-					socket.emit("signedup");
+								if(error){
+									console.log(error);
+								}else{
+									console.log("Message sent: " + response.message);
+								}
+							});
+						socket.emit("signedup");
 					});
+				});
 			}
 			else 
 			{

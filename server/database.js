@@ -1,16 +1,25 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/toffee");
+mongoose.connect("mongodb://localhost/12");
 var Schema = mongoose.Schema;
 var db = mongoose.connection;
 
 var userSchema = new Schema({
 						email: String,
 						password: String,
+						salt : String,
 						username: String,
-						});		
+						validated: Boolean
+						});	
 
 						
+var validationSchema = new Schema({
+						email: String,
+						validationCode: String
+						});
+						
+						
 var User = mongoose.model('User', userSchema);
+var Validation = mongoose.model('Validation',validationSchema);
 
 function saveUser (Email)
 	{
@@ -34,3 +43,4 @@ module.exports.findUser = findUser;
 module.exports.saveUser = saveUser;
 module.exports.mongoose = mongoose;
 module.exports.User = User;
+module.exports.Validation = Validation;
