@@ -2,7 +2,8 @@ var https = require('http');
 var url = require('url');
 var route = require('./server/router');
 var handlers = require('./server/handler');
-
+var database
+var io = require('socket.io');
 
 
 //handles urls
