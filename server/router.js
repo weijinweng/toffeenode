@@ -9,9 +9,7 @@ function router(req, res, pathname, handler)
 			}
 		else 
 		{
-			//in case of error
-			res.writeHead(404, {"Content-Type" : "text/html"});
-			res.end("404 error");
+			handler["static"](req, res, pathname);
 		}
 	}
 	
