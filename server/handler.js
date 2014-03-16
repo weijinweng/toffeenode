@@ -27,7 +27,7 @@ function staticFile (req, res, pathname)
 			if(err)
 			{
 				error(req,res);
-				return console.log("error locatin " + web + pathname);
+				return console.log("error locating " + web + pathname);
 			}
 			else
 			{
