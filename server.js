@@ -4,8 +4,27 @@ var route = require('./server/router');
 var handlers = require('./server/handler');
 var database = require('./server/database');
 var io = require('socket.io').listen(https);
+var nodemailer = require('nodemailer');
+var transport = nodemailer.createTransport("SMTP", {
+				service: "Gmail",
+				auth: {
+					user: "toffeebot@gmail.com",
+					pass: "caramelbitch"
+					}
+				});
 
 https.listen(8000);
+
+
+//transport.sendMail(mailOptions, function(error, response)
+//			{
+//				if(error){
+//					console.log(error);
+//				}else{
+//					console.log("Message sent: " + response.message);
+//				}
+//			});
+
 
 var clients = {};
 //handles urls
@@ -38,8 +57,22 @@ io.sockets.on('connection', function (socket) {
 				var newAcc = new database.User({email:Email,password:"not set", username:"not set"});
 				newAcc.save(function(err){
 					if(err)
-						console.log("an error has occured");
+						return console.log("an error has occured");
 					console.log("User Signed up");
+					var mailOptions = {
+						from:"toffeebot@gmail.com",
+						to: Email,
+						subject:"Hello",
+						text:"It works",
+						}
+						transport.sendMail(mailOptions, function(error, response)
+						{
+							if(error){
+								console.log(error);
+							}else{
+								console.log("Message sent: " + response.message);
+							}
+						});
 					socket.emit("signedup");
 					});
 			}
