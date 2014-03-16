@@ -19,10 +19,23 @@ function front(req, res)
 				res.end(data);
 			}
 		});
-
-		
 	}
 
+function login(req, res)
+	{
+		fs.readFile('./web/login.html', function(err, data){
+			if(err)
+			{
+				error(req, res);
+				return console.log("error location login.html");
+			}
+			else
+			{
+				res.writeHead(200,{"Content-Type":"text/html"});
+				res.end(data);
+			}
+		});
+	}
 //Static files handler
 function staticFile (req, res, pathname)
 	{
@@ -80,3 +93,4 @@ function error(req, res)
 	module.exports.front = front;
 	module.exports.error = error;
 	module.exports.staticFile = staticFile;
+	module.exports.login = login;

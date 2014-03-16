@@ -1,4 +1,5 @@
 var mongoose = require("mongoose");
+mongoose.connect("mongodb://localhost/toffee");
 var Schema = mongoose.Schema;
 var db = mongoose.connection;
 
@@ -21,6 +22,7 @@ function saveUser (Email, Pass, User)
 				Console.log("Error has occured");
 				return handleError(err);
 			}
+		});
 	}
 function findUser(Email)
 	{

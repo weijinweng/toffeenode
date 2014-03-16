@@ -1,16 +1,17 @@
-var https = require('http');
+var https = require('http').createServer(onRequest);
 var url = require('url');
 var route = require('./server/router');
 var handlers = require('./server/handler');
-var database
-var io = require('socket.io');
-
+var database = require('./server/database');
+var io = require('socket.io').listen(https);
+https.listen(8000);
 
 //handles urls
 var handler = []
 	handler["/"] = handlers.front;
 	handler["/front"] = handlers.front;
 	handler["static"] = handlers.staticFile;
+	handler["/login"] = handlers.login;
 
 
 function onRequest(req,res)
@@ -22,5 +23,9 @@ function onRequest(req,res)
 	}
 
 
-https.createServer(onRequest).listen(8000);
 
+
+io.sockets.on('connection', function (socket) {	
+	
+
+	});
