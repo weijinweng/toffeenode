@@ -4,6 +4,7 @@ var route = require('./server/router');
 var handlers = require('./server/handler');
 var database = require('./server/database');
 var io = require('socket.io').listen(https);
+
 https.listen(8000);
 
 var clients = {};
@@ -33,12 +34,20 @@ io.sockets.on('connection', function (socket) {
 		{
 			if(count== 0)
 			{
-				return console.log("document doesnt exist");
-				var newAcc = new database.User({email:Email}, function(){
-				socket.emit('signedup');
-				});
+				console.log("document doesnt exist");
+				var newAcc = new database.User({email:Email,password:"not set", username:"not set"});
+				newAcc.save(function(err){
+					if(err)
+						console.log("an error has occured");
+					console.log("User Signed up");
+					socket.emit("signedup");
+					});
 			}
-			else console.log("this exists");
+			else 
+			{
+				console.log("this exists");
+				socket.emit("Accountexists");
+			}
 		});
 	});
 });

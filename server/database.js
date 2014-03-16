@@ -3,7 +3,7 @@ mongoose.connect("mongodb://localhost/toffee");
 var Schema = mongoose.Schema;
 var db = mongoose.connection;
 
-var userSchema = Schema({
+var userSchema = new Schema({
 						email: String,
 						password: String,
 						username: String,
@@ -12,10 +12,10 @@ var userSchema = Schema({
 						
 var User = mongoose.model('User', userSchema);
 
-function saveUser (Email, Pass, User)
+function saveUser (Email)
 	{
-		var newUser = new User({ email: Email, password: Pass, username: User});
-		console.log("saving user " + Email + Pass + User);
+		var newUser = new User({ email: Email});
+		console.log("saving user " + Email);
 		newUser.save(function(err){
 			if(err)
 			{
