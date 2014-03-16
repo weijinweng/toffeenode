@@ -1,7 +1,8 @@
 var fs = require('fs');
 
-var web = "./web/";
+var web = "./web";
 
+//Frontpage handler
 function front(req, res)
 	{
 		
@@ -21,6 +22,7 @@ function front(req, res)
 		
 	}
 
+//Static files handler
 function staticFile (req, res, pathname)
 	{
 		fs.readFile(web+pathname, function(err, data){
@@ -38,7 +40,7 @@ function staticFile (req, res, pathname)
 	}
 	
 	
-	
+//404 handler
 function error(req, res)
 	{
 		fs.readFile('./web/404.html', function(err, data){
