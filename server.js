@@ -58,12 +58,16 @@ io.sockets.on('connection', function (socket) {
 					if(err)
 						return console.log("an error has occured");
 					console.log("User Signed up");
+
+					socket.emit("success");
+
 					var validationcode = crypto.randomBytes(64).toString('base64');
 					
 					var code = new database.Validation({email:Email, validationCode: validationcode});
 					
 					code.save(function(){
 					
+
 					var mailOptions = {
 						from:"toffeebot@gmail.com",
 						to: Email,
@@ -72,6 +76,15 @@ io.sockets.on('connection', function (socket) {
 						}
 						transport.sendMail(mailOptions, function(error, response)
 						{
+
+							if(error){
+								console.log(error);
+							}else{
+								console.log("Message sent: " + response.message);
+							}
+						});
+					socket.emit("signedup");
+
 								if(error){
 									console.log(error);
 								}else{
@@ -79,13 +92,14 @@ io.sockets.on('connection', function (socket) {
 								}
 							});
 						socket.emit("signedup");
+
 					});
-				});
+
 			}
 			else 
 			{
 				console.log("this exists");
-				socket.emit("Accountexists");
+				socket.emit("duplicate");
 			}
 		});
 	});

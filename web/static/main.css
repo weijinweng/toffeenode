@@ -1,18 +1,23 @@
-input[type=text] {
-    line-height:130%;
-    font-size: inherit;
-    font-family:inherit;
-    color:#8b8b8b;
-    margin-bottom:10px;
+body {
+    font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
+    margin:0 auto;
+    padding:0;
+}
+#question {
+    display:block;
+    margin:0 auto;
+    font-size:40px;
     
-    width:200px;
-    height:45px;
-    border: 2px solid #bcbcbc;
-    border-radius:8px;
-    text-align:center;
+    margin-top:10vw;
+    width:40vw;
+    height:50px;
+}
+
+input[type=text] {
+    padding: 15px;
 }
 input:focus { 
-    outline:none;
-    border-color:#32ac97;
-    box-shadow:0 0 5px #32ac97;
+}
+*:focus {
+    outline: 0;
 }
