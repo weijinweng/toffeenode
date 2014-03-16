@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-//LOG IN
 var socket = io.connect('http://localhost:8000');
     
+//LOG IN
 $('#login').on('click',function(){
     
     var email = $('#email').val();
@@ -11,5 +11,16 @@ $('#login').on('click',function(){
     socket.emit('signup', email, password);
     
 });
+    
+    
+//SIGNUP
+$('#signup').on('click',function(){
+    
+    var email = $('#email').val();
+    
+    socket.emit('signup', email);
+    
+});
+    
                
 });
