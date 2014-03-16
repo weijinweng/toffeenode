@@ -1,0 +1,21 @@
+input[type=text] {
+    line-height:130%;
+    font-size: inherit;
+    font-family:inherit;
+    color:#8b8b8b;
+    margin-bottom:10px;
+    
+    width:200px;
+    height:45px;
+    border: 2px solid #bcbcbc;
+    border-radius:8px;
+    text-align:center;
+}
+input:focus { 
+    outline:none;
+    border-color:#32ac97;
+    box-shadow:0 0 5px #32ac97;
+}
+.derp {
+    color:red;
+}
