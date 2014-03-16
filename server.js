@@ -7,6 +7,7 @@ var handlers = require('./server/handler');
 var handler = []
 	handler["/"] = handlers.front;
 	handler["/front"] = handlers.front;
+	handler["static"] = handlers.staticFile;
 
 
 

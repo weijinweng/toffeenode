@@ -55,3 +55,4 @@ function error(req, res)
 
 	module.exports.front = front;
 	module.exports.error = error;
+	module.exports.staticFile = staticFile;
