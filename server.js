@@ -7,6 +7,7 @@ var database = require('./server/database');
 var io = require('socket.io').listen(https);
 https.listen(8000);
 
+var clients = {};
 //handles urls
 var handler = []
 	handler["/"] = handlers.front;
@@ -28,5 +29,12 @@ function onRequest(req,res)
 
 io.sockets.on('connection', function (socket) {	
 	
-
+	socket.on('signup', function(Email){
+		var check = database.User.count({email:Email}, function(err, count)
+		{
+			if(count== 0)
+				return console.log("document doesnt exist");
+			else console.log("this exists");
+		});
 	});
+});
