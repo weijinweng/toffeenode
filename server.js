@@ -1,14 +1,21 @@
 var https = require('http');
 var url = require('url');
+var route = require('./server/router');
+var handlers = require('./server/handler');
+
+//handles urls
+var handler = []
+	handler["/"] = handlers.front;
+	handler["/front"] = handlers.front;
+
 
 
 function onRequest(req,res)
 	{
+		//get request url
 		pathname = url.parse(req.url).pathname;
-		
-		res.writeHead(200,{"Content-Type":"text/plain"});
-		res.end("Hello");
-		
+		//routes to handler
+		route.router(req,res,pathname,handler);
 	}
 
 
