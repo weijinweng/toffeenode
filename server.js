@@ -3,7 +3,6 @@ var url = require('url');
 var route = require('./server/router');
 var handlers = require('./server/handler');
 var database = require('./server/database');
-
 var io = require('socket.io').listen(https);
 https.listen(8000);
 
@@ -33,7 +32,12 @@ io.sockets.on('connection', function (socket) {
 		var check = database.User.count({email:Email}, function(err, count)
 		{
 			if(count== 0)
+			{
 				return console.log("document doesnt exist");
+				var newAcc = new database.User({email:Email}, function(){
+				socket.emit('signedup');
+				});
+			}
 			else console.log("this exists");
 		});
 	});

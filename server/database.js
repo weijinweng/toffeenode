@@ -33,4 +33,4 @@ function findUser(Email)
 module.exports.findUser = findUser;
 module.exports.saveUser = saveUser;
 module.exports.mongoose = mongoose;
-module.exports.User = user;
+module.exports.User = User;
