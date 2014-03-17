@@ -9,6 +9,7 @@ body {
     position:fixed;
     top:0px;
     left:0px;
+    z-index:-5;
 }
 
 input[type=text] {
@@ -17,8 +18,8 @@ input[type=text] {
     font-family:inherit;
     color:inherit;
     
-    width:200px;
-    height:45px;
+    width:195px;
+    height:40px;
     border: 1px solid #bcbcbc;
     border-radius:5px;
     text-align:center;
@@ -29,8 +30,8 @@ input[type=password] {
     font-family:inherit;
     color:inherit;
     
-    width:200px;
-    height:45px;
+    width:195px;
+    height:40px;
     border: 1px solid #bcbcbc;
     border-radius:5px;
     text-align:center;
@@ -69,29 +70,31 @@ input:focus {
 }
 #signup-email {
     position:absolute;
-    top:10px;
-    right:10px;
+    top:11px;
+    right:15px;
 }
 #signup-button {
     position:absolute;
     top:10px;
-    right:10px;
+    right:15px;
 }
-
+#login-link {
+    position:absolute;
+    top: 60px;
+    right: 80px;
+}
 #question-box {
-    background-color:white;
+    background-color:transparent;
 }
 #question {
     display:block;
     margin:0 auto;
-    
-    font-size:40px;
+    font-size:15px;
     margin-top:10vw;
     width:40vw;
     height:50px;
 }
 
-
-*:focus {
-    outline: 0;
+.blank {
+    display:none;
 }

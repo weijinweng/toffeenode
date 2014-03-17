@@ -11,20 +11,37 @@
 </head>
 
 <body>
+<div class = "blank">
 
-
-<input type="password" id = "signup-pw" class = "input" placeholder="password">
-
-<button type="submit" id = "pw-next" class = "button">next</button>
-
+<div id = "pw-box">
+    <div id = "welcome"></div>
+    <input type="password" id = "signup-pw" class = "input"  placeholder="password">
+    <button type="submit" id = "pw-next" class = "button">next</button>
+    </div>
     
-<input type="text" id = "signup-name" class = "input" style = "display:none;" placeholder="password">
-
-<button type="submit" id = "username-next" class = "button" style = "display:none;">next</button>
+<div id = "username-box">
+    <input type="text" id = "signup-name" class = "input" placeholder="username">
+    <button type="submit" id = "username-next" class = "button">next</button>
+    </div>
     
     
-<a href = "/iforgot">forgot password?</div>
-
-
+<div id = 'blank-err'>Type something!</div>
+    
+<div id = 'valid-err'>
+    <div>That validation code doesn't work! Resend code?</div>
+    <div><input type="text" id = "signup-email" placeholder = "your edu email"></input>
+        <button type="submit" id = "signup-button" class = "button">Resend</button>
+        </div>
+</div>
+    
+<div id = 'email-err'>
+    <div>You haven't signed up!</div>
+    <div><input type="text" id = "signup-email" placeholder = "your edu email"></input>
+        <button type="submit" id = "signup-button" class = "button">Sign up</button>
+        </div>
+</div>
+    
+    
+</div>
 </body>
 </html>
