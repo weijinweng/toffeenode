@@ -37,7 +37,7 @@ function okayemail(email) {
 //SIGNUP EMAIL EXPAND
 $('#signup-button').on('click',function(){
     $('#signup-email').animate({right:'225px'},200);
-    $('#signup-button').text("Go!");
+    $('#signup-button').text("go!");
     var email = $('#signup-email').val();
     
     if($('#signup-email').css("right") == "225px"){
@@ -47,13 +47,20 @@ $('#signup-button').on('click',function(){
     }
 });
     
-    
 //SIGNUP EMAIL SHRINK
 $('.background').on('click', function(){
+    $('.stat').fadeOut();
     $('#signup-email').animate({right:'15px'},200);
-    $('#signup-button').text("Sign up");
+    $('#signup-button').text("sign up");
 });
 
+//SIGNUP EMAIL SHRINK
+$('#question').focus(function(){
+    $('.stat').fadeOut();
+    $('#signup-email').animate({right:'15px'},200);
+    $('#signup-button').text("sign up");
+});
+    
 //SIGNUP EMAIL OK
 socket.on('success', function() {
     $('.stat').removeClass('blank').text('Check your email!');
@@ -61,7 +68,7 @@ socket.on('success', function() {
 
 //SIGNUP EMAIL DUPLICATE
 socket.on('duplicate', function() {
-    $('.stat').removeClass('blank').text("Oops! That email doesn't look right.");
+    $('.stat').removeClass('blank').text("Oops! That email is being used.");
 });
     
 //AFTER SIGNUP OK: SEND VALIDATION 

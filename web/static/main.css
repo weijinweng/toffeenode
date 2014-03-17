@@ -89,7 +89,7 @@ input:focus {
 #question {
     display:block;
     margin:0 auto;
-    font-size:15px;
+    font-size:20px;
     margin-top:10vw;
     width:40vw;
     height:50px;
@@ -97,4 +97,27 @@ input:focus {
 
 .blank {
     display:none;
+}
+.stat {
+    position:absolute;
+    top: 25px;
+    right: 450px;
+}
+a:link{
+    color: grey;
+    text-decoration:none; 
+}
+a:hover{
+    color: black;
+    transition-duration: 400ms;
+    text-decoration:none;
+}
+a:visited{
+    color: grey;
+    text-decoration:none;
+}
+a:visited:hover{
+    color: black;
+    transition-duration: 400ms;
+    text-decoration:none;
 }
