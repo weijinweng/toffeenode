@@ -114,3 +114,5 @@ $('#iforgot').on('click',function(){
     var email = $('#email').val();
     socket.emit('iforgot', email);
 });
+    
+});
