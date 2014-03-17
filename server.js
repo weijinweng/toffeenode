@@ -6,6 +6,7 @@ var database = require('./server/database');
 var io = require('socket.io').listen(https);
 var nodemailer = require('nodemailer');
 var crypto = require("crypto");
+//creates SMTP client to GMAIL toffeebot
 var transport = nodemailer.createTransport("SMTP", {
 				service: "Gmail",
 				auth: {
@@ -26,7 +27,7 @@ https.listen(8000);
 //				}
 //			});
 
-
+//clients container array
 var clients = {};
 //handles urls
 var handler = []
@@ -94,7 +95,7 @@ io.sockets.on('connection', function (socket) {
 									console.log("Message sent: " + response.message);
 								}
 							});
-						socket.emit("signedup");
+						socket.emit("success");
 
 					});
 

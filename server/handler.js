@@ -4,7 +4,7 @@ var url = require('url');
 var web = "./web";
 
 //Frontpage handler
-function front(req, res)
+function front(req, res, pathname)
 	{
 		
 		fs.readFile('./web/front.html',function(err, data){
@@ -21,7 +21,7 @@ function front(req, res)
 		});
 	}
 //verify accouts
-function verify(req, res)
+function verify(req, res, pathname)
 	{
 		fs.readFile('./web/signup.html',function(err,data){
 			if(err)
@@ -37,7 +37,7 @@ function verify(req, res)
 		});
 	}
 //iforgot handler
-function iforgot(req, res)
+function iforgot(req, res, pathname)
 	{
 		fs.readFile('./web/iforgot.html',function(err, data){
 			if(err)
@@ -53,7 +53,7 @@ function iforgot(req, res)
 		});
 	}
 //login handler
-function login(req, res)
+function login(req, res, pathname)
 	{
 		fs.readFile('./web/login.html', function(err, data){
 			if(err)
