@@ -30,8 +30,9 @@ $("#question").keyup(function() {
     
 //LOG IN
 $('#login').on('click',function(){
-    var email = $('#email').val();
+    var email = $('#login-email').val();
     var password = $('#password').val();
+	alert(email);
     socket.emit('login', email, password);
 });
     

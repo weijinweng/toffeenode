@@ -24,16 +24,34 @@ function front(req, res)
 function verify(req, res)
 	{
 		fs.readFile('./web/signup.html',function(err,data){
-			if(err)
+			if (err)
 			{
 				error(req,res);
-				return console.log("error location signup.html");
+				return console.log("error locating signup.html");
 			}
 			else
 			{
 				res.writeHead(200, {"Content-Type":"text/html"});
 				res.end(data);
 
+			}
+		});
+	}
+//authentification cookiesetter
+function verified(req, res)
+	{
+		fs.readFile('./web/almost.html',function(err, data){
+			if(err)
+			{
+				error(req,res);
+				return console.log("error locating almost.html");
+			}
+			else
+			{	
+				var uri = url.parse(req.url).query;
+				console.log(uri);
+				res.writeHead(200,{"Set-Cookie" : uri, "Content-Type" : "text/html"});
+				res.end(data);
 			}
 		});
 	}
@@ -129,3 +147,4 @@ function error(req, res)
 	module.exports.login = login;
 	module.exports.verify = verify;
 	module.exports.iforgot = iforgot;
+	module.exports.verified = verified;

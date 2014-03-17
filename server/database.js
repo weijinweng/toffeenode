@@ -6,7 +6,7 @@ var db = mongoose.connection;
 var userSchema = new Schema({
 						email: String,
 						password: String,
-						salt : String,
+						salt: String,
 						username: String,
 						validated: Boolean
 						});	

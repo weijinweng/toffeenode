@@ -39,6 +39,7 @@ var handler = []
 	handler["/verify"] = handlers.verify;
 	handler["/iforgot"] = handlers.iforgot;
 	handler["/error"] = handlers.error;
+	handler["/almost-there"] = handlers.verified;
 
 
 function onRequest(req,res)
@@ -159,10 +160,14 @@ io.sockets.on('connection', function (socket) {
 				} else {
 				crypto.pbkdf2(Password, doc.salt, 10000, 512, function(err, derivedKey){
 				if(err)
-					return console.log(error);
+					{
+						socket.emit('verification-failed');
+						return console.log(error);
+					}
 				else if(doc.password == derivedKey)
 					{
-						console.log("Successful verification");
+						console.log("Successful verification " + doc._id);
+						socket.emit('verified', doc._id);
 					}
 				});
 				}
