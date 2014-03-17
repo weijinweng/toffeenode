@@ -51,7 +51,15 @@ function onRequest(req,res)
 
 
 io.sockets.on('connection', function (socket) {	
-	socket.on('signup', function(Email){
+	database.User.findOneAndRemove({email:"weijin22@hotmail.com"},function()
+		{
+			console.log("removed");
+		});
+	database.Validation.findOneAndRemove({email:"weijin22@hotmail.com"},function()
+		{
+			console.log("removed");
+		});
+	socket.on('signup-email', function(Email){
 		var check = database.User.count({email:Email}, function(err, count){
 			if(count== 0)
 			{
@@ -75,8 +83,8 @@ io.sockets.on('connection', function (socket) {
 						from:"toffeebot@gmail.com",
 						to: Email,
 						subject:"Hello,",
-						text:"Here is your validation link: ",
-						html:'<a href="http://localhost:8000/verify?v='+validationcode+'" ></a>',
+						text:'Here is your validation link: http://localhost:8000/verify?v='+validationcode,
+
 						}
 						transport.sendMail(mailOptions, function(error, response)
 						{
@@ -87,14 +95,9 @@ io.sockets.on('connection', function (socket) {
 								console.log("Message sent: " + response.message);
 							}
 						});
-					socket.emit("signedup");
+						socket.emit("signedup");
 
-								if(error){
-									console.log(error);
-								}else{
-									console.log("Message sent: " + response.message);
-								}
-							});
+						});
 						socket.emit("success");
 
 					});
@@ -107,4 +110,45 @@ io.sockets.on('connection', function (socket) {
 			}
 		});
 	});
+	socket.on('verify', function(data){
+		database.Validation.find({validationCode: data}, function(err, data){
+			if(err)
+				return socket.emit('errorValidation');
+			else
+			{
+				socket.emit('validation-email', data.email);ss
+			}
+			});
+	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
