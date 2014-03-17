@@ -137,10 +137,38 @@ io.sockets.on('connection', function (socket) {
 						doc.salt = Salt;
 						doc.username = Username;
 						console.log ( doc.password, doc.salt, doc.username);
+						doc.save(function(err, product, changedcount)
+						{
+							console.log("The product salt is "+ product);
+							database.Validation.findOneAndRemove({email: Email}, function(err){
+								if(err)
+									console.log(err);
+								console.log("verification completed");
+							});
+						});
 					});
 				});
 			});
-});
+	socket.on('login', function(Email, Password){
+		database.User.findOne({email: Email}, function(err, doc)
+			{
+				console.log("Hello the email is " + Email);
+				if(err||doc==null)
+				{
+					return console.log("Error " +err);
+				} else {
+				crypto.pbkdf2(Password, doc.salt, 10000, 512, function(err, derivedKey){
+				if(err)
+					return console.log(error);
+				else if(doc.password == derivedKey)
+					{
+						console.log("Successful verification");
+					}
+				});
+				}
+			});
+		});
+	});
 
 
 
