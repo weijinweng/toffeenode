@@ -130,7 +130,8 @@ $('#pw-next').on('click',function(){
             var username = $('#signup-name').val();
             
             if (username.length != 0) {
-                var email = $('pw-email').text().substring(8, email.length);
+                var email = $('#welcome').text().substring(8, $('#welcome').text().length);
+				alert(email);
                 socket.emit('finish-signup', email, password, username);
                 window.location.replace("http://localhost:8000/");
             }
