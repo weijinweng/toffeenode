@@ -96,10 +96,17 @@ input:focus {
     font-size:20px;
     margin-top:10vw;
     width:40vw;
-    height:50px;
+    height:40px;
 }
 #search-button {
     display:inline;
+    background-color:white;
+    color:#3687f5;
+}
+#search-button:hover{
+    display:inline;
+    background-color:#3687f5;
+    color:white;
 }
 
 

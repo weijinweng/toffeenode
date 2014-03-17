@@ -9,7 +9,7 @@ $("#question").keyup(function() {
         $("#search-button").hide();
     }
     else {
-        $('#question').animate({marginTop:'10px'},200);
+        $('#question').animate({marginTop:'13px'},200);
         $("#search-button").show();
     }
     
@@ -109,7 +109,7 @@ socket.on('validation-email', function(data) {
     
 //VAL 404
 socket.on('error-validation', function() {
-    window.location.replace("localhost:8000/error");
+    window.location.replace("http://localhost:8000/error");
 });
   
 
