@@ -6,6 +6,7 @@ var database = require('./server/database');
 var io = require('socket.io').listen(https);
 var nodemailer = require('nodemailer');
 var crypto = require("crypto");
+io.set('log level', 1);
 //creates SMTP client to GMAIL toffeebot
 var transport = nodemailer.createTransport("SMTP", {
 				service: "Gmail",
@@ -66,12 +67,12 @@ io.sockets.on('connection', function (socket) {
 
 					socket.emit("success");
 
-					var validationcode = crypto.randomBytes(64).toString('base64');
+					var validationcode = crypto.randomBytes(32).toString('base64');
 					
 					var code = new database.Validation({email:Email, validationCode: validationcode});
 					
 					code.save(function(){
-					
+					console.log("The email "+ code.email +" with " + code.validationCode + " has been saved");
 
 					var mailOptions = {
 						from:"toffeebot@gmail.com",
@@ -105,13 +106,15 @@ io.sockets.on('connection', function (socket) {
 		});
 	});
 	socket.on('verify', function(data){
-		database.Validation.find({validationCode: data}, function(err, data){
+		console.log("recieved " + data);
+		var code = data.toString('base64');
+		database.Validation.find({validationCode: code}, function(err, newData){
 			if(err)
 				return socket.emit('error-validation');
 			else
 			{
-				console.log(data.email);
-				socket.emit('validation-email', data.email);
+				console.log(" Email is " + newData[0].email);
+				socket.emit('validation-email', newData[0].email);
 			}
 			});
 	});

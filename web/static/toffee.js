@@ -69,7 +69,7 @@ var url = document.URL;
 if (url.indexOf('/verify') != -1) {
     var code = url.substring(url.indexOf('?v=') + 3,url.length);
     alert(code);
-    socket.emit('verify', code);
+    socket.emit('verify',code);
 }
     
 //VAL OKAY
