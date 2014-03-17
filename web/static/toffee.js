@@ -43,12 +43,6 @@ $('#signup-button').on('click',function(){
     if($('#signup-email').css("right") == "225px"){
         if (okayemail(email))  {
             socket.emit('signup-email', email);
-            alert(email);
-            $('.stat').removeClass('blank').text('Check your email!');
-        }
-        else {
-            alert(email);
-            $('.stat').removeClass('blank').text("Oops! That email doesn't look right.");
         }
     }
 });
@@ -62,33 +56,31 @@ $('.background').on('click', function(){
 
 //SIGNUP EMAIL OK
 socket.on('success', function() {
-     $('#email-dup').addClass(".blank");
-    $('#check-email').removeClass(".blank");
+    $('.stat').removeClass('blank').text('Check your email!');
 });
 
 //SIGNUP EMAIL DUPLICATE
 socket.on('duplicate', function() {
-    $('#check-email').addClass(".blank");
-    $('#email-dup').removeClass(".blank");
+    $('.stat').removeClass('blank').text("Oops! That email doesn't look right.");
 });
     
 //AFTER SIGNUP OK: SEND VALIDATION 
 var url = document.URL;
 if (url.indexOf('/verify') != -1) {
-    var code = url.substring(url.indexOf('?v='),url.length);
+    var code = url.substring(url.indexOf('?v=') + 3,url.length);
     alert(code);
     socket.emit('verify', code);
 }
     
 //VAL OKAY
 socket.on('validation-email', function(data) {
-    if (data.length == 0) {
+    if (data == null) {
         alert("OH NO!");
-        $('valid-err').show();
+        $('#valid-err').removeClass('blank');
     } else {
         alert("OKAY!");
-        $('pw-email').text("Welcome, " + data);
-        $('pw-box').removeClass('blank');
+        $('#pw-email').text("Welcome, " + data);
+        $('#pw-box').removeClass('blank');
     }
 });
     
