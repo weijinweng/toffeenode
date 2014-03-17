@@ -20,7 +20,39 @@ function front(req, res)
 			}
 		});
 	}
-
+//verify accouts
+function verify(req, res)
+	{
+		fs.readFile('./web/signup.html',function(err,data){
+			if(err)
+			{
+				error(req,res);
+				return console.log("error location signup.html");
+			}
+			else
+			{
+				res.writeHead(200, {"Content-Type":"text/html"});
+				res.end(data);
+			}
+		});
+	}
+//iforgot handler
+function iforgot(req, res)
+	{
+		fs.readFile('./web/iforgot.html',function(err, data){
+			if(err)
+			{
+				error(req,res);
+				return console.log("error loading iforgot.html");
+			}
+			else
+			{
+				res.writeHead(200,{"Content-Type":"text/html"});
+				res.end(data);
+			}
+		});
+	}
+//login handler
 function login(req, res)
 	{
 		fs.readFile('./web/login.html', function(err, data){
@@ -94,3 +126,5 @@ function error(req, res)
 	module.exports.error = error;
 	module.exports.staticFile = staticFile;
 	module.exports.login = login;
+	module.exports.verify = verify;
+	module.exports.iforgot = iforgot;

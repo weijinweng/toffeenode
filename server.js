@@ -34,6 +34,8 @@ var handler = []
 	handler["/front"] = handlers.front;
 	handler["static"] = handlers.staticFile;
 	handler["/login"] = handlers.login;
+	handler["/verify"] = handlers.verify;
+	handler["/iforgot"] = handlers.iforgot;
 
 
 function onRequest(req,res)
@@ -72,7 +74,8 @@ io.sockets.on('connection', function (socket) {
 						from:"toffeebot@gmail.com",
 						to: Email,
 						subject:"Hello,",
-						text:"Here is your validation code: " + validationcode,
+						text:"Here is your validation link: ",
+						html:'<a href="http://localhost:8000/verify?v='+validationcode+'" ></a>',
 						}
 						transport.sendMail(mailOptions, function(error, response)
 						{
