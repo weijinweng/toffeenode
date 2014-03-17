@@ -23,6 +23,16 @@ $('#login').on('click',function(){
     socket.emit('login', email, password);
 });
     
+
+//VERIFY EMAIL
+function okayemail(email) {
+    if ((email.split('@').length-1) == 1 && (email.substring(email.length-4, email.length))) {
+        return true;
+    } else {
+        return false;
+    }
+}
+ 
     
 //SIGNUP EMAIL EXPAND
 $('#signup-button').on('click',function(){
@@ -30,11 +40,19 @@ $('#signup-button').on('click',function(){
     $('#signup-button').text("Go!");
     var email = $('#signup-email').val();
     
-    if ($('#signup-email').css("right") == "225px;") {
-        var email = $('#signup-email').val();
-        socket.emit('signup-email', email);
+    if($('#signup-email').css("right") == "225px"){
+        if (okayemail(email))  {
+            socket.emit('signup-email', email);
+            alert(email);
+            $('.stat').removeClass('blank').text('Check your email!');
+        }
+        else {
+            alert(email);
+            $('.stat').removeClass('blank').text("Oops! That email doesn't look right.");
+        }
     }
 });
+    
     
 //SIGNUP EMAIL SHRINK
 $('.background').on('click', function(){
@@ -44,36 +62,42 @@ $('.background').on('click', function(){
 
 //SIGNUP EMAIL OK
 socket.on('success', function() {
-    $('body').append('<div>check your email!</div>');
+     $('#email-dup').addClass(".blank");
+    $('#check-email').removeClass(".blank");
 });
 
 //SIGNUP EMAIL DUPLICATE
 socket.on('duplicate', function() {
-    $('body').append('<div>you signup already</div>');
+    $('#check-email').addClass(".blank");
+    $('#email-dup').removeClass(".blank");
 });
     
 //AFTER SIGNUP OK: SEND VALIDATION 
-var url = window.location.pathname;
+var url = document.URL;
 if (url.indexOf('/verify') != -1) {
-    var code = url.split('?v=')[1];
+    var code = url.substring(url.indexOf('?v='),url.length);
+    alert(code);
     socket.emit('verify', code);
 }
     
 //VAL OKAY
 socket.on('validation-email', function(data) {
     if (data.length == 0) {
+        alert("OH NO!");
         $('valid-err').show();
-    }
-    else {
+    } else {
+        alert("OKAY!");
         $('pw-email').text("Welcome, " + data);
-        $('pw-box').show();
+        $('pw-box').removeClass('blank');
     }
 });
-  
+    
 //VAL 404
 socket.on('error-validation', function() {
     window.location.replace("localhost:8000/error");
 });
+  
+
     
     
 //FINISH SIGNUP
