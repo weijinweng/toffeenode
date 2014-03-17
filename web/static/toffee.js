@@ -4,7 +4,6 @@ var socket = io.connect('http://localhost:8000');
 
 //LOG IN, render logout, search bar on top
 socket.on('logged-in', function() {
-	alert("hi");
     $('#signup-box').addClass('blank');
     $('#logout-box').removeClass('blank');
 });
