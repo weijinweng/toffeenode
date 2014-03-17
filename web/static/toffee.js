@@ -4,14 +4,15 @@ var socket = io.connect('http://localhost:8000');
 
 //LOG IN, render logout, search bar on top
 socket.on('logged-in', function() {
-    $('signup-box').addClass('blank');
-    $('logout-box').removeClass('blank');
+	alert("hi");
+    $('#signup-box').addClass('blank');
+    $('#logout-box').removeClass('blank');
 });
 
 //LOGOUT, render signup/login
 socket.on('logged-out', function() {
-    $('signup-box').removeClass('blank');
-    $('logout-box').addClass('blank');
+    $('#signup-box').removeClass('blank');
+    $('#logout-box').addClass('blank');
 });
     
 //BOOKMARKED STUFF
