@@ -1,7 +1,19 @@
 $(document).ready(function(){
 
 var socket = io.connect('http://localhost:8000');
+//APPEND NEXT BUTTON
+$("#question").keyup(function() {
+    var question = $("#question").val();
     
+    if (question.length == 0) {
+        $("#search-button").hide();
+    }
+    else {
+        $('#question').animate({marginTop:'10px'},200);
+        $("#search-button").show();
+    }
+    
+});
     
 //NEXT BUTTON
 $("#question").keyup(function() {
@@ -61,15 +73,18 @@ $('#question').focus(function(){
     $('#signup-button').text("sign up");
 });
     
+    
 //SIGNUP EMAIL OK
 socket.on('success', function() {
     $('.stat').removeClass('blank').text('Check your email!');
 });
 
+    
 //SIGNUP EMAIL DUPLICATE
 socket.on('duplicate', function() {
     $('.stat').removeClass('blank').text("Oops! That email is being used.");
 });
+    
     
 //AFTER SIGNUP OK: SEND VALIDATION 
 var url = document.URL;
@@ -86,7 +101,8 @@ socket.on('validation-email', function(data) {
         $('#valid-err').removeClass('blank');
     } else {
         alert("OKAY!");
-        $('#pw-email').text("Welcome, " + data);
+        alert(data);
+        $('#welcome').text("Welcome, " + data);
         $('#pw-box').removeClass('blank');
     }
 });
@@ -104,7 +120,10 @@ $('#pw-next').on('click',function(){
     var password = $('#signup-pw').val();
     
     if (password.length != 0) {
-        $('username-box').show();
+        alert("HI");
+        $('#signup-pw').hide();
+        $('#pw-next').hide();
+        $('#username-box').show();
         
         $('#username-next').on('click',function(){
             
@@ -113,7 +132,7 @@ $('#pw-next').on('click',function(){
             if (username.length != 0) {
                 var email = $('pw-email').text().substring(8, this.length);
                 socket.emit('finish-signup', email, password, username);
-                window.location.replace("localhost:8000/");
+                window.location.replace("http://localhost:8000/");
             }
             
             else {

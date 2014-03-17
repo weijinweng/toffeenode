@@ -62,6 +62,9 @@ input:focus {
     color:#f7f7f7;
     transition-duration: 400ms;
 }
+.next-button{
+    width:100px;
+}
 
 
 #top-box {
@@ -85,16 +88,27 @@ input:focus {
 }
 #question-box {
     background-color:transparent;
+    text-align:center;
 }
 #question {
-    display:block;
+    display:inline-block;
     margin:0 auto;
     font-size:20px;
     margin-top:10vw;
     width:40vw;
     height:50px;
 }
+#search-button {
+    display:inline;
+}
 
+
+h1 {
+    color:#737373;
+}
+.center {
+    text-align:center;
+}
 .blank {
     display:none;
 }
@@ -102,6 +116,9 @@ input:focus {
     position:absolute;
     top: 25px;
     right: 450px;
+}
+.spacebelow {
+    margin-bottom:15px;
 }
 a:link{
     color: grey;
