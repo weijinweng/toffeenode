@@ -4,7 +4,7 @@ var url = require('url');
 var web = "./web";
 
 //Frontpage handler
-function front(req, res)
+function front(req, res, clients)
 	{
 		
 		fs.readFile('./web/front.html',function(err, data){
@@ -15,13 +15,15 @@ function front(req, res)
 			}
 			else
 			{
+
+
 				res.writeHead(200,{"Content-Type":"text/html"});
 				res.end(data);
 			}
 		});
 	}
 //verify accouts
-function verify(req, res)
+function verify(req, res, clients)
 	{
 		fs.readFile('./web/signup.html',function(err,data){
 			if (err)
@@ -38,7 +40,7 @@ function verify(req, res)
 		});
 	}
 //authentification cookiesetter
-function verified(req, res)
+function verified(req, res, clients)
 	{
 		fs.readFile('./web/almost.html',function(err, data){
 			if(err)
@@ -49,14 +51,14 @@ function verified(req, res)
 			else
 			{	
 				var uri = url.parse(req.url).query;
-				console.log(uri);
+				console.log(uri); 
 				res.writeHead(200,{"Set-Cookie" : uri, "Content-Type" : "text/html"});
 				res.end(data);
 			}
 		});
 	}
 //iforgot handler
-function iforgot(req, res)
+function iforgot(req, res, clients)
 	{
 		fs.readFile('./web/iforgot.html',function(err, data){
 			if(err)
@@ -72,7 +74,7 @@ function iforgot(req, res)
 		});
 	}
 //login handler
-function login(req, res)
+function login(req, res, clients)
 	{
 		fs.readFile('./web/login.html', function(err, data){
 			if(err)

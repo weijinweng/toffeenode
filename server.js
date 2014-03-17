@@ -47,13 +47,21 @@ function onRequest(req,res)
 		//get request url
 		pathname = url.parse(req.url).pathname;
 		//routes to handler
-		route.router(req,res,pathname,handler);
+		route.router(req,res,pathname,handler, clients);
 	}
 
 	
 
 
 io.sockets.on('connection', function (socket) {	
+	var cookies = socket.handshake.headers['cookie'];
+	if (cookies != null)
+	{
+		cookies = cookies.substring(cookies.indexOf('=')+1,cookies.length);
+		console.log(cookies);
+		clients[socket.id] = cookies;
+		socket.emit("logged-in");
+		}
 
 	socket.on('signup-email', function(Email){
 		var check = database.User.count({email:Email}, function(err, count){
