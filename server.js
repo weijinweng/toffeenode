@@ -49,7 +49,7 @@ function onRequest(req,res)
 		route.router(req,res,pathname,handler);
 	}
 
-
+	
 
 
 io.sockets.on('connection', function (socket) {	
@@ -108,20 +108,24 @@ io.sockets.on('connection', function (socket) {
 	socket.on('verify', function(data){
 		console.log("recieved " + data);
 		var code = data.toString('base64');
-		database.Validation.find({validationCode: code}, function(err, newData){
-			if(err)
+		database.Validation.findOne({validationCode: code}, function(err, newData){
+			if(err || newData == null)
+			{
+				console.log(err);
 				return socket.emit('error-validation');
+			}
 			else
 			{
-				console.log(" Email is " + newData[0].email);
-				socket.emit('validation-email', newData[0].email);
+				console.log(" Email is " + newData.email);
+				socket.emit('validation-email', newData.email);
 			}
 			});
 	});
 	socket.on('finish-signup',function(Email, Password, Username){
+				console.log("The email " + Email);
 				var Salt = crypto.randomBytes(128).toString('base64');
 				crypto.pbkdf2(Password, Salt, 10000, 512, function(err, derivedKey){
-					database.User.update({email: Email},{password: derivedKey, salt: Salt, username:Username},function(err, count, raw)
+					database.User.update({email: Email},{password: derivedKey, salt: Salt, username:Username, validated:true},function(err, count, raw)
 					{
 						if(err)
 							return console.log(err);
