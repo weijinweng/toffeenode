@@ -9,9 +9,9 @@ socket.on('logged-in', function() {
 });
 
 //LOGOUT, render signup/login
-socket.on('logged-out', function() {
-    $('#signup-box').removeClass('blank');
-    $('#logout-box').addClass('blank');
+$('#logout-link').on('click', function() {
+	window.location.replace("http://localhost:8000/logout");
+	window.location.replace("http://localhost:8000/");
 });
     
 //BOOKMARKED STUFF

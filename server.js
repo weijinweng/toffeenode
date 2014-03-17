@@ -40,6 +40,7 @@ var handler = []
 	handler["/iforgot"] = handlers.iforgot;
 	handler["/error"] = handlers.error;
 	handler["/almost-there"] = handlers.verified;
+	handler["/logout"] = handlers.logout;
 
 
 function onRequest(req,res)
@@ -55,7 +56,7 @@ function onRequest(req,res)
 
 io.sockets.on('connection', function (socket) {	
 	var cookies = socket.handshake.headers['cookie'];
-	if (cookies != null)
+	if (cookies != null || cookies != "")
 	{
 		cookies = cookies.substring(cookies.indexOf('=')+1,cookies.length);
 		console.log(cookies);

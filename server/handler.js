@@ -15,8 +15,6 @@ function front(req, res, clients)
 			}
 			else
 			{
-
-
 				res.writeHead(200,{"Content-Type":"text/html"});
 				res.end(data);
 			}
@@ -126,7 +124,16 @@ function staticFile (req, res, pathname)
 			}
 	}
 	
-	
+function logout(req, res)
+	{
+		fs.readFile('./web/logout.html',function(err, data)
+			{	
+				if(err)
+					return console.log("error loading logout.html");
+				res.writeHead(200, {"Content-Type":"text/html", "Set-Cookie": "confirm="});
+				res.end(data);
+			});
+	}
 //404 handler
 function error(req, res)
 	{
