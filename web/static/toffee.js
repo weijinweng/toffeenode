@@ -1,14 +1,24 @@
 $(document).ready(function(){
 
 var socket = io.connect('http://localhost:8000');
+    
+//VERIFIED USER LOG IN
+socket.on('verified', function(data) {
+    window.location.replace("http://localhost:8000/almost-there?confirm="+data);
+    window.location.replace("http://localhost:8000/");
+});
+
+
 //APPEND NEXT BUTTON
 $("#question").keyup(function() {
     var question = $("#question").val();
     
     if (question.length == 0) {
+        $('#frontheader').show();
         $("#search-button").hide();
     }
     else {
+        $('#frontheader').hide();
         $('#question').animate({marginTop:'10px'},200);
         $("#search-button").show();
     }
@@ -51,6 +61,10 @@ function okayemail(email) {
 $('#signup-button').on('click',function(){
     $('#signup-email').animate({right:'225px'},200);
     $('#signup-button').text("go!");
+    
+    $('#frontheader').show();
+    $("#search-button").hide();
+    
     var email = $('#signup-email').val();
     
     if($('#signup-email').css("right") == "225px"){
@@ -138,7 +152,7 @@ $('#pw-next').on('click',function(){
                 var email = $('#welcome').text().substring(9, $('#welcome').text().length);
 				alert(email);
                 socket.emit('finish-signup', email, password, username);
-                window.location.replace("http://localhost:8000/");
+                //window.location.replace("http://localhost:8000/");
             }
             
             else {
@@ -155,6 +169,8 @@ $('#pw-next').on('click',function(){
     
 });
     
+
+  
     
 
 //FORGOT PW
