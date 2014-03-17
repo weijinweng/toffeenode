@@ -5,6 +5,7 @@ var socket = io.connect('http://localhost:8000');
 //VERIFIED USER LOG IN
 socket.on('verified', function(data) {
     window.location.replace("http://localhost:8000/almost-there?confirm="+data);
+	window.location.replace("http://localhost:8000/");
 
 });
 
