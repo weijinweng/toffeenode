@@ -63,7 +63,7 @@ io.sockets.on('connection', function (socket) {
 				newAcc.save(function(err){
 					if(err)
 						return console.log("an error has occured");
-					console.log("User Signed up");
+					console.log("User Signed up email is " + newAcc.email);
 
 					socket.emit("success");
 
@@ -125,13 +125,18 @@ io.sockets.on('connection', function (socket) {
 				console.log("The email " + Email);
 				var Salt = crypto.randomBytes(128).toString('base64');
 				crypto.pbkdf2(Password, Salt, 10000, 512, function(err, derivedKey){
-					database.User.update({email: Email},{password: derivedKey, salt: Salt, username:Username, validated:true},function(err, count, raw)
+					database.User.findOne({email:Email},function(err, doc)
 					{
-						if(err)
-							return console.log(err);
-
-						console.log("count updated " + count);
-						console.log("raw data " + raw);
+						if(err||doc == null)
+						{
+							console.log(Email);
+							return console.log("Error writing");
+						}
+						
+						doc.password = derivedKey;
+						doc.salt = Salt;
+						doc.username = Username;
+						console.log ( doc.password, doc.salt, doc.username);
 					});
 				});
 			});
