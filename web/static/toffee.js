@@ -1,8 +1,24 @@
 $(document).ready(function(){
 
 var socket = io.connect('http://localhost:8000');
+
+//LOG IN, render logout, search bar on top
+socket.on('logged-in', function() {
+    $('signup-box').addClass('blank');
+    $('logout-box').removeClass('blank');
+});
+
+//LOGOUT, render signup/login
+socket.on('logged-out', function() {
+    $('signup-box').removeClass('blank');
+    $('logout-box').addClass('blank');
+});
     
-//VERIFIED USER LOG IN
+//BOOKMARKED STUFF
+    
+//NO BOOKMARKS, render box
+
+//VERIFIED USER, sign up and log in!
 socket.on('verified', function(data) {
     window.location.replace("http://localhost:8000/almost-there?confirm="+data);
 	window.location.replace("http://localhost:8000/");
@@ -10,7 +26,7 @@ socket.on('verified', function(data) {
 });
 
 
-//APPEND NEXT BUTTON
+//GO UP, APPEND SEARCH BUTTON
 $("#question").keyup(function() {
     var question = $("#question").val();
     
@@ -58,12 +74,15 @@ function okayemail(email) {
 }
  
     
-//SIGNUP EMAIL EXPAND
+//SIGNUP BUTTON CLICK: EMAIL EXPAND
 $('#signup-button').on('click',function(){
     $('#signup-email').animate({right:'225px'},200);
     $('#signup-button').text("go!");
     
     $('#frontheader').show();
+    $('#question').css('margin-top', '0px');
+
+    $('#question').val('');
     $("#search-button").hide();
     
     var email = $('#signup-email').val();
@@ -79,14 +98,14 @@ $('#signup-button').on('click',function(){
 });
 
     
-//SIGNUP EMAIL SHRINK
+//SIGNUP ORIGINAL ON BODY CLICK
 $('.background').on('click', function(){
     $('.stat').fadeOut();
     $('#signup-email').animate({right:'15px'},200);
     $('#signup-button').text("sign up");
 });
 
-//SIGNUP EMAIL SHRINK
+//SIGNUP ORIGINAL WHEN FOCUS
 $('#question').focus(function(){
     $('.stat').fadeOut();
     $('#signup-email').animate({right:'15px'},200);

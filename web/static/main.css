@@ -46,7 +46,7 @@ input:focus {
 
 .button {
     font-family:inherit;
-    font-size:18px;
+    font-size:20px;
     cursor:pointer;
     
     width:200px;
@@ -66,8 +66,14 @@ input:focus {
     width:100px;
 }
 
+#logout-link {
+    position:absolute;
+    top:11px;
+    right:15px;
+}
 
-#top-box {
+
+#signup-box {
     background-color:red;
     text-align:right;
 }
@@ -100,10 +106,10 @@ input:focus {
 #frontheader {
     display:block;
     margin:0 auto;
-    margin-top:10vh;
-    margin-bottom:30px;
+    margin-top:5vh;
+    margin-bottom:20px;
     
-    font-size:100px;
+    font-size:70px;
     font-weight:bold;
     color:#3f90ff;
 }
@@ -144,6 +150,7 @@ h1 {
     margin-bottom:15px;
 }
 a:link{
+    font-size:18px;
     color: grey;
     text-decoration:none; 
 }
