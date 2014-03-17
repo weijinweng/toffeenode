@@ -9,7 +9,7 @@ $("#question").keyup(function() {
         $("#search-button").hide();
     }
     else {
-        $('#question').animate({marginTop:'13px'},200);
+        $('#question').animate({marginTop:'10px'},200);
         $("#search-button").show();
     }
     
@@ -56,8 +56,12 @@ $('#signup-button').on('click',function(){
         if (okayemail(email))  {
             socket.emit('signup-email', email);
         }
+        else {
+            $('.stat').removeClass('blank').text('What is your .edu email?');
+        }
     }
 });
+
     
 //SIGNUP EMAIL SHRINK
 $('.background').on('click', function(){
