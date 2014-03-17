@@ -37,6 +37,7 @@ var handler = []
 	handler["/login"] = handlers.login;
 	handler["/verify"] = handlers.verify;
 	handler["/iforgot"] = handlers.iforgot;
+	handler["/error"] = handlers.error;
 
 
 function onRequest(req,res)
@@ -51,14 +52,7 @@ function onRequest(req,res)
 
 
 io.sockets.on('connection', function (socket) {	
-	database.User.findOneAndRemove({email:"weijin22@hotmail.com"},function()
-		{
-			console.log("removed");
-		});
-	database.Validation.findOneAndRemove({email:"weijin22@hotmail.com"},function()
-		{
-			console.log("removed");
-		});
+
 	socket.on('signup-email', function(Email){
 		var check = database.User.count({email:Email}, function(err, count){
 			if(count== 0)
@@ -113,14 +107,29 @@ io.sockets.on('connection', function (socket) {
 	socket.on('verify', function(data){
 		database.Validation.find({validationCode: data}, function(err, data){
 			if(err)
-				return socket.emit('errorValidation');
+				return socket.emit('error-validation');
 			else
 			{
-				socket.emit('validation-email', data.email);ss
+				console.log(data.email);
+				socket.emit('validation-email', data.email);
 			}
 			});
 	});
+	socket.on('finish-signup',function(Email, Password, Username){
+				var Salt = crypto.randomBytes(128).toString('base64');
+				crypto.pbkdf2(Password, Salt, 10000, 512, function(err, derivedKey){
+					database.User.update({email: Email},{password: derivedKey, salt: Salt, username:Username},function(err, count, raw)
+					{
+						if(err)
+							return console.log(err);
+
+						console.log("count updated " + count);
+						console.log("raw data " + raw);
+					});
+				});
+			});
 });
+
 
 
 
