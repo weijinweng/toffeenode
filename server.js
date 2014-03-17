@@ -56,13 +56,13 @@ function onRequest(req,res)
 
 io.sockets.on('connection', function (socket) {	
 	var cookies = socket.handshake.headers['cookie'];
-	if (cookies != null || cookies != "")
+	if (cookies != null && cookies != "confirm=-1")
 	{
 		cookies = cookies.substring(cookies.indexOf('=')+1,cookies.length);
-		console.log(cookies);
+		console.log("The cookie " + cookies);
 		clients[socket.id] = cookies;
 		socket.emit("logged-in");
-		}
+	}
 
 	socket.on('signup-email', function(Email){
 		var check = database.User.count({email:Email}, function(err, count){

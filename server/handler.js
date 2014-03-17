@@ -130,7 +130,7 @@ function logout(req, res)
 			{	
 				if(err)
 					return console.log("error loading logout.html");
-				res.writeHead(200, {"Content-Type":"text/html", "Set-Cookie": "confirm="});
+				res.writeHead(200, {"Set-Cookie": "confirm=-1", "Content-Type":"text/html"});
 				res.end(data);
 			});
 	}
@@ -157,3 +157,4 @@ function error(req, res)
 	module.exports.verify = verify;
 	module.exports.iforgot = iforgot;
 	module.exports.verified = verified;
+	module.exports.logout = logout;

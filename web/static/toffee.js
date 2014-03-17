@@ -1,5 +1,19 @@
 $(document).ready(function(){
 
+var url = document.URL;
+
+
+
+if (url.indexOf("/almost") != -1) {
+	alert("hi");
+	window.location.replace("http://localhost:8000/");
+} else if (url.indexOf("/logout") != -1)
+	{
+		alert("bye");
+		window.location.replace("http://localhost:8000/");
+	}
+
+
 var socket = io.connect('http://localhost:8000');
 
 //LOG IN, render logout, search bar on top
@@ -9,10 +23,7 @@ socket.on('logged-in', function() {
 });
 
 //LOGOUT, render signup/login
-$('#logout-link').on('click', function() {
-	window.location.replace("http://localhost:8000/logout");
-	window.location.replace("http://localhost:8000/");
-});
+
     
 //BOOKMARKED STUFF
     
@@ -21,8 +32,6 @@ $('#logout-link').on('click', function() {
 //VERIFIED USER, sign up and log in!
 socket.on('verified', function(data) {
     window.location.replace("http://localhost:8000/almost-there?confirm="+data);
-	window.location.replace("http://localhost:8000/");
-
 });
 
 
