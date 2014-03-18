@@ -198,6 +198,10 @@ textarea {
     text-align:left;
 }
 
+#ind-page {
+    position:absolute;
+    top:80px;
+}
 
 
 .editor-button {
