@@ -49,17 +49,15 @@ $('#question').focus(function(){
     $('#signup-button').text("sign up");
 });  
     
-//SIGNUP EMAIL DUPLICATE
-socket.on('duplicate', function() {
-    $('.stat').removeClass('blank').text("You already signed up!");
-});  
-    
 //SIGNUP EMAIL OK
 socket.on('success', function() {
     $('.stat').removeClass('blank').text('Check your email!');
 });
     
-
+//SIGNUP EMAIL DUPLICATE
+socket.on('duplicate', function() {
+    $('.stat').removeClass('blank').text("Oops! That email is being used.");
+});  
     
 //AFTER SIGNUP OK: SEND VALIDATION 
 var url = document.URL;
@@ -174,15 +172,18 @@ if (url.indexOf("/home") != -1) {
 socket.on('post-newest', function(title, school, description) {
 	$('#basicinfo').append('<div id = "' + title + '" class = "title">' + title + '</div>'
                            + '<div class = "school">' + school + '</div>'
-                           + '<div class = "description">' + description + '</div>');
+                           + '<div class = "description">' + description + '</div>'
+                           );
+    socket.emit('bookmark-status', title);
 });
     
-socket.on('bookmark-yes', title) {
-    $('#'+title).append('<button>bookmarked</button>');
-}
-socket.on('bookmark-no', title) {
-    $('#'+title).append('<button>bookmark</button>');
-}
+socket.on('bookmark-yes', function(title) {
+    $('#' + title).append('<button>bookmarked</button>');
+});         
+socket.on('bookmark-no', function(title) {
+    $('#' + title).append('<button>bookmark</button>');
+});
+    
 
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
@@ -196,7 +197,7 @@ $('#newpage-button').on('click', function() {
 });
 
 $('#submit-post').on('click', function() {
-     var title = $('#page-title').val();
+    var title = $('#page-title').val();
     var question = $('#page-question').val();
     var description = $('#page-description').val();
     var document = $('#newpost').html();
@@ -209,7 +210,8 @@ $('#submit-post').on('click', function() {
 
 
 //TEXT EDITOR STUFF
-function toggleHead(){
+function toggleHead() {
+    
 	if (document.queryCommandValue('fontSize')==5){
 		document.execCommand('fontSize',false,3);
 		if (document.queryCommandState('bold'))
@@ -239,26 +241,26 @@ function toggleSub(){
     }
 }
 
-function toggleBold(){
+function toggleBold() {
     document.execCommand('bold',false,null);
 }
 
-function toggleItalics(){
+function toggleItalics() {
     document.execCommand('italic',false,null);
 }
 
-function toggleUnderline(){
+function toggleUnderline() {
     document.execCommand('underline',false,null);
 }
 
-function toggleCenter(){
+function toggleCenter() {
     document.execCommand('justifyCenter',false,null);
 }
 
-function toggleRight(){
+function toggleRight() {
     document.execCommand('justifyRight',false,null);
 }
 
-function toggleLeft(){
+function toggleLeft() {
     document.execCommand('justifyLeft',false,null);
 }
