@@ -2,33 +2,7 @@ $(document).ready(function(){
 
 var url = document.URL;
 
-//LOGOUT REDIRECT TO FRONT
-if (url.indexOf("/logout") != -1) {
-    alert("bye");
-    window.location.replace("http://localhost:8000/");
-}
-
-var socket = io.connect('http://localhost:8000');
-
-//LOG IN
-socket.on('logged-in', function() {
-    window.location.replace("http://localhost:8000/home");
-});
-
-
-socket.on('verification-complete',function(){
-		window.location.replace('http://localhost:8000/home');
-		});
-//BOOKMARKED STUFF
     
-//NO BOOKMARKS, render box
-
-//VERIFIED USER, sign up and log in!
-socket.on('verified', function(data) {
-    window.location.replace("http://localhost:8000/almost-there?confirm="+data);
-});
-
-
 //GO UP, APPEND SEARCH BUTTON
 $("#question").keyup(function() {
     var question = $("#question").val();
@@ -45,20 +19,8 @@ $("#question").keyup(function() {
     
 });
     
-//NEXT BUTTON
-$("#question").keyup(function() {
-    var question = $("#question").val();
     
-    if (question.length == 0) {
-        $("#go").remove();
-    }
-    
-    else if ($("#go").length == 0) {
-        $("#box").append("<button id = 'go'>go</button>");
-    } 
-});
-    
-//LOG IN
+//SEND LOG IN INPUT
 $('#login').on('click',function(){
     var email = $('#login-email').val();
     var password = $('#password').val();
@@ -157,7 +119,7 @@ socket.on('error-validation', function() {
 
     
     
-//FINISH SIGNUP
+//FINISH SIGNUP: EMIT EMAIL/PW/USERNAME
 $('#pw-next').on('click',function(){
     var password = $('#signup-pw').val();
     
@@ -187,12 +149,39 @@ $('#pw-next').on('click',function(){
     
     else {
         $('blank-err').show();
-    }
-        
-    
+    }   
+});
+
+//FIN SIGNUP: LOGIN DIRECTLY
+socket.on('verification-complete',function(){
+    var email = $('#welcome').text().substring(9, $('#welcome').text().length);
+    var password = $('#signup-pw').val();
+    socket.emit('login', email, password);
 });
     
+//LOGOUT REDIRECT TO FRONT
+if (url.indexOf("/logout") != -1) {
+    alert("bye");
+    window.location.replace("http://localhost:8000/");
+}
 
+var socket = io.connect('http://localhost:8000');
+
+//LOG IN
+socket.on('logged-in', function() {
+    window.location.replace("http://localhost:8000/home");
+});
+
+
+
+//BOOKMARKED STUFF
+    
+//NO BOOKMARKS, render box
+
+//VERIFIED USER, sign up and log in!
+socket.on('verified', function(data) {
+    window.location.replace("http://localhost:8000/almost-there?confirm="+data);
+});
   
     
 
