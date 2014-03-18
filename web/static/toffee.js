@@ -186,7 +186,6 @@ socket.on('post-newest', function(title, school, description) {
 //LINK TO INDIVIDUAL PAGE
 $('#basicinfo').on('click','.link', function() {
      var title = $(this).parent().attr('id');
-
     socket.emit('page-request',title);
 });
     
@@ -195,6 +194,7 @@ socket.on('page-response', function(title, school, description, document) {
     $("#ind-title").text(title);
     $("#ind-school").text(school);
     $("#ind-description").text(description);
+	alert(document);
     $("#ind-document").html(document);
 });
                    
@@ -247,7 +247,7 @@ $('#submit-post').on('click', function() {
     var question = $('#page-question').val();
     var description = $('#page-description').val();
     var document = $('#newpost').html();
-    socket.emit('newpage', title, question, description, JSON.stringify(document));
+    socket.emit('newpage', title, question, description, document);
 });
     
 });
