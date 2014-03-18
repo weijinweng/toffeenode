@@ -168,25 +168,48 @@ if (url.indexOf("/home") != -1) {
 }
 
 
+    
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
 	$('#basicinfo').append('<div id="' + title + '">'
                             + '<button class = "bookmarked blank">bookmarked</button>'
                             + '<button class = "bookmark blank">bookmark</button>'
-                            +'<div2 id = "' + title + '" class = "title">' + title + '</div2>'
+                            + '<div2 id = "' + title + '" class = "title">' + title + '</div2>'
                             + '<div class = "school">' + school + '</div>'
                             + '<div class = "description">' + description + '</div>'
+                           `+ '<button class = "link">' + title + '</button>'
                             + '</div>');
 });
+   
     
- 
+
+//LINK TO INDIVIDUAL PAGE
+$('#basicinfo').on('click','.link', function() {
+     var title = $('this').parent().attr('class');
+    socket.emit('page-request',title);
+});
+    
+//IND PAGE RESPONSE
+socket.on('page-response', function(title, school, description, document) {
+    $("#ind-title").text(title);
+    $("#ind-school").text(school);
+    $("#ind-description").text(description);
+    $("#ind-document").html(document);
+}
+                   
 //QUERY FOR BOOKMARK STATUS
 $('#basicinfo').on('click','div2', function() {
+<<<<<<< HEAD
+=======
 
+>>>>>>> FETCH_HEAD
     socket.emit('bookmark-status', $(this).attr('id'));
 });
 
-//SHOW BUTTON BY QUERY RESULT
+    
+    
+    
+//BOOKMARK STATUS BY QUERY RESULT
 socket.on('bookmark-yes', function(title) {
 
 	$('#basicinfo').children('#'+title).children('.bookmark').hide();
@@ -210,7 +233,7 @@ $('#basicinfo').on('click','.bookmark', function() {
                  
                   
                   
-//MAKE NEW PAGE: EXPAND
+//NEW WIKIPAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
         $('#newpage').addClass('blank');
