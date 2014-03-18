@@ -153,6 +153,7 @@ $('#pw-next').on('click',function(){
 socket.on('verification-completed',function(){
     var email = $('#welcome').text().substring(9, $('#welcome').text().length);
     var password = $('#signup-pw').val();
+    alert(email);
     socket.emit('login', email, password);
 });
     
