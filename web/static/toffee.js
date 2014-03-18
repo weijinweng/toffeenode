@@ -177,7 +177,7 @@ socket.on('post-newest', function(title, school, description) {
                             + '<div2 id = "' + title + '" class = "title">' + title + '</div2>'
                             + '<div class = "school">' + school + '</div>'
                             + '<div class = "description">' + description + '</div>'
-                            + '<button class = "link">' + title + '</button>'
+                            + '<button class = "link">open page</button>'
                             + '</div>');
 });
    
@@ -186,7 +186,7 @@ socket.on('post-newest', function(title, school, description) {
 //LINK TO INDIVIDUAL PAGE
 $('#basicinfo').on('click','.link', function() {
      var title = $(this).parent().attr('id');
-	 alert(title);
+
     socket.emit('page-request',title);
 });
     
