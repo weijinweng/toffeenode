@@ -1,5 +1,6 @@
 $(document).ready(function(){
-
+    
+var socket = io.connect('http://localhost:8000');
 var url = document.URL;
 //LOGOUT REDIRECT TO FRONT
 if (url.indexOf("/logout") != -1) {
@@ -165,7 +166,6 @@ socket.on('verification-complete',function(){
     
 
 
-var socket = io.connect('http://localhost:8000');
 
 //LOG IN
 socket.on('logged-in', function() {
@@ -183,7 +183,6 @@ socket.on('verified', function(data) {
     window.location.replace("http://localhost:8000/almost-there?confirm="+data);
 });
   
-    
 
 //FORGOT PW
 $('#iforgot').on('click',function(){
