@@ -172,11 +172,17 @@ if (url.indexOf("/home") != -1) {
 
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
-	$('#basicinfo').append('<div class = "title">' + title + '</div>'
+	$('#basicinfo').append('<div id = "' + title + '" class = "title">' + title + '</div>'
                            + '<div class = "school">' + school + '</div>'
                            + '<div class = "description">' + description + '</div>');
 });
     
+socket.on('bookmark-yes', title) {
+    $('#'+title).append('<button>bookmarked</button>');
+}
+socket.on('bookmark-no', title) {
+    $('#'+title).append('<button>bookmark</button>');
+}
 
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
