@@ -55,7 +55,7 @@ function onRequest(req,res)
 
 
 io.sockets.on('connection', function (socket) {	
-	console.log("Socket.id " + socket.id + " has connectes");
+	console.log("Socket.id " + socket.id + " has connected");
 	var cookies = socket.handshake.headers['cookie'];
 	if (cookies != null && cookies != "confirm=-1")
 	{
@@ -234,7 +234,7 @@ io.sockets.on('connection', function (socket) {
 				console.log('client ID = ' + clientId);
 				database.User.findById(clientId, function(err, data){
 						var followed = data.following;
-						console.log("Following " + followed);
+						console.log("Following " + data.email);
 						if (followed.indexOf('Title') != -1)
 							{
 								socket.emit('bookmark-yes', Title);
@@ -246,6 +246,9 @@ io.sockets.on('connection', function (socket) {
 					
 					});
 				});
+	socket.on('unfollow', function(Title)
+	{
+	});
 });
 
 
