@@ -170,21 +170,41 @@ if (url.indexOf("/home") != -1) {
 
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
-	$('#basicinfo').append('<div id = "' + title + '" class = "title">' + title + '</div>'
-                           + '<div class = "school">' + school + '</div>'
-                           + '<div class = "description">' + description + '</div>'
-                           );
-    socket.emit('bookmark-status', title);
+	$('#basicinfo').append('<div>'
+                            + '<button class = "bookmarked blank">bookmarked</button>'
+                            + '<button class = "bookmark blank">bookmark</button>'
+                            +'<div id = "' + title + '" class = "title">' + title + '</div>'
+                            + '<div class = "school">' + school + '</div>'
+                            + '<div class = "description">' + description + '</div>'
+                            + '</div>');
 });
     
+ 
+//QUERY FOR BOOKMARK STATUS
+$('.title').on('click', function() {
+    socket.emit('bookmark-status', title);
+}
+
+//SHOW BUTTON BY QUERY RESULT
 socket.on('bookmark-yes', function(title) {
-    $('#' + title).append('<button>bookmarked</button>');
+    $('#' + title).parent().children().attr('.bookmark').hide();
+    $('#' + title).parent().children().attr('.bookmarked').show();
 });         
 socket.on('bookmark-no', function(title) {
-    $('#' + title).append('<button>bookmark</button>');
+    $('#' + title).parent().children().attr('.bookmarked').hide();
+    $('#' + title).parent().children().attr('.bookmark').show();
 });
-    
-
+   
+//TOGGLE BOOKMARK STATUS
+$('.bookmarked').on('click', function() {
+    var title = $(this).parent().children('.title').attr('id');
+    socket.emit('unfollow', title);
+}
+$('.bookmark').on('click', function() {
+    var title = $(this).parent().children('.title').attr('id');
+    socket.emit('follow', title);
+}
+                  
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
