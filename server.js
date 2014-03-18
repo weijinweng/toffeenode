@@ -214,6 +214,7 @@ io.sockets.on('connection', function (socket) {
 			console.log('client ID = ' + clientId);
 			database.User.findById(clientId,function(err, docs)
 				{
+					console.log("bookmarking for " + docs.email);
 					if(err|| docs == null)
 					{
 						socket.emit("bookmark-no");
@@ -221,10 +222,14 @@ io.sockets.on('connection', function (socket) {
 					}
 					else
 					{
-						console.log(doc._id);
+						console.log(docs._id);
 						docs.following.push(Title);
-						console.log("added bookmark" + docs.following);
-						socket.emit("bookmark-yes");
+						console.log("added bookmark " + docs.following);
+						docs.save(function(){
+						console.log("bookmark saved");
+							socket.emit("bookmark-yes", Title);
+							
+						});
 					}
 				});
 		});
@@ -234,8 +239,8 @@ io.sockets.on('connection', function (socket) {
 				console.log('client ID = ' + clientId);
 				database.User.findById(clientId, function(err, data){
 						var followed = data.following;
-						console.log("Following " + Title);
-						if (followed.indexOf('Title') != -1)
+						console.log("Following " + data.following);
+						if (followed.indexOf(Title) != -1)
 							{
 								socket.emit('bookmark-yes', Title);
 								console.log("yes");
@@ -250,6 +255,27 @@ io.sockets.on('connection', function (socket) {
 				});
 	socket.on('unfollow', function(Title)
 	{
+		var clientId = new database.ObjectID(clients[socket.id]);
+		console.log('client ID = ' + clientId);
+		database.User.findById(clientId, function(err, docs){
+		if(err||docs == null)
+		{
+			socket.emit("unfollow-failed");
+			return console.log("error with unfollowing");
+		}
+		else
+		{
+			console.log(docs._id_);
+			docs.following.splice(docs.following.indexOf(Title),1);
+			console.log('now following '+ docs.following);
+			docs.save(function()
+				{
+					console.log("unfollowed " + Title);
+					socket.emit("bookmark-no", Title);
+				});
+		}
+		});
+		
 	});
 });
 

@@ -170,7 +170,7 @@ if (url.indexOf("/home") != -1) {
 
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
-	$('#basicinfo').append('<div class="' + title + '>'
+	$('#basicinfo').append('<div id="' + title + '">'
                             + '<button class = "bookmarked blank">bookmarked</button>'
                             + '<button class = "bookmark blank">bookmark</button>'
                             +'<div2 id = "' + title + '" class = "title">' + title + '</div2>'
@@ -182,30 +182,30 @@ socket.on('post-newest', function(title, school, description) {
  
 //QUERY FOR BOOKMARK STATUS
 $('#basicinfo').on('click','div2', function() {
-	alert('hi');
+
     socket.emit('bookmark-status', $(this).attr('id'));
 });
 
 //SHOW BUTTON BY QUERY RESULT
 socket.on('bookmark-yes', function(title) {
-	alert("hi");
-    $('#basicinfo').children('.bookmark').attr().hide();
-    $('#basicinfo').children('.bookmarked').attr().show();
+
+	$('#basicinfo').children('#'+title).children('.bookmark').hide();
+    $('#basicinfo').children('#'+title).children('.bookmarked').show();
 });         
 socket.on('bookmark-no', function(title) {
-	alert("bye");
-    $('#basicinfo').children('.bookmarked').hide();
-    $('#basicinfo').children('.bookmark').show();
+
+    $('#basicinfo').children('#'+title).children('.bookmarked').hide();
+    $('#basicinfo').children('#'+title).children('.bookmark').show();
 });
    
 //TOGGLE BOOKMARK STATUS
-$('.bookmarked').on('click', function() {
+$('#basicinfo').on('click','.bookmarked', function() {
     var title = $(this).parent().children('.title').attr('id');
     socket.emit('unfollow', title);
 });
-$('.bookmark').on('click', function() {
+$('#basicinfo').on('click','.bookmark', function() {
     var title = $(this).parent().children('.title').attr('id');
-    socket.emit('follow', title);
+    socket.emit('bookmark-this', title);
 });
                  
                   
