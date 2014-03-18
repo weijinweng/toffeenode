@@ -55,7 +55,7 @@ function onRequest(req,res)
 
 
 io.sockets.on('connection', function (socket) {	
-	console.log("Socket.id " + socket.id + " has connected");
+	console.log("Socket.id " + socket.id + " has connectes");
 	var cookies = socket.handshake.headers['cookie'];
 	if (cookies != null && cookies != "confirm=-1")
 	{
@@ -156,7 +156,7 @@ io.sockets.on('connection', function (socket) {
 								if(err)
 									console.log(err);
 								console.log("verification completed");
-								socket.emit('verfication-completed');
+								socket.emit('verification-completed');
 							});
 						});
 					});

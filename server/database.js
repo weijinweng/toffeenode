@@ -2,13 +2,14 @@ var mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/12");
 var Schema = mongoose.Schema;
 var db = mongoose.connection;
-
+var ObjectID = mongoose.Types.ObjectId;
 var userSchema = new Schema({
 						email: String,
 						password: String,
 						salt: String,
 						username: String,
-						validated: Boolean
+						validated: Boolean,
+						following: [String]
 						});	
 
 						
@@ -19,9 +20,10 @@ var validationSchema = new Schema({
 var pageSchema = new Schema({
 						title: String,
 						school: String,
+						description: String,
 						document: String,
-						featured: String,
-						tags: [],
+						featured: Boolean,
+						tags: []
 						});
 
 var User = mongoose.model('User', userSchema);
@@ -49,4 +51,6 @@ module.exports.findUser = findUser;
 module.exports.saveUser = saveUser;
 module.exports.mongoose = mongoose;
 module.exports.User = User;
+module.exports.ObjectID = ObjectID;
+module.exports.Page = Page;
 module.exports.Validation = Validation;
