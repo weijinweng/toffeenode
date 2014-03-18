@@ -185,7 +185,20 @@ io.sockets.on('connection', function (socket) {
 				}
 			});
 		});
-	});
+	
+	socket.on('newpage',function(Title, School, Description, Document){
+			var newPage = new database.Page({
+								title: Title,
+								school: School,
+								description: Description,
+								document: Document
+								});
+			newPage.save(function(){
+						console.log(newPage.title + newPage.school + " has been saved");
+			});
+		});
+	
+});
 
 
 
