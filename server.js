@@ -238,10 +238,12 @@ io.sockets.on('connection', function (socket) {
 						if (followed.indexOf('Title') != -1)
 							{
 								socket.emit('bookmark-yes', Title);
+								console.log("yes");
 							}
 						else
 							{
 								socket.emit('bookmark-no', Title);
+								console.log("no");
 							}
 					
 					});

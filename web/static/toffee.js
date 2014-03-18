@@ -170,7 +170,7 @@ if (url.indexOf("/home") != -1) {
 
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
-	$('#basicinfo').append('<div>'
+	$('#basicinfo').append('<div class="' + title + '>'
                             + '<button class = "bookmarked blank">bookmarked</button>'
                             + '<button class = "bookmark blank">bookmark</button>'
                             +'<div2 id = "' + title + '" class = "title">' + title + '</div2>'
@@ -188,12 +188,14 @@ $('#basicinfo').on('click','div2', function() {
 
 //SHOW BUTTON BY QUERY RESULT
 socket.on('bookmark-yes', function(title) {
-    $('#' + title).parent().children().attr('.bookmark').hide();
-    $('#' + title).parent().children().attr('.bookmarked').show();
+	alert("hi");
+    $('#basicinfo').children('.bookmark').attr().hide();
+    $('#basicinfo').children('.bookmarked').attr().show();
 });         
 socket.on('bookmark-no', function(title) {
-    $('#' + title).parent().children().attr('.bookmarked').hide();
-    $('#' + title).parent().children().attr('.bookmark').show();
+	alert("bye");
+    $('#basicinfo').children('.bookmarked').hide();
+    $('#basicinfo').children('.bookmark').show();
 });
    
 //TOGGLE BOOKMARK STATUS
