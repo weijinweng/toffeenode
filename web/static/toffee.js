@@ -5,7 +5,7 @@ var url = document.URL;
     
 //LOGOUT REDIRECT TO FRONT
     
-if  (url.indexOf("/home") != -1) {
+if (url.indexOf("/home") != -1) {
     socket.emit('newest');
 }
 else if (url.indexOf("/logout") != -1) {
@@ -182,6 +182,15 @@ $('#iforgot').on('click',function(){
 });
     
     
+//NEWEST POSTS
+socket.on('post-newest', function(title, school, description) {
+	$('#basicinfo').append('<div class = "title">' + title + '</div>'
+                           + '<div class = "school">' + school + '</div>'
+                           + '<div class = "description">' + description + '</div>');
+});
+    
+    
+    
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
@@ -203,6 +212,9 @@ $('#submit-post').on('click', function() {
     
 });
    
+
+
+
 
 
 
