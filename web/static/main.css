@@ -43,9 +43,7 @@ input:focus {
     border-color:#3f90ff;
     box-shadow:0 0 5px #3f90ff;
 }
-textarea:focus{
-    outline:none;
-}
+
 
 
 .button {
@@ -177,7 +175,11 @@ textarea:focus{
     border: 1px solid #bcbcbc;
     border-radius:5px;
 }
-
+#newpost:focus{
+    outline:none;
+    border-color:#3f90ff;
+    box-shadow:0 0 5px #3f90ff;
+}
 ::-webkit-scrollbar { 
     display: none; 
 }
