@@ -226,8 +226,26 @@ io.sockets.on('connection', function (socket) {
 						console.log("added bookmark" + docs.following);
 						socket.emit("bookmark-yes");
 					}
-				})
+				});
 		});
+	socket.on('bookmark-status', function(Title)
+				{
+				var clientId = new database.ObjectID(clients[socket.id]);
+				console.log('client ID = ' + clientId);
+				database.User.findById(clientId, function(err, data){
+						var followed = data.following;
+						console.log("Following " + followed);
+						if (followed.indexOf('Title') != -1)
+							{
+								socket.emit('bookmark-yes', Title);
+							}
+						else
+							{
+								socket.emit('bookmark-no', Title);
+							}
+					
+					});
+				});
 });
 
 
