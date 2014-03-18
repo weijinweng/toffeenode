@@ -41,7 +41,7 @@ var handler = []
 	handler["/error"] = handlers.error;
 	handler["/almost-there"] = handlers.verified;
 	handler["/logout"] = handlers.logout;
-
+	handler["/home"] = handlers.home;
 
 function onRequest(req,res)
 	{
@@ -154,6 +154,7 @@ io.sockets.on('connection', function (socket) {
 								if(err)
 									console.log(err);
 								console.log("verification completed");
+								socket.emit('verfication-completed');
 							});
 						});
 					});

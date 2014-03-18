@@ -15,6 +15,10 @@ socket.on('logged-in', function() {
     window.location.replace("http://localhost:8000/home");
 });
 
+
+socket.on('verification-complete',function(){
+		window.location.replace('http://localhost:8000/home');
+		});
 //BOOKMARKED STUFF
     
 //NO BOOKMARKS, render box

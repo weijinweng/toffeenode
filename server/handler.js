@@ -20,6 +20,22 @@ function front(req, res, clients)
 			}
 		});
 	}
+
+function home(req, res, clients)
+	{
+		fs.readFile('./web/home.html', function(err, data){
+			if(err)
+			{
+				error(req,res);
+				return console.log("error locating home.html");
+			}
+			else
+			{
+				res.writeHead(200, {"Content-Type":"text/html"});
+				res.end(data);
+			}
+		});
+	}
 //verify accouts
 function verify(req, res, clients)
 	{
@@ -129,7 +145,7 @@ function staticFile (req, res, pathname)
 
 			}
 	}
-	
+//Logout handler
 function logout(req, res)
 	{
 		fs.readFile('./web/logout.html',function(err, data)
@@ -164,3 +180,4 @@ function error(req, res)
 	module.exports.iforgot = iforgot;
 	module.exports.verified = verified;
 	module.exports.logout = logout;
+	module.exports.home = home;

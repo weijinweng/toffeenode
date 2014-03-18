@@ -18,7 +18,9 @@ var validationSchema = new Schema({
 						});
 var pageSchema = new Schema({
 						title: String,
-						
+						school: String,
+						document: String,
+						tags: [],
 						});
 						
 var User = mongoose.model('User', userSchema);
