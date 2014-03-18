@@ -194,7 +194,7 @@ io.sockets.on('connection', function (socket) {
 								document: Document
 								});
 			newPage.save(function(){
-						console.log(newPage.title + newPage.school + " has been saved");
+						console.log(newPage.title + newPage.school + newPage.document + " has been saved");
 			});
 		});
 	
