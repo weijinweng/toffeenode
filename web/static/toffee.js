@@ -170,21 +170,12 @@ if (url.indexOf("/home") != -1) {
 
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
-	$('#basicinfo').append('<div id = "' + title + '" class = "title">' + title + '</div>'
+	$('#basicinfo').append('<div class = "title">' + title + '</div>'
                            + '<div class = "school">' + school + '</div>'
-                           + '<div class = "description">' + description + '</div>'
-                           );
-    socket.emit('bookmark-status', title);
+                           + '<div class = "description">' + description + '</div>');
 });
     
-socket.on('bookmark-yes', function(title) {
-    $('#' + title).append('<button>bookmarked</button>');
-}         
-socket.on('bookmark-no', function(title) {
-    $('#' + title).append('<button>bookmark</button>');
-}
-    
-          
+
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
@@ -211,8 +202,7 @@ $('#submit-post').on('click', function() {
 
 //TEXT EDITOR STUFF
 function toggleHead(){
-    
-	if (document.queryCommandValue('fontSize')==5) {
+	if (document.queryCommandValue('fontSize')==5){
 		document.execCommand('fontSize',false,3);
 		if (document.queryCommandState('bold'))
 			toggleBold();
@@ -220,7 +210,6 @@ function toggleHead(){
 		}
 		
 	 document.execCommand('fontSize',false,5);
-    
 	 if (!document.queryCommandState('bold'))
 		toggleBold();
 	}
@@ -242,26 +231,26 @@ function toggleSub(){
     }
 }
 
-function toggleBold() {
+function toggleBold(){
     document.execCommand('bold',false,null);
 }
 
-function toggleItalics() {
+function toggleItalics(){
     document.execCommand('italic',false,null);
 }
 
-function toggleUnderline() {
+function toggleUnderline(){
     document.execCommand('underline',false,null);
 }
 
-function toggleCenter() {
+function toggleCenter(){
     document.execCommand('justifyCenter',false,null);
 }
 
-function toggleRight() {
+function toggleRight(){
     document.execCommand('justifyRight',false,null);
 }
 
-function toggleLeft() {
+function toggleLeft(){
     document.execCommand('justifyLeft',false,null);
 }
