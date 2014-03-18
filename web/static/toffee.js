@@ -183,7 +183,7 @@ socket.on('post-newest', function(title, school, description) {
 //QUERY FOR BOOKMARK STATUS
 $('.title').on('click', function() {
     socket.emit('bookmark-status', title);
-}
+});
 
 //SHOW BUTTON BY QUERY RESULT
 socket.on('bookmark-yes', function(title) {
@@ -199,11 +199,13 @@ socket.on('bookmark-no', function(title) {
 $('.bookmarked').on('click', function() {
     var title = $(this).parent().children('.title').attr('id');
     socket.emit('unfollow', title);
-}
+});
 $('.bookmark').on('click', function() {
     var title = $(this).parent().children('.title').attr('id');
     socket.emit('follow', title);
-}
+});
+                 
+                  
                   
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
