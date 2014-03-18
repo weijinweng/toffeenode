@@ -277,6 +277,22 @@ io.sockets.on('connection', function (socket) {
 		});
 		
 	});
+	socket.on('page-request', function(Title)
+				{
+					database.Page.findOne({title:Title},function(err, doc)
+						{
+							if(err || doc==null)
+								{
+									socket.emit('page-load-error');
+									return console.log('error loading '+ Title);
+								}
+							else
+								{
+									console.log("serving page " + Title);
+									socket.emit('page-response',doc.title,doc.school, doc.description, doc.document);
+								}
+						});
+				});
 });
 
 

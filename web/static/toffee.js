@@ -177,7 +177,7 @@ socket.on('post-newest', function(title, school, description) {
                             + '<div2 id = "' + title + '" class = "title">' + title + '</div2>'
                             + '<div class = "school">' + school + '</div>'
                             + '<div class = "description">' + description + '</div>'
-                           `+ '<button class = "link">' + title + '</button>'
+                            + '<button class = "link">' + title + '</button>'
                             + '</div>');
 });
    
@@ -185,7 +185,8 @@ socket.on('post-newest', function(title, school, description) {
 
 //LINK TO INDIVIDUAL PAGE
 $('#basicinfo').on('click','.link', function() {
-     var title = $('this').parent().attr('class');
+     var title = $(this).parent().attr('id');
+	 alert(title);
     socket.emit('page-request',title);
 });
     
@@ -195,14 +196,11 @@ socket.on('page-response', function(title, school, description, document) {
     $("#ind-school").text(school);
     $("#ind-description").text(description);
     $("#ind-document").html(document);
-}
+});
                    
 //QUERY FOR BOOKMARK STATUS
 $('#basicinfo').on('click','div2', function() {
-<<<<<<< HEAD
-=======
 
->>>>>>> FETCH_HEAD
     socket.emit('bookmark-status', $(this).attr('id'));
 });
 
