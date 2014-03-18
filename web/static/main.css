@@ -201,13 +201,13 @@ textarea {
 
 
 .editor-button {
-    font-family:inherit;
     font-size:15px;
     cursor:pointer;
     
-    width:60px;
+    width:70px;
     height:30px;
     margin-right:1px;
+    margin-bottom:10px;
     
     background-color:white;
     color:#3f90ff;
@@ -220,7 +220,26 @@ textarea {
     color:#f7f7f7;
     transition-duration: 400ms;
 }
-
+.publish-button {
+    font-size:20px;
+    cursor:pointer;
+    
+    width:130px;
+    height:40px;
+    margin-right:1px;
+    margin-bottom:10px;
+    
+    background-color:white;
+    color:#3f90ff;
+    border: 1px solid #3f90ff;
+    border-radius:5px;
+}
+.publish-button:hover {
+    border-color: #3687f5;
+    background-color:#3687f5;
+    color:#f7f7f7;
+    transition-duration: 400ms;
+}
 
 
 textarea:focus {
@@ -239,6 +258,9 @@ textarea:focus {
 :-moz-placeholder { /* Firefox 18- */
    text-align:center;
 }
+
+
+
 h1 {
     color:#737373;
 }
@@ -260,6 +282,12 @@ h1 {
 .spacebelow {
     margin-bottom:15px;
 }
+.sevenbelow {
+    margin-bottom:7px;
+}
+
+
+
 a:link{
     font-size:18px;
     color: grey;
