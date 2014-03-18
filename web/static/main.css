@@ -12,6 +12,8 @@ body {
     z-index:-5;
 }
 
+
+
 input[type=text] {
     line-height:130%;
     font-size: inherit;
@@ -71,6 +73,7 @@ input:focus {
     top:11px;
     right:15px;
 }
+
 
 
 #signup-box {

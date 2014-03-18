@@ -3,11 +3,54 @@ $(document).ready(function(){
 var socket = io.connect('http://localhost:8000');
 var url = document.URL;
     
-//LOGOUT REDIRECT TO FRONT
+//ON THE FRONT PAGE...
+if (url.indexOf("/front") != -1) {
+
+//SIGNUP BUTTON CLICK: EMAIL EXPAND
+$('#signup-button').on('click',function(){
+    $('#signup-email').animate({right:'225px'},200);
+    $('#signup-button').text("go!");
     
-if (url.indexOf("/home") != -1) {
+    $('#frontheader').show(200);
+    $('#question').css('margin-top', '0px');
+
+    $('#question').val('');
+    $("#search-button").hide();
+    
+    var email = $('#signup-email').val();
+    
+    if($('#signup-email').css("right") == "225px"){
+        if (okayemail(email))  {
+            socket.emit('signup-email', email);
+        }
+        else {
+            $('.stat').removeClass('blank').text('What is your .edu email?');
+        }
+    }
+});
+
+//SIGNUP INPUT SHRINK ON BODY CLICK
+$('.background').on('click', function(){
+    $('.stat').fadeOut();
+    $('#signup-email').animate({right:'15px'},200);
+    $('#signup-button').text("sign up");
+});
+
+//SIGNUP INPUT SHRINK WHEN FOCUS
+$('#question').focus(function(){
+    $('.stat').fadeOut();
+    $('#signup-email').animate({right:'15px'},200);
+    $('#signup-button').text("sign up");
+});
+    
+}
+    
+    
+else if (url.indexOf("/home") != -1) {
     socket.emit('newest');
 }
+
+    
 else if (url.indexOf("/logout") != -1) {
     window.location.replace("http://localhost:8000/");
 }
@@ -38,44 +81,6 @@ function okayemail(email) {
     }
 }
  
-    
-//SIGNUP BUTTON CLICK: EMAIL EXPAND
-$('#signup-button').on('click',function(){
-    $('#signup-email').animate({right:'225px'},200);
-    $('#signup-button').text("go!");
-    
-    $('#frontheader').show(200);
-    $('#question').css('margin-top', '0px');
-
-    $('#question').val('');
-    $("#search-button").hide();
-    
-    var email = $('#signup-email').val();
-    
-    if($('#signup-email').css("right") == "225px"){
-        if (okayemail(email))  {
-            socket.emit('signup-email', email);
-        }
-        else {
-            $('.stat').removeClass('blank').text('What is your .edu email?');
-        }
-    }
-});
-
-    
-//SIGNUP SHRINK ON BODY CLICK
-$('.background').on('click', function(){
-    $('.stat').fadeOut();
-    $('#signup-email').animate({right:'15px'},200);
-    $('#signup-button').text("sign up");
-});
-
-//SIGNUP SHRINK WHEN FOCUS
-$('#question').focus(function(){
-    $('.stat').fadeOut();
-    $('#signup-email').animate({right:'15px'},200);
-    $('#signup-button').text("sign up");
-});
     
     
 //SIGNUP EMAIL OK
@@ -184,12 +189,20 @@ $('#iforgot').on('click',function(){
     
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
-	$('#basicinfo').append('<div class = "title">' + title + '</div>'
-                           + '<div class = "school">' + school + '</div>'
-                           + '<div class = "description">' + description + '</div>');
+	$('#basicinfo').append('<div>'
+                            + '<div class = "title">' + title + '</div>'
+                            + '<div class = "school">' + school + '</div>'
+                            + '<div class = "description">' + description + '</div>'
+                            + '<button id = "' + title +'" class = "bookmark">bookmark</button>
+                            + '</div>');
 });
     
-    
+$('.bookmark').on('click', function() {
+    var title = $(this).parent().children('.title').text();
+    socket.emit('bookmark-this', title);
+}
+                  
+socket.on('logged-in', function() {
     
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
@@ -203,7 +216,7 @@ $('#newpage-button').on('click', function() {
 });
 
 $('#submit-post').on('click', function() {
-     var title = $('#page-title').val();
+    var title = $('#page-title').val();
     var question = $('#page-question').val();
     var description = $('#page-description').val();
     var document = $('#newpost').html();
