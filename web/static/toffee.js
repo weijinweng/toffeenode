@@ -3,9 +3,15 @@ $(document).ready(function(){
 var socket = io.connect('http://localhost:8000');
 var url = document.URL;
     
-//ON THE FRONT PAGE...
-if (url.indexOf("/front") != -1) {
-
+//VERIFY EMAIL
+function okayemail(email) {
+    if ((email.split('@').length-1) == 1 && (email.substring(email.length-4, email.length))) {
+        return true;
+    } else {
+        return false;
+    }
+}
+ 
 //SIGNUP BUTTON CLICK: EMAIL EXPAND
 $('#signup-button').on('click',function(){
     $('#signup-email').animate({right:'225px'},200);
@@ -28,72 +34,30 @@ $('#signup-button').on('click',function(){
         }
     }
 });
-
-//SIGNUP INPUT SHRINK ON BODY CLICK
+    
+//SIGNUP BUTTON SHRINK ON BODY CLICK
 $('.background').on('click', function(){
     $('.stat').fadeOut();
     $('#signup-email').animate({right:'15px'},200);
     $('#signup-button').text("sign up");
 });
 
-//SIGNUP INPUT SHRINK WHEN FOCUS
+//SIGNUP BUTTON SHRINK WHEN FOCUS
 $('#question').focus(function(){
     $('.stat').fadeOut();
     $('#signup-email').animate({right:'15px'},200);
     $('#signup-button').text("sign up");
-});
-    
-}
-    
-    
-else if (url.indexOf("/home") != -1) {
-    socket.emit('newest');
-}
-
-    
-else if (url.indexOf("/logout") != -1) {
-    window.location.replace("http://localhost:8000/");
-}
-    
-    
-//QUESTION GO UP, APPEND SEARCH BUTTON
-$("#question").keyup(function() {
-    var question = $("#question").val();
-    
-    if (question.length == 0) {
-        $('#frontheader').show(100);
-        $("#search-button").hide();
-    }
-    else {
-        $('#frontheader').hide(100);
-        $("#search-button").show();
-    }
-    
-});
-        
-
-//VERIFY EMAIL
-function okayemail(email) {
-    if ((email.split('@').length-1) == 1 && (email.substring(email.length-4, email.length))) {
-        return true;
-    } else {
-        return false;
-    }
-}
- 
-    
+});  
     
 //SIGNUP EMAIL OK
 socket.on('success', function() {
     $('.stat').removeClass('blank').text('Check your email!');
 });
-
     
 //SIGNUP EMAIL DUPLICATE
 socket.on('duplicate', function() {
     $('.stat').removeClass('blank').text("Oops! That email is being used.");
-});
-    
+});  
     
 //AFTER SIGNUP OK: SEND VALIDATION 
 var url = document.URL;
@@ -102,7 +66,7 @@ if (url.indexOf('/verify') != -1) {
     socket.emit('verify',code);
 }
     
-//VAL OKAY
+//VALID CODE
 socket.on('validation-email', function(data) {
     if (data == null) {
         $('#valid-err').removeClass('blank');
@@ -112,16 +76,13 @@ socket.on('validation-email', function(data) {
     }
 });
     
-//VAL 404
+//CODE 404
 socket.on('error-validation', function() {
     window.location.replace("http://localhost:8000/error");
 });
-  
 
-    
-    
-//FINISH SIGNUP: EMIT EMAIL/PW/USERNAME
-$('#pw-next').on('click',function(){
+//COMMIT USER: EMIT EMAIL/PW/USERNAME
+$('#pw-next').on('click',function() {
     var password = $('#signup-pw').val();
     
     if (password.length != 0) {
@@ -137,27 +98,38 @@ $('#pw-next').on('click',function(){
                 var email = $('#welcome').text().substring(9, $('#welcome').text().length);
                 socket.emit('finish-signup', email, password, username);
                 //window.location.replace("http://localhost:8000/");
-            }
-            
-            else {
+            } else {
                 $('blank-err').show();
-            }
-            
+            } 
         });
-    }
-    
-    else {
+    } else {
         $('blank-err').show();
     }   
 });
 
-//FIN SIGNUP: LOGIN DIRECTLY
+//FINISH SIGNUP: LOGIN DIRECTLY
 socket.on('verification-completed',function(){
     var email = $('#welcome').text().substring(9, $('#welcome').text().length);
     var password = $('#signup-pw').val();
     socket.emit('login', email, password);
 });
+  
+//QUESTION GO UP, APPEND SEARCH BUTTON
+$("#question").keyup(function() {
+    var question = $("#question").val();
     
+    if (question.length == 0) {
+        $('#frontheader').show(100);
+        $("#search-button").hide();
+    }
+    else {
+        $('#frontheader').hide(100);
+        $("#search-button").show();
+    }
+
+});
+ 
+     
     
 //SEND LOG IN INPUT
 $('#login').on('click',function(){
@@ -179,31 +151,31 @@ socket.on('logged-in', function() {
 		window.location.replace("http://localhost:8000/home");
 });
 
-
+    
+    
 //FORGOT PW
 $('#iforgot').on('click',function(){
     var email = $('#email').val();
     socket.emit('iforgot', email);
 });
     
+if (url.indexOf("/logout") != -1) {
+    window.location.replace("http://localhost:8000/");
+}    
     
+if (url.indexOf("/home") != -1) {
+    socket.emit('newest');
+}
+
+
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
-	$('#basicinfo').append('<div>'
-                            + '<div class = "title">' + title + '</div>'
-                            + '<div class = "school">' + school + '</div>'
-                            + '<div class = "description">' + description + '</div>'
-                            + '<button id = "' + title +'" class = "bookmark">bookmark</button>
-                            + '</div>');
+	$('#basicinfo').append('<div class = "title">' + title + '</div>'
+                           + '<div class = "school">' + school + '</div>'
+                           + '<div class = "description">' + description + '</div>');
 });
     
-$('.bookmark').on('click', function() {
-    var title = $(this).parent().children('.title').text();
-    socket.emit('bookmark-this', title);
-}
-                  
-socket.on('logged-in', function() {
-    
+
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
@@ -216,7 +188,7 @@ $('#newpage-button').on('click', function() {
 });
 
 $('#submit-post').on('click', function() {
-    var title = $('#page-title').val();
+     var title = $('#page-title').val();
     var question = $('#page-question').val();
     var description = $('#page-description').val();
     var document = $('#newpost').html();
@@ -225,9 +197,6 @@ $('#submit-post').on('click', function() {
     
 });
    
-
-
-
 
 
 
