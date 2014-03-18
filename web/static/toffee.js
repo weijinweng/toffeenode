@@ -186,8 +186,7 @@ $('#iforgot').on('click',function(){
     socket.emit('iforgot', email);
 });
     
-<<<<<<< HEAD
-
+    
 //MAKE NEW PAGE: EXPAND
 $('newpage-button').on('click', function() {
     var title = $('#page-title').val();
@@ -197,9 +196,8 @@ $('newpage-button').on('click', function() {
     socket.emit('newpage', title, question, description, JSON.stringify(document));
 }
 
-});
-=======
-});
+                       });
+                       
 function toggleHead(){
 	if (document.queryCommandValue('fontSize')==5){
 		document.execCommand('fontSize',false,3);
@@ -241,4 +239,4 @@ function toggleHead(){
 	function toggleLeft(){
 	document.execCommand('justifyLeft',false,null);
 	}
->>>>>>> FETCH_HEAD
+    
