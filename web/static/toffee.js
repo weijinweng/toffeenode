@@ -169,7 +169,8 @@ socket.on('verification-complete',function(){
 
 //LOG IN
 socket.on('logged-in', function() {
-    window.location.replace("http://localhost:8000/home");
+	if(url.indexOf('/home')==-1)
+		window.location.replace("http://localhost:8000/home");
 });
 
 

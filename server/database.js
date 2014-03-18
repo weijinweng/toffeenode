@@ -20,6 +20,7 @@ var pageSchema = new Schema({
 						title: String,
 						school: String,
 						document: String,
+						featured: String,
 						tags: [],
 						});
 

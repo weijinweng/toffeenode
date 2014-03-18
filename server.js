@@ -55,6 +55,7 @@ function onRequest(req,res)
 
 
 io.sockets.on('connection', function (socket) {	
+	console.log("Socket.id " + socket.id + " has connected");
 	var cookies = socket.handshake.headers['cookie'];
 	if (cookies != null && cookies != "confirm=-1")
 	{
