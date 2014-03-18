@@ -38,21 +38,21 @@ NEW OR EDIT POST
 <div class = "center">
 <div id = "newpage" class = "blank">
     
-    <input type="text" id = "page-title" placeholder = "title"></input>
-    <input type="text" id = "page-question" placeholder = "school (i.e. engineering, olin)"></input>
-    <input type="text" id = "page-description" placeholder = "description"></input>
+    <div><input type="text" id = "page-title" placeholder = "Course wiki title"></input></div>
+     <div><input type="text" id = "page-question" placeholder = "School (i.e. sam fox)"></input></div>
+     <div><textarea type="text" id = "page-description" placeholder = "Description"></textarea></div>
 
     <div id = "editor">
         
-        <button onclick="toggleBold();">bold</button>
-        <button onclick="toggleUnderline();">underline</button>
-        <button onclick="toggleItalics();" >italic</button>
+        <button class = "editor-button" onclick="toggleBold();">bold</button>
+        <button class = "editor-button" onclick="toggleUnderline();">underline</button>
+        <button class = "editor-button" onclick="toggleItalics();" >italic</button>
         
-        <button onclick="toggleLeft();">left</button>
-        <button onclick="toggleCenter();">center</button>
-        <button onclick="toggleRight();">right</button>
+        <button class = "editor-button" onclick="toggleLeft();">left</button>
+        <button class = "editor-button" onclick="toggleCenter();">center</button>
+        <button class = "editor-button" onclick="toggleRight();">right</button>
         
-        <button onclick="toggleHead();">header</button>
+        <button class = "editor-button" onclick="toggleHead();">header</button>
     
         <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
         

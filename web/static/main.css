@@ -174,14 +174,43 @@ input:focus {
     line-height:130%;
     border: 1px solid #bcbcbc;
     border-radius:5px;
+    text-align:left;
 }
 #newpost:focus{
     outline:none;
     border-color:#3f90ff;
     box-shadow:0 0 5px #3f90ff;
 }
+textarea {
+    line-height:130%;
+    font-size: inherit;
+    font-family:inherit;
+    color:inherit;
+    
+    width:195px;
+    height:80px;
+    border:1px solid #bcbcbc;
+    border-radius:5px;
+    text-align:left;
+}
+
+
+
+textarea:focus {
+    outline:none;
+    border-color:#3f90ff;
+    box-shadow:0 0 5px #3f90ff;
+}
+
 ::-webkit-scrollbar { 
     display: none; 
+}
+::-webkit-input-placeholder {
+   text-align:center;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   text-align:center;
 }
 h1 {
     color:#737373;
