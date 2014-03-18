@@ -43,7 +43,9 @@ input:focus {
     border-color:#3f90ff;
     box-shadow:0 0 5px #3f90ff;
 }
-
+textarea:focus{
+    outline:none;
+}
 
 
 .button {
@@ -153,7 +155,9 @@ input:focus {
 #newpage-button {
     position:absolute;
     top:10px;
-    right:100px;
+    right:90px;
+    width:130px;
+    text-align:center;
 }
 #logout-link {
     position:absolute;
@@ -165,6 +169,17 @@ input:focus {
 
 #newpage {
     position: absolute;
+    top:80px;
+    left:300px;
+}
+#newpost {
+    line-height:130%;
+    border: 1px solid #bcbcbc;
+    border-radius:5px;
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }
 h1 {
     color:#737373;
