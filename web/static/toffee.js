@@ -188,14 +188,18 @@ $('#iforgot').on('click',function(){
     
     
 //MAKE NEW PAGE: EXPAND
-$('newpage-button').on('click', function() {
-    var title = $('#page-title').val();
+$('#newpage-button').on('click', function() {
+    $('#newpage').removeClass('blank');
+});
+
+$('#submit-post').on('click', function() {
+     var title = $('#page-title').val();
     var question = $('#page-question').val();
     var description = $('#page-description').val();
     var document = $('#newpost').html();
     socket.emit('newpage', title, question, description, JSON.stringify(document));
 });
-
+    
 });
                        
 function toggleHead(){

@@ -47,18 +47,6 @@ MAKE NEW WIKI PAGE
 <!--
 NEW OR EDIT POST
 -->
-<div id = "editor">
-    
-    <button onclick="toggleBold();">bold</button>
-    <button onclick="toggleUnderline();">underline</button>
-    <button onclick="toggleItalics();" >italic</button>
-    
-    <button onclick="toggleLeft();">left</button>
-    <button onclick="toggleCenter();">center</button>
-    <button onclick="toggleRight();">right</button>
-    
-    <button onclick="toggleHead();">header</button>
-
 <div id = "newpage" class = "blank">
     
     <input type="text" id = "page-title" placeholder = "title"></input>
@@ -67,21 +55,21 @@ NEW OR EDIT POST
 
     <div id = "editor">
         
-        <button>bold</button>
-        <button>underline</button>
-        <button>italic</button>
+        <button onclick="toggleBold();">bold</button>
+        <button onclick="toggleUnderline();">underline</button>
+        <button onclick="toggleItalics();" >italic</button>
         
-        <button>left</button>
-        <button>center</button>
-        <button>right</button>
+        <button onclick="toggleLeft();">left</button>
+        <button onclick="toggleCenter();">center</button>
+        <button onclick="toggleRight();">right</button>
         
-        <button>header</button>
+        <button onclick="toggleHead();">header</button>
     
         <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
         
         </div>
 
-    <button id = "submit-button" class = "button submit-button">okay</button>
+    <button id = "submit-post" class = "button submit-button">okay</button>
 
 </div>
 
