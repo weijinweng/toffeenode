@@ -194,9 +194,9 @@ $('newpage-button').on('click', function() {
     var description = $('#page-description').val();
     var document = $('#newpost').html();
     socket.emit('newpage', title, question, description, JSON.stringify(document));
-}
+});
 
-                       });
+});
                        
 function toggleHead(){
 	if (document.queryCommandValue('fontSize')==5){
