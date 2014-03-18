@@ -234,7 +234,7 @@ io.sockets.on('connection', function (socket) {
 				console.log('client ID = ' + clientId);
 				database.User.findById(clientId, function(err, data){
 						var followed = data.following;
-						console.log("Following " + data.email);
+						console.log("Following " + Title);
 						if (followed.indexOf('Title') != -1)
 							{
 								socket.emit('bookmark-yes', Title);

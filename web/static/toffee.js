@@ -173,7 +173,7 @@ socket.on('post-newest', function(title, school, description) {
 	$('#basicinfo').append('<div>'
                             + '<button class = "bookmarked blank">bookmarked</button>'
                             + '<button class = "bookmark blank">bookmark</button>'
-                            +'<div id = "' + title + '" class = "title">' + title + '</div>'
+                            +'<div2 id = "' + title + '" class = "title">' + title + '</div2>'
                             + '<div class = "school">' + school + '</div>'
                             + '<div class = "description">' + description + '</div>'
                             + '</div>');
@@ -181,8 +181,9 @@ socket.on('post-newest', function(title, school, description) {
     
  
 //QUERY FOR BOOKMARK STATUS
-$('.title').on('click', function() {
-    socket.emit('bookmark-status', title);
+$('#basicinfo').on('click','div2', function() {
+	alert('hi');
+    socket.emit('bookmark-status', $(this).attr('id'));
 });
 
 //SHOW BUTTON BY QUERY RESULT
