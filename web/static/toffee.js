@@ -186,6 +186,7 @@ $('#iforgot').on('click',function(){
     socket.emit('iforgot', email);
 });
     
+<<<<<<< HEAD
 
 //MAKE NEW PAGE: EXPAND
 $('newpage-button').on('click', function() {
@@ -197,3 +198,47 @@ $('newpage-button').on('click', function() {
 }
 
 });
+=======
+});
+function toggleHead(){
+	if (document.queryCommandValue('fontSize')==5){
+		document.execCommand('fontSize',false,3);
+		if (document.queryCommandState('bold'))
+			toggleBold();
+			return 0;
+		}
+		
+	 document.execCommand('fontSize',false,5);
+	 if (!document.queryCommandState('bold'))
+		toggleBold();
+	}
+	function toggleSub(){
+	if (document.queryCommandValue('fontSize')==4){
+		document.execCommand('fontSize',false,3);
+		if (document.queryCommandState('bold'))
+			toggleBold();
+			return 0;
+		}
+		 document.execCommand('fontSize',false,4);
+	 if (!document.queryCommandState('bold'))
+		toggleBold();
+	}
+	  function toggleBold(){
+	document.execCommand('bold',false,null);
+	}
+	function toggleItalics(){
+	document.execCommand('italic',false,null);
+	}
+	function toggleUnderline(){
+	document.execCommand('underline',false,null);
+	}
+	function toggleCenter(){
+	document.execCommand('justifyCenter',false,null);
+	}
+	function toggleRight(){
+	document.execCommand('justifyRight',false,null);
+	}
+	function toggleLeft(){
+	document.execCommand('justifyLeft',false,null);
+	}
+>>>>>>> FETCH_HEAD
