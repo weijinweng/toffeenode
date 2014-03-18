@@ -129,24 +129,43 @@ input:focus {
 
 #navbar{
     background-color:white;
-    text-align:center;
+    position:absolute;
     margin-top:10px;
+    width:100%;
 }
 #homeheader {
-    display:inline-block;
     margin:0 auto;
-    margin-top:10px;
-    margin-right:50px;
+    margin-left:50px;
     
     font-size:30px;
     font-weight:bold;
     color:#3f90ff;
 }
+#home-question {
+    position:relative;
+    display:block;
+    margin:0 auto;
+    font-size:20px;
+    max-width:40vw;
+    min-width:500px;
+    margin-top:-30px;
+}
+#newpage-button {
+    position:absolute;
+    top:10px;
+    right:100px;
+}
 #logout-link {
+    position:absolute;
+    top:10px;
+    right:20px;
 }
 
 
 
+#newpage {
+    position: absolute;
+}
 h1 {
     color:#737373;
 }
