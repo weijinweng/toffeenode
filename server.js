@@ -187,10 +187,12 @@ io.sockets.on('connection', function (socket) {
 		});
 	socket.on('newest', function()
 			{
-				document.Page.Find({}, function(err, doc)
+				console.log("Requestion for pages received");
+				database.Page.find({}, function(err, doc)
 					{
 						doc.forEach(function(entry){
-							socket.emit('post', entry.title, entry.school, entry.description);
+							console.log("Sending " + entry.title);
+							socket.emit('post-newest', entry.title, entry.school, entry.description);
 						});
 					});
 			});
