@@ -95,13 +95,7 @@ input:focus {
 #question-box {
     background-color:transparent;
     text-align:center;
-}
-
-#question-box {
-    display:block;
-    margin:0 auto;
-    text-align:center;
-    background-color:white;
+    margin-top:10px;
 }
 #frontheader {
     display:block;

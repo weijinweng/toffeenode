@@ -2,37 +2,29 @@ $(document).ready(function(){
     
 var socket = io.connect('http://localhost:8000');
 var url = document.URL;
+    
 //LOGOUT REDIRECT TO FRONT
 if (url.indexOf("/logout") != -1) {
     alert("bye");
     window.location.replace("http://localhost:8000/");
 }
     
+    
 //GO UP, APPEND SEARCH BUTTON
 $("#question").keyup(function() {
     var question = $("#question").val();
     
     if (question.length == 0) {
-        $('#frontheader').show(200);
+        $('#frontheader').show(100);
         $("#search-button").hide();
     }
     else {
-        $('#frontheader').hide(200);
-        $('#question').animate({marginTop:'10px'},200);
+        $('#frontheader').hide(100);
         $("#search-button").show();
     }
     
 });
-    
-    
-//SEND LOG IN INPUT
-$('#login').on('click',function(){
-    var email = $('#login-email').val();
-    var password = $('#password').val();
-	alert(email);
-    socket.emit('login', email, password);
-});
-    
+        
 
 //VERIFY EMAIL
 function okayemail(email) {
@@ -164,26 +156,28 @@ socket.on('verification-complete',function(){
     socket.emit('login', email, password);
 });
     
-
-
-
-//LOG IN
+    
+//SEND LOG IN INPUT
+$('#login').on('click',function(){
+    var email = $('#login-email').val();
+    var password = $('#password').val();
+	alert(email);
+    socket.emit('login', email, password);
+});
+    
+    
+//USER IS DB, LOGIN!
+socket.on('verified', function(data) {
+    window.location.replace("http://localhost:8000/almost-there?confirm="+data);
+});
+    
+    
+//FIN LOG IN, REDIRECT TO HOME, RENDER ALL BOOKMARKS
 socket.on('logged-in', function() {
 	if(url.indexOf('/home')==-1)
 		window.location.replace("http://localhost:8000/home");
 });
 
-
-
-//BOOKMARKED STUFF
-    
-//NO BOOKMARKS, render box
-
-//VERIFIED USER, sign up and log in!
-socket.on('verified', function(data) {
-    window.location.replace("http://localhost:8000/almost-there?confirm="+data);
-});
-  
 
 //FORGOT PW
 $('#iforgot').on('click',function(){
