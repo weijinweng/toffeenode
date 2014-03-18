@@ -73,7 +73,7 @@ input:focus {
 
 
 #signup-box {
-    background-color:red;
+    background-color:white;
     text-align:right;
 }
 #signup-email {
@@ -128,7 +128,7 @@ input:focus {
 
 
 #navbar{
-    background-color:red;
+    background-color:white;
     text-align:center;
     margin-top:10px;
 }
