@@ -5,7 +5,6 @@ var url = document.URL;
     
 //LOGOUT REDIRECT TO FRONT
 if (url.indexOf("/logout") != -1) {
-    alert("bye");
     window.location.replace("http://localhost:8000/");
 }
     
@@ -91,18 +90,14 @@ socket.on('duplicate', function() {
 var url = document.URL;
 if (url.indexOf('/verify') != -1) {
     var code = url.substring(url.indexOf('?v=') + 3,url.length);
-    alert(code);
     socket.emit('verify',code);
 }
     
 //VAL OKAY
 socket.on('validation-email', function(data) {
     if (data == null) {
-        alert("OH NO!");
         $('#valid-err').removeClass('blank');
     } else {
-        alert("OKAY!");
-        alert(data);
         $('#welcome').text("Welcome, " + data);
         $('#pw-box').removeClass('blank');
     }
@@ -121,7 +116,6 @@ $('#pw-next').on('click',function(){
     var password = $('#signup-pw').val();
     
     if (password.length != 0) {
-        alert("HI");
         $('#signup-pw').hide();
         $('#pw-next').hide();
         $('#username-box').show();
@@ -132,7 +126,6 @@ $('#pw-next').on('click',function(){
             
             if (username.length != 0) {
                 var email = $('#welcome').text().substring(9, $('#welcome').text().length);
-				alert(email);
                 socket.emit('finish-signup', email, password, username);
                 //window.location.replace("http://localhost:8000/");
             }
@@ -153,7 +146,6 @@ $('#pw-next').on('click',function(){
 socket.on('verification-completed',function(){
     var email = $('#welcome').text().substring(9, $('#welcome').text().length);
     var password = $('#signup-pw').val();
-    alert(email);
     socket.emit('login', email, password);
 });
     
@@ -162,7 +154,6 @@ socket.on('verification-completed',function(){
 $('#login').on('click',function(){
     var email = $('#login-email').val();
     var password = $('#password').val();
-	alert(email);
     socket.emit('login', email, password);
 });
     
