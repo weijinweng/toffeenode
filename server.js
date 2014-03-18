@@ -196,6 +196,7 @@ io.sockets.on('connection', function (socket) {
 						});
 					});
 			});
+	//bookmarking
 	socket.on('newpage',function(Title, School, Description, Document){
 			var newPage = new database.Page({
 								title: Title,
@@ -207,17 +208,23 @@ io.sockets.on('connection', function (socket) {
 						console.log(newPage.title + newPage.school + newPage.document + " has been saved");
 			});
 		});
+	//bookmarking
 	socket.on('bookmark-this', function(Title){
 			var clientId = new database.ObjectID(clients[socket.id]);
 			console.log('client ID = ' + clientId);
 			database.User.findById(clientId,function(err, docs)
 				{
 					if(err|| docs == null)
+					{
+						socket.emit("bookmark-no");
 						return console.log("error with bookmarking");
+					}
 					else
 					{
+						console.log(doc._id);
 						docs.following.push(Title);
 						console.log("added bookmark" + docs.following);
+						socket.emit("bookmark-yes");
 					}
 				})
 		});
