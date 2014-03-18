@@ -68,11 +68,7 @@ input:focus {
     width:100px;
 }
 
-#logout-link {
-    position:absolute;
-    top:11px;
-    right:15px;
-}
+
 
 
 
@@ -110,6 +106,7 @@ input:focus {
     font-weight:bold;
     color:#3f90ff;
 }
+
 #question {
     display:inline-block;
     margin:0 auto;
@@ -129,11 +126,36 @@ input:focus {
 }
 
 
+
+#navbar{
+    background-color:red;
+    text-align:center;
+    margin-top:10px;
+}
+#homeheader {
+    display:inline-block;
+    margin:0 auto;
+    margin-top:10px;
+    margin-right:50px;
+    
+    font-size:30px;
+    font-weight:bold;
+    color:#3f90ff;
+}
+#logout-link {
+}
+
+
+
 h1 {
     color:#737373;
 }
 .center {
     text-align:center;
+}
+.blockcenter {
+    display:block;
+    margin:0 auto;
 }
 .blank {
     display:none;
