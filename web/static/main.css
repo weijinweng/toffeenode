@@ -14,7 +14,7 @@ body {
 
 
 
-input[type=text] {
+input[type=text], input[type=email]{
     line-height:130%;
     font-size: inherit;
     font-family:inherit;

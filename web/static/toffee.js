@@ -179,12 +179,12 @@ socket.on('post-newest', function(title, school, description) {
     
 socket.on('bookmark-yes', function(title) {
     $('#' + title).append('<button>bookmarked</button>');
-}         
+});         
 socket.on('bookmark-no', function(title) {
     $('#' + title).append('<button>bookmark</button>');
-}
+});
     
-          
+
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
@@ -197,7 +197,7 @@ $('#newpage-button').on('click', function() {
 });
 
 $('#submit-post').on('click', function() {
-     var title = $('#page-title').val();
+    var title = $('#page-title').val();
     var question = $('#page-question').val();
     var description = $('#page-description').val();
     var document = $('#newpost').html();
@@ -210,9 +210,9 @@ $('#submit-post').on('click', function() {
 
 
 //TEXT EDITOR STUFF
-function toggleHead(){
+function toggleHead() {
     
-	if (document.queryCommandValue('fontSize')==5) {
+	if (document.queryCommandValue('fontSize')==5){
 		document.execCommand('fontSize',false,3);
 		if (document.queryCommandState('bold'))
 			toggleBold();
@@ -220,7 +220,6 @@ function toggleHead(){
 		}
 		
 	 document.execCommand('fontSize',false,5);
-    
 	 if (!document.queryCommandState('bold'))
 		toggleBold();
 	}
