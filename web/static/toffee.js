@@ -1,7 +1,11 @@
 $(document).ready(function(){
 
 var url = document.URL;
-
+//LOGOUT REDIRECT TO FRONT
+if (url.indexOf("/logout") != -1) {
+    alert("bye");
+    window.location.replace("http://localhost:8000/");
+}
     
 //GO UP, APPEND SEARCH BUTTON
 $("#question").keyup(function() {
@@ -159,11 +163,7 @@ socket.on('verification-complete',function(){
     socket.emit('login', email, password);
 });
     
-//LOGOUT REDIRECT TO FRONT
-if (url.indexOf("/logout") != -1) {
-    alert("bye");
-    window.location.replace("http://localhost:8000/");
-}
+
 
 var socket = io.connect('http://localhost:8000');
 

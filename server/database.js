@@ -22,10 +22,10 @@ var pageSchema = new Schema({
 						document: String,
 						tags: [],
 						});
-						
+
 var User = mongoose.model('User', userSchema);
 var Validation = mongoose.model('Validation',validationSchema);
-
+var Page = mongoose.model('Page', pageSchema);
 function saveUser (Email)
 	{
 		var newUser = new User({ email: Email});

@@ -146,6 +146,7 @@ io.sockets.on('connection', function (socket) {
 						doc.password = derivedKey;
 						doc.salt = Salt;
 						doc.username = Username;
+						doc.validated = true;
 						console.log ( doc.password, doc.salt, doc.username);
 						doc.save(function(err, product, changedcount)
 						{
@@ -164,7 +165,7 @@ io.sockets.on('connection', function (socket) {
 		database.User.findOne({email: Email}, function(err, doc)
 			{
 				console.log("Hello the email is " + Email);
-				if(err||doc==null)
+				if(err||doc==null||doc.validated == false)
 				{
 					return console.log("Error " +err);
 				} else {
