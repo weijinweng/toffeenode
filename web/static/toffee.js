@@ -167,7 +167,7 @@ $('#login').on('click',function(){
 });
     
     
-//USER IS DB, LOGIN!
+//USER IN DB, LOGIN!
 socket.on('verified', function(data) {
     window.location.replace("http://localhost:8000/almost-there?confirm="+data);
 });
@@ -186,4 +186,14 @@ $('#iforgot').on('click',function(){
     socket.emit('iforgot', email);
 });
     
+
+//MAKE NEW PAGE: EXPAND
+$('newpage-button').on('click', function() {
+    var title = $('#page-title').val();
+    var question = $('#page-question').val();
+    var description = $('#page-description').val();
+    var document = $('#newpost').html();
+    socket.emit('newpage', title, question, description, JSON.stringify(document));
+}
+
 });

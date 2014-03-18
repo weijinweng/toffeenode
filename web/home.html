@@ -27,19 +27,6 @@
 
 <div id = "empty" class = "blank">It looks like you haven't bookmarked anything.</div>
 
-    
-<!--
-MAKE NEW WIKI PAGE
--->
-<button id = "newpage-button">new page</button>
-
-<div id = "newpage" class = "blank">
-    <input type="text" id = "question" placeholder = "topic, course..."></input>
-    <input type="text" id = "question" placeholder = "topic, course..."></input>
-    <input type="text" id = "question" placeholder = "topic, course..."></input>
-    <button id = "submit-button" class = "button submit-button blank">okay</button>
-
-    </div>
 
 <!--
 DISPLAY PAGE
@@ -49,26 +36,38 @@ DISPLAY PAGE
     <div id = "school"></div>
     <div id = "description"></div>
     </div>
-
+    
+    
 <!--
-NEW OR EDIT POST
+MAKE NEW WIKI PAGE
 -->
-<div id = "editor">
-    
-    <button>bold</button>
-    <button>underline</button>
-    <button>italic</button>
-    
-    <button>left</button>
-    <button>center</button>
-    <button>right</button>
-    
-    <button>bigger</button>
+<button id = "newpage-button">new wiki page</button>
 
-    <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
+<div id = "newpage" class = "blank">
     
-    </div>
+    <input type="text" id = "page-title" placeholder = "title"></input>
+    <input type="text" id = "page-question" placeholder = "school (i.e. engineering, olin)"></input>
+    <input type="text" id = "page-description" placeholder = "description"></input>
+
+    <div id = "editor">
+        
+        <button>bold</button>
+        <button>underline</button>
+        <button>italic</button>
+        
+        <button>left</button>
+        <button>center</button>
+        <button>right</button>
+        
+        <button>header</button>
     
-    
+        <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
+        
+        </div>
+
+    <button id = "submit-button" class = "button submit-button">okay</button>
+
+</div>
+
 </body>
 </html>
