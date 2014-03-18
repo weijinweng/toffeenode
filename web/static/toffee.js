@@ -49,15 +49,17 @@ $('#question').focus(function(){
     $('#signup-button').text("sign up");
 });  
     
+//SIGNUP EMAIL DUPLICATE
+socket.on('duplicate', function() {
+    $('.stat').removeClass('blank').text("You already signed up!");
+});  
+    
 //SIGNUP EMAIL OK
 socket.on('success', function() {
     $('.stat').removeClass('blank').text('Check your email!');
 });
     
-//SIGNUP EMAIL DUPLICATE
-socket.on('duplicate', function() {
-    $('.stat').removeClass('blank').text("Oops! That email is being used.");
-});  
+
     
 //AFTER SIGNUP OK: SEND VALIDATION 
 var url = document.URL;
