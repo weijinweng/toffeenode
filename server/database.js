@@ -16,7 +16,10 @@ var validationSchema = new Schema({
 						email: String,
 						validationCode: String
 						});
+var pageSchema = new Schema({
+						title: String,
 						
+						});
 						
 var User = mongoose.model('User', userSchema);
 var Validation = mongoose.model('Validation',validationSchema);

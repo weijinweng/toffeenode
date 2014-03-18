@@ -106,6 +106,12 @@ function staticFile (req, res, pathname)
 										res.end(data);
 				});
 				break;
+			case '.gif':
+				res.writeHead(200, {"Content-Type": "image/fig"});
+				fs.readFile(web+pathname, function(err, data){
+										console.log("reading gif");
+										res.end(data, 'binary');
+				});
 			default:
 				fs.readFile(web+pathname, function(err, data){
 				if(err)
