@@ -164,7 +164,11 @@ input:focus {
 }
 
 
-
+#basicinfo {
+    position: absolute;
+    top:80px;
+    left:300px;
+}
 #newpage {
     position: absolute;
     top:80px;
