@@ -207,7 +207,20 @@ io.sockets.on('connection', function (socket) {
 						console.log(newPage.title + newPage.school + newPage.document + " has been saved");
 			});
 		});
-	
+	socket.on('bookmark-this', function(Title){
+			var clientId = new database.ObjectID(clients[socket.id]);
+			console.log('client ID = ' + clientId);
+			database.User.findById(clientId,function(err, docs)
+				{
+					if(err|| docs == null)
+						return console.log("error with bookmarking");
+					else
+					{
+						docs.following.push(Title);
+						console.log("added bookmark" + docs.following);
+					}
+				})
+		});
 });
 
 
