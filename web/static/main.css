@@ -196,6 +196,29 @@ textarea {
 
 
 
+.editor-button {
+    font-family:inherit;
+    font-size:15px;
+    cursor:pointer;
+    
+    width:60px;
+    height:30px;
+    margin-right:1px;
+    
+    background-color:white;
+    color:#3f90ff;
+    border: 1px solid #3f90ff;
+    border-radius:5px;
+}
+.editor-button:hover {
+    border-color: #3687f5;
+    background-color:#3687f5;
+    color:#f7f7f7;
+    transition-duration: 400ms;
+}
+
+
+
 textarea:focus {
     outline:none;
     border-color:#3f90ff;
