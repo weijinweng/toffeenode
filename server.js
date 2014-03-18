@@ -185,7 +185,15 @@ io.sockets.on('connection', function (socket) {
 				}
 			});
 		});
-	
+	socket.on('newest', function()
+			{
+				document.Page.Find({}, function(err, doc)
+					{
+						doc.forEach(function(entry){
+							socket.emit('post', entry.title, entry.school, entry.description);
+						});
+					});
+			});
 	socket.on('newpage',function(Title, School, Description, Document){
 			var newPage = new database.Page({
 								title: Title,
