@@ -4,12 +4,16 @@ var socket = io.connect('http://localhost:8000');
 var url = document.URL;
     
 //LOGOUT REDIRECT TO FRONT
-if (url.indexOf("/logout") != -1) {
+    
+if  (url.indexOf("/home") != -1) {
+    socket.emit('newest');
+}
+else if (url.indexOf("/logout") != -1) {
     window.location.replace("http://localhost:8000/");
 }
     
     
-//GO UP, APPEND SEARCH BUTTON
+//QUESTION GO UP, APPEND SEARCH BUTTON
 $("#question").keyup(function() {
     var question = $("#question").val();
     
@@ -59,14 +63,14 @@ $('#signup-button').on('click',function(){
 });
 
     
-//SIGNUP ORIGINAL ON BODY CLICK
+//SIGNUP SHRINK ON BODY CLICK
 $('.background').on('click', function(){
     $('.stat').fadeOut();
     $('#signup-email').animate({right:'15px'},200);
     $('#signup-button').text("sign up");
 });
 
-//SIGNUP ORIGINAL WHEN FOCUS
+//SIGNUP SHRINK WHEN FOCUS
 $('#question').focus(function(){
     $('.stat').fadeOut();
     $('#signup-email').animate({right:'15px'},200);
@@ -180,7 +184,13 @@ $('#iforgot').on('click',function(){
     
 //MAKE NEW PAGE: EXPAND
 $('#newpage-button').on('click', function() {
-    $('#newpage').removeClass('blank');
+    if ($(this).text() == 'cancel') {
+        $('#newpage').addClass('blank');
+        $('#newpage-button').text('new wiki page');
+    } else {
+        $('#newpage').removeClass('blank');
+        $('#newpage-button').text('cancel');
+    }
 });
 
 $('#submit-post').on('click', function() {
@@ -192,7 +202,11 @@ $('#submit-post').on('click', function() {
 });
     
 });
-                       
+   
+
+
+
+//TEXT EDITOR STUFF
 function toggleHead(){
 	if (document.queryCommandValue('fontSize')==5){
 		document.execCommand('fontSize',false,3);
