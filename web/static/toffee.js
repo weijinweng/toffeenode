@@ -2,29 +2,19 @@ $(document).ready(function(){
 
 var url = document.URL;
 
-
-
-if (url.indexOf("/almost") != -1) {
-	alert("hi");
-	window.location.replace("http://localhost:8000/");
-} else if (url.indexOf("/logout") != -1)
-	{
-		alert("bye");
-		window.location.replace("http://localhost:8000/");
-	}
-
+//LOGOUT REDIRECT TO FRONT
+if (url.indexOf("/logout") != -1) {
+    alert("bye");
+    window.location.replace("http://localhost:8000/");
+}
 
 var socket = io.connect('http://localhost:8000');
 
-//LOG IN, render logout, search bar on top
+//LOG IN
 socket.on('logged-in', function() {
-    $('#signup-box').addClass('blank');
-    $('#logout-box').removeClass('blank');
+    window.location.replace("http://localhost:8000/home");
 });
 
-//LOGOUT, render signup/login
-
-    
 //BOOKMARKED STUFF
     
 //NO BOOKMARKS, render box
@@ -40,11 +30,11 @@ $("#question").keyup(function() {
     var question = $("#question").val();
     
     if (question.length == 0) {
-        $('#frontheader').show();
+        $('#frontheader').show(200);
         $("#search-button").hide();
     }
     else {
-        $('#frontheader').hide();
+        $('#frontheader').hide(200);
         $('#question').animate({marginTop:'10px'},200);
         $("#search-button").show();
     }
@@ -88,7 +78,7 @@ $('#signup-button').on('click',function(){
     $('#signup-email').animate({right:'225px'},200);
     $('#signup-button').text("go!");
     
-    $('#frontheader').show();
+    $('#frontheader').show(200);
     $('#question').css('margin-top', '0px');
 
     $('#question').val('');
