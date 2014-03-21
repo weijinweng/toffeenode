@@ -331,6 +331,25 @@ io.sockets.on('connection', function (socket) {
 								}
 						});
 				});
+	socket.on('edit', function(Title, Document)
+	{
+		database.Page.find({title:Title}, function(err, docs)
+			{
+				if(err||docs==null)
+				{
+					socket.emit("error-edit");
+					return console.log("error editing");
+				}
+				else
+				{
+					docs.document = Document;
+					docs.save(function(){
+						console.log("Edit succeeded");
+						socket.emit("edit-yes");
+					});
+				}
+			});
+	});
 });
 
 
