@@ -11,7 +11,24 @@ function okayemail(email) {
         return false;
     }
 }
- 
+
+
+
+$('.login').keydown(function(e)
+	{
+		if (e.keyCode == 13)
+		{
+			var email = $('#login-email').val();
+			var password = $('#password').val();
+			socket.emit('login', email, password);
+		}
+	});
+socket.on('verification-failed', function(){
+	$('.validation_error').text("error with verfication, please try again later");
+	});
+socket.on('notverified',function(){
+	$('.validation_error').text("hi, that validation appears to be incorrect, please try again.");
+	});
 //SIGNUP BUTTON CLICK: EMAIL EXPAND
 $('#signup-button').on('click',function(){
     $('#signup-email').animate({right:'225px'},200);

@@ -46,7 +46,7 @@ var handler = []
 function onRequest(req,res)
 	{
 		//get request url
-		pathname = url.parse(req.url).pathname;
+		var pathname = url.parse(req.url).pathname;
 		//routes to handler
 		route.router(req,res,pathname,handler, clients);
 	}
@@ -64,7 +64,45 @@ io.sockets.on('connection', function (socket) {
 		clients[socket.id] = cookies;
 		socket.emit("logged-in");
 	}
+	socket.on('iforgot',function(Email){
+		database.User.count({email:Email}, function(err, count)
+		{
+			if(err)
+				return console.log(err);
+			if(count == 0)
+				return socket.emit('user_unknown');
+			if(count == 1)
+			{
+					var validationcode = crypto.randomBytes(32).toString('base64');
+					
+					var code = new database.Validation({email:Email, validationCode: validationcode});
+					
+					code.save(function(){
+					console.log("The email "+ code.email +" with " + code.validationCode + " has been saved");
 
+					var mailOptions = {
+						from:"toffeebot@gmail.com",
+						to: Email,
+						subject:"Hello,",
+						text:'Here is your validation link: http://localhost:8000/verify?v='+validationcode,
+
+						}
+						transport.sendMail(mailOptions, function(error, response)
+						{
+
+							if(error){
+								console.log(error);
+							}else{
+								console.log("Message sent: " + response.message);
+							}
+						});
+						socket.emit("successful-iforgot");
+
+						});
+			}
+				
+		});		
+	});
 	socket.on('signup-email', function(Email){
 		var check = database.User.count({email:Email}, function(err, count){
 			if(count== 0)
@@ -75,8 +113,6 @@ io.sockets.on('connection', function (socket) {
 					if(err)
 						return console.log("an error has occured");
 					console.log("User Signed up email is " + newAcc.email);
-
-					socket.emit("success");
 
 					var validationcode = crypto.randomBytes(32).toString('base64');
 					
@@ -168,23 +204,26 @@ io.sockets.on('connection', function (socket) {
 				console.log("Hello the email is " + Email);
 				if(err||doc==null||doc.validated == false)
 				{
+					socket.emit('notverified');
 					return console.log("Error " +err);
 				} else {
 				crypto.pbkdf2(Password, doc.salt, 10000, 512, function(err, derivedKey){
 				if(err)
 					{
 						socket.emit('verification-failed');
-						return console.log(error);
+						return console.log("error");
 					}
 				else if(doc.password == derivedKey)
 					{
 						console.log("Successful verification " + doc._id);
 						socket.emit('verified', doc._id);
 					}
+				else socket.emit('notverified');
 				});
 				}
 			});
 		});
+	
 	socket.on('newest', function()
 			{
 				console.log("Requestion for pages received");
@@ -249,8 +288,7 @@ io.sockets.on('connection', function (socket) {
 							{
 								socket.emit('bookmark-no', Title);
 								console.log("no");
-							}
-					
+							}				
 					});
 				});
 	socket.on('unfollow', function(Title)
