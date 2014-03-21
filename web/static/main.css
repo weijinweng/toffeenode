@@ -345,7 +345,7 @@ textarea {
     border-radius:5px;
 }
 .editor-button:hover {
-     font-size:15px;
+    font-size:15px;
     cursor:pointer;
     
     width:70px;
@@ -356,6 +356,8 @@ textarea {
     border-color: #3687f5;
     background-color:#3687f5;
     color:#f7f7f7;
+    border-radius:5px;
+
     transition-duration: 400ms;
 }
 

@@ -379,7 +379,16 @@ function toggleSub(){
 }
 
 function toggleColor() {
-    if($('#signup-email').css("right") == "225px"){
+    
+    if($(this).hasClass('editor-button-on')) {
+       
+        $(this).removeClass('editor-button-on');
+        $(this).addClass('editor-button-off');
+    
+    } else {
+        
+        $(this).addClass('editor-button-on');
+        $(this).removeClass('editor-button-off');
     }
 }
 
