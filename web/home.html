@@ -43,34 +43,42 @@
     
     
 <div class = "centerEd">
+    
     <div class="page_container">
         
-    <div id = "newpage" class = "blank">
-        <div class = "sevenbelow"><input type="text" id = "page-title" placeholder = "Course wiki title"></input></div>
-        <div class = "sevenbelow"><input type="text" id = "page-question" placeholder = "School (i.e. sam fox)"></input></div>
-        <div class = "sevenbelow"><textarea type="text" id = "page-description" placeholder = "Description"></textarea></div>
-        <button id = "submit-post" class = "button publish-button">publish!</button>
+        <div id = "newpage" class = "blank">
+            
+            <div class = "sevenbelow"><input type="text" id = "page-title" placeholder = "Course wiki title"></input></div>
+            <div class = "sevenbelow"><input type="text" id = "page-question" placeholder = "School (i.e. sam fox)"></input></div>
+            <div class = "sevenbelow"><textarea type="text" id = "page-description" placeholder = "Description"></textarea></div>
+            <button id = "submit-post" class = "button publish-button">publish!</button>
+<!--         <br>
+            <button id = "cancel-button" class = "button publish-button cancel-button spaceup">cancel</button> -->
+        
         </div>
-
-    <div id = "editor" class = "blank" div class = "sevenbelow">
-        
-        <button class = "editor-button" onclick="toggleBold();" style = "width:40px;font-weight:bold;">B</button>
-        <button class = "editor-button" onclick="toggleItalics();" style = "width:40px;font-style:italic;">I</button>
-        <button class = "editor-button" onclick="toggleUnderline();" style = "width:40px;text-decoration:underline;">U</button>
-        
-        <button class = "editor-button" onclick="toggleLeft();">left</button>
-        <button class = "editor-button" onclick="toggleCenter();">center</button>
-        <button class = "editor-button" onclick="toggleRight();">right</button>
-        
-        <button class = "editor-button" onclick="toggleHead();">header</button>
     
-        <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
-        <button id = "update-button" class = "blank button publish-button spaceup">update!</button>
-		<button id = "cancel-button" class = "button puclish-button spaceup">cancel</button>
+        <div id = "editor" class = "blank" div class = "sevenbelow">
+            
+            <button class = "editor-button" onclick="toggleBold();" style = "width:40px;font-weight:bold;">B</button>
+            <button class = "editor-button" onclick="toggleItalics();" style = "width:40px;font-style:italic;">I</button>
+            <button class = "editor-button" onclick="toggleUnderline();" style = "width:40px;text-decoration:underline;">U</button>
+            
+            <button class = "editor-button" onclick="toggleLeft();">left</button>
+            <button class = "editor-button" onclick="toggleCenter();">center</button>
+            <button class = "editor-button" onclick="toggleRight();">right</button>
+            
+            <button class = "editor-button" onclick="toggleHead();">header</button>
+        
+            <div id = "newpost" contentEditable = "true" style="height:500px;width:600px;"></div>
+            
+            <button id = "update-button" class = "blank button publish-button spaceup">update!</button>
+            <button id = "cancel-button" class = "button publish-button cancel-button spaceup">cancel</button>
+            
         </div>
+    
 	</div>
         
-   </div>
+</div>
 
     
 

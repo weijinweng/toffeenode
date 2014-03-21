@@ -366,7 +366,7 @@ textarea {
     font-size:20px;
     cursor:pointer;
     
-    width:130px;
+    width:200px;
     height:40px;
     margin-right:1px;
     margin-bottom:10px;
@@ -381,6 +381,9 @@ textarea {
     background-color:#3687f5;
     color:#f7f7f7;
     transition-duration: 400ms;
+}
+.cancel-button {
+    width:100px;
 }
 
 
