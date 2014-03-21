@@ -368,6 +368,10 @@ function toggleSub(){
     }
 }
 
+function toggleColor() {
+    if($('#signup-email').css("right") == "225px"){
+}
+
 function toggleBold() {
     document.execCommand('bold',false,null);
 }

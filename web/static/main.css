@@ -344,11 +344,21 @@ textarea {
     border-radius:5px;
 }
 .editor-button:hover {
+     font-size:15px;
+    cursor:pointer;
+    
+    width:70px;
+    height:30px;
+    margin-right:1px;
+    margin-bottom:10px;
+    
     border-color: #3687f5;
     background-color:#3687f5;
     color:#f7f7f7;
     transition-duration: 400ms;
 }
+
+
 .publish-button {
     font-size:20px;
     cursor:pointer;
