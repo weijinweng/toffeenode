@@ -171,7 +171,6 @@ input:focus {
 	width:100%;
     top:0px;
     left:0px;
-	background-color:black;
 }
 
 
@@ -229,39 +228,42 @@ textarea {
 	left:0px;
 	width:70%;
 	height:900px;
-	background-color:transparent;
+
 }
 #ind-title
 {
 	position:relative;
 	top:0px;
 	left:0px;
-	height:200px;
+	height:100px;
 	width:30%;
-	background-color:black;
+	font-size:48px;
+	text-align:center;
 }
 #ind-school
 {
 	left:0px;
 	height:100px;
 	width:30%;
-	background-color:black;
+	font-size:36px;
+	text-align:center;
 }
 #ind-description
 {
 	height:100px;
 	width:30%;
-	background-color:blue;
+	text-align:center;
+
 }
 #ind-document
 {
 	height:400px;
 	width:70%;
 	left:30%;
-	top:-400px;
+	top:-300px;
 	position:relative;
 	float:left;
-	background-color:black;
+
 }
 #sidebar
 {
