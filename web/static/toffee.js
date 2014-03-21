@@ -205,7 +205,7 @@ socket.on('post-newest', function(title, school, description) {
 
 //LINK TO INDIVIDUAL PAGE
 $('#basicinfo').on('click','.link', function() {
-    var title = $(this).parent().attr('id');
+    var title = $(this).parent().children('.title').text();
     socket.emit('page-request',title);
 });
     
