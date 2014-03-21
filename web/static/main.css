@@ -240,6 +240,7 @@ input:focus {
     border: 1px solid #bcbcbc;
     border-radius:5px;
     text-align:left;
+	overflow:auto;
 }
 #newpost:focus{
     outline:none;

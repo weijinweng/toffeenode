@@ -266,11 +266,20 @@ $('#edit-button').on('click', function() {
 		$('#sidebar').animate({left:'100%'},200);
 		$('#ind-page').animate({left:'-70%'},200);
         $('#update-button').removeClass('blank');
+		$('#submit-post').addClass('blank');
 		
     }
     
 });
-    
+  
+ $('#cancel-button').on('click', function(){
+		$('#ind-page').animate({left:'0px'},200);
+        $('#edit-button').text('edit');
+		$('.centerEd').animate({top:'900px'},200);
+		$('#sidebar').animate({left:'0px'},200);
+        $('#update-button').addClass('blank');
+		$('#newpage-button').text("new wiki page");
+	});
 //UPDATE EDITS
 $('#update-button').on('click', function() {
         
@@ -282,6 +291,7 @@ $('#update-button').on('click', function() {
     $('#edit-button').text('edit');
     $('.centerEd').animate({top:'900px'},200);
     $('#sidebar').animate({left:'0px'},200);
+	$('#ind-page').animate({left:'0px'},200);
     
     socket.emit('edit', title, document);
     
@@ -307,7 +317,7 @@ $('#newpage-button').on('click', function() {
 		$('.centerEd').animate({top:'0px'},200);
 		$('#ind-page').animate({left:'-70%'},200);
 		$('#sidebar').animate({left:'100%'},200);
-		
+		$('#submit-button').removeClass('blank');
     }
     
 });
