@@ -2,6 +2,7 @@ body {
     font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
     margin:0 auto;
     padding:0;
+	overflow-y:scroll;
 }
 .background {
     width:100%;
@@ -127,9 +128,6 @@ input:focus {
     background-color:#3687f5;
     color:white;
 }
-
-
-
 #navbar{
     background-color:white;
     position:absolute;
@@ -200,12 +198,32 @@ textarea {
     border-radius:5px;
     text-align:left;
 }
-
-#ind-page {
-    position:absolute;
-    top:80px;
+#container
+{
+	position:relative;
+	width:100%;
+	min-width:1024px;
+	top:80px;
+	height:900px;
+	overflow:hidden;
 }
-
+#ind-page {
+    position:relative;
+    top:0px;
+	left:0px;
+	width:70%;
+	height:900px;
+	background-color:black;
+}
+#sidebar
+{
+	position:relative;
+	float:right;
+	width:29%;
+	top:-900px;
+	background-color:black;
+	height:900px;
+}
 
 .editor-button {
     font-size:15px;
