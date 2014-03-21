@@ -195,9 +195,9 @@ socket.on('post-newest', function(title, school, description) {
                             + '<button class = "bookmarked blank">bookmarked</button>'
                             + '<button class = "bookmark blank">bookmark</button>'
                             + '<div2 id = "' + title + '" class = "title">' + title + '</div2>'
-                            + '<div class = "school">' + school + '</div>'
-                            + '<div class = "description">' + description + '</div>'
-                            + '<button class = "link">open page</button>'
+                            + '<div class = "school sevenbelow">' + school + '</div>'
+                            + '<div class = "description sevenbelow">' + description + '</div>'
+                            + '<button class = "link">open</button>'
                             + '</div>');
 });
    
@@ -220,21 +220,17 @@ socket.on('page-response', function(title, school, description, document) {
                    
 //QUERY FOR BOOKMARK STATUS
 $('#basicinfo').on('click','div2', function() {
-
     socket.emit('bookmark-status', $(this).attr('id'));
 });
 
     
-    
-    
 //BOOKMARK STATUS BY QUERY RESULT
 socket.on('bookmark-yes', function(title) {
-
 	$('#basicinfo').children('#'+title).children('.bookmark').hide();
     $('#basicinfo').children('#'+title).children('.bookmarked').show();
 });         
+    
 socket.on('bookmark-no', function(title) {
-
     $('#basicinfo').children('#'+title).children('.bookmarked').hide();
     $('#basicinfo').children('#'+title).children('.bookmark').show();
 });
@@ -281,6 +277,8 @@ $('#edit-button').on('click', function() {
         $('#update-button').addClass('blank');
 		$('#newpage-button').text("new wiki page");
 	});
+    
+    
 //UPDATE EDITS
 $('#update-button').on('click', function() {
         
@@ -345,7 +343,6 @@ $('#submit-post').on('click', function() {
     
 });
    
-
 
 
 //TEXT EDITOR STUFF

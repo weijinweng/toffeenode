@@ -321,6 +321,11 @@ textarea {
 	float:left;
 	overflow:auto;
 }
+
+
+
+
+
 #sidebar
 {
 	position:relative;
@@ -330,6 +335,18 @@ textarea {
 	height:900px;
 	border-left:1px solid #4089f7;
 }
+.title {
+    font-size:50px;
+    cursor:pointer;
+}
+.school {
+    color:grey;
+}
+
+
+
+
+
 
 .editor-button {
     font-size:15px;
