@@ -336,7 +336,10 @@ $('#submit-post').on('click', function() {
     $('#newpage').addClass('blank');
     $('#editor').addClass('blank');
     $('#newpage-button').text('new wiki page');
-   
+         $('#newpage-button').text('new wiki page');
+		$('.centerEd').animate({top:'900px'},200);
+		$('#sidebar').animate({left:'0px'},200);
+		$('#ind-page').animate({left:'0px'},200);
 });
     
     
