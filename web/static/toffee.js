@@ -251,9 +251,8 @@ $('#basicinfo').on('click','.bookmark', function() {
 
 //EDIT
 $('#edit-button').on('click', function() {
-      
     if ($(this).text() == 'cancel') {
-
+		$('#ind-page').animate({left:'0px'},200);
         $('#edit-button').text('edit');
 		$('.centerEd').animate({top:'900px'},200);
 		$('#sidebar').animate({left:'0px'},200);
@@ -265,6 +264,7 @@ $('#edit-button').on('click', function() {
         $('#editor').removeClass('blank');
 		$('.centerEd').animate({top:'0px'},200);
 		$('#sidebar').animate({left:'100%'},200);
+		$('#ind-page').animate({left:'-70%'},200);
         $('#update-button').removeClass('blank');
 		
     }
