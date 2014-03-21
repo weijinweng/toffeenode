@@ -252,9 +252,11 @@ $('#basicinfo').on('click','.bookmark', function() {
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
         $('#newpage').addClass('blank');
+        $('#editor').addClass('blank');
         $('#newpage-button').text('new wiki page');
     } else {
         $('#newpage').removeClass('blank');
+        $('#editor').removeClass('blank');
         $('#newpage-button').text('cancel');
     }
 });

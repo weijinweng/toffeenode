@@ -170,11 +170,23 @@ input:focus {
     top:80px;
     left:300px;
 }
+
+
 #newpage {
     position: absolute;
     top:80px;
-    left:300px;
+    left:170px;
+    z-index:15;
+    background-color:red:
 }
+#editor {
+    position: absolute;
+    top:80px;
+    left:400px;
+    z-index:15;
+    background-color:red:
+}
+
 #newpost {
     line-height:130%;
     border: 1px solid #bcbcbc;
@@ -274,7 +286,7 @@ textarea:focus {
 }
 
 ::-webkit-scrollbar { 
-    display: none; 
+    display: show; 
 }
 ::-webkit-input-placeholder {
    text-align:center;

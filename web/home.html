@@ -28,37 +28,39 @@
 
 
 <!--DISPLAY PAGES-->
-<div id = "basicinfo"></div>
+<div id = "basicinfo" class = "blank"></div>
 
     
-<!--NEW OR EDIT POST-->
+<!--NEW WIKI PAGE-->
 <div class = "center">
+    
     <div id = "newpage" class = "blank">
-        
         <div class = "sevenbelow"><input type="text" id = "page-title" placeholder = "Course wiki title"></input></div>
          <div class = "sevenbelow"><input type="text" id = "page-question" placeholder = "School (i.e. sam fox)"></input></div>
          <div class = "sevenbelow"><textarea type="text" id = "page-description" placeholder = "Description"></textarea></div>
-    
-        <div id = "editor" div class = "sevenbelow">
-            
-            <button class = "editor-button" onclick="toggleBold();" style = "width:40px;font-weight:bold;">B</button>
-            <button class = "editor-button" onclick="toggleItalics();" style = "width:40px;font-style:italic;">I</button>
-            <button class = "editor-button" onclick="toggleUnderline();" style = "width:40px;text-decoration:underline;">U</button>
-            
-            <button class = "editor-button" onclick="toggleLeft();">left</button>
-            <button class = "editor-button" onclick="toggleCenter();">center</button>
-            <button class = "editor-button" onclick="toggleRight();">right</button>
-            
-            <button class = "editor-button" onclick="toggleHead();">header</button>
-        
-            <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
-            
-            </div>
-    
-        <button id = "submit-post" class = "button publish-button">publish!</button>
-    
-        </div>
     </div>
+
+    <div id = "editor" class = "blank" div class = "sevenbelow">
+        
+        <button class = "editor-button" onclick="toggleBold();" style = "width:40px;font-weight:bold;">B</button>
+        <button class = "editor-button" onclick="toggleItalics();" style = "width:40px;font-style:italic;">I</button>
+        <button class = "editor-button" onclick="toggleUnderline();" style = "width:40px;text-decoration:underline;">U</button>
+        
+        <button class = "editor-button" onclick="toggleLeft();">left</button>
+        <button class = "editor-button" onclick="toggleCenter();">center</button>
+        <button class = "editor-button" onclick="toggleRight();">right</button>
+        
+        <button class = "editor-button" onclick="toggleHead();">header</button>
+    
+        <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
+        
+        </div>
+
+        <button id = "submit-post" class = "button publish-button">publish!</button>
+
+    </div>
+
+</div>
 
 
 <!--INDIVIDUAL PAGE-->
