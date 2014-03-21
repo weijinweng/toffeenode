@@ -15,7 +15,7 @@ function okayemail(email) {
 //ENTER
 $('.login').keydown(function(e) {
     if (e.keyCode == 13) {
-        var email = $('#login-email').val();
+        var email = $('#login-email').val().toLowerCase();
         var password = $('#password').val();
         socket.emit('login', email, password);
     }
@@ -41,7 +41,7 @@ $('#signup-button').on('click',function(){
     $('#question').val('');
     $("#search-button").hide();
     
-    var email = $('#signup-email').val();
+    var email = $('#signup-email').val().toLowerCase();
     
     if($('#signup-email').css("right") == "225px"){
         if (okayemail(email))  {
