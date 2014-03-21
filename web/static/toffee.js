@@ -12,23 +12,24 @@ function okayemail(email) {
     }
 }
 
-
-
-$('.login').keydown(function(e)
-	{
-		if (e.keyCode == 13)
-		{
-			var email = $('#login-email').val();
-			var password = $('#password').val();
-			socket.emit('login', email, password);
-		}
-	});
-socket.on('verification-failed', function(){
-	$('.validation_error').text("error with verfication, please try again later");
-	});
-socket.on('notverified',function(){
-	$('.validation_error').text("hi, that validation appears to be incorrect, please try again.");
-	});
+//ENTER
+$('.login').keydown(function(e) {
+    if (e.keyCode == 13) {
+        var email = $('#login-email').val();
+        var password = $('#password').val();
+        socket.emit('login', email, password);
+    }
+});
+    
+socket.on('verification-failed', function() {
+	$('.validation_error').text("Oops! That email and password combination didn't work.");
+});
+    
+socket.on('notverified',function( ){
+	$('.validation_error').text("You haven't signed up!");
+});
+    
+    
 //SIGNUP BUTTON CLICK: EMAIL EXPAND
 $('#signup-button').on('click',function(){
     $('#signup-email').animate({right:'225px'},200);
@@ -251,9 +252,7 @@ $('#basicinfo').on('click','.bookmark', function() {
 //NEW WIKIPAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
-        $('#newpage').addClass('blank');
-        $('#editor').addClass('blank');
-        $('#newpage-button').text('new wiki page');
+      
     } else {
         $('#newpage').removeClass('blank');
         $('#editor').removeClass('blank');
@@ -261,12 +260,21 @@ $('#newpage-button').on('click', function() {
     }
 });
 
+//SUBMIT NEW WIKI, HIDE INPUT
 $('#submit-post').on('click', function() {
     var title = $('#page-title').val();
+    title.replace(/\s+/g, '-').toLowerCase();
+    
     var question = $('#page-question').val();
     var description = $('#page-description').val();
     var document = $('#newpost').html();
+    
     socket.emit('newpage', title, question, description, document);
+    
+    $('#newpage').addClass('blank');
+    $('#editor').addClass('blank');
+    $('#newpage-button').text('new wiki page');
+   
 });
     
 });
