@@ -236,11 +236,11 @@ socket.on('bookmark-no', function(title) {
    
 //TOGGLE BOOKMARK STATUS
 $('#basicinfo').on('click','.bookmarked', function() {
-    var title = $(this).parent().children('.title').attr('id');
+    var title = $(this).parent().children('.title').text();
     socket.emit('unfollow', title);
 });
 $('#basicinfo').on('click','.bookmark', function() {
-    var title = $(this).parent().children('.title').attr('id');
+    var title = $(this).parent().children('.title').text();
     socket.emit('bookmark-this', title);
 });
                  
