@@ -253,13 +253,19 @@ $('#basicinfo').on('click','.bookmark', function() {
 //NEW WIKIPAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
-       $('#newpage').addClass('blank');
-        $('#editor').addClass('blank');
+
         $('#newpage-button').text('new wiki page');
+		$('.centerEd').animate({top:'900px'},200);
+		$('#sidebar').animate({left:'0px'},200);
+		$('#ind-page').animate({left:'0px'},200);
     } else {
         $('#newpage').removeClass('blank');
         $('#editor').removeClass('blank');
         $('#newpage-button').text('cancel');
+		$('.centerEd').animate({top:'0px'},200);
+		$('#ind-page').animate({left:'-70%'},200);
+		$('#sidebar').animate({left:'100%'},200);
+		
     }
 });
 

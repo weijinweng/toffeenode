@@ -174,22 +174,65 @@ input:focus {
 	margin-left:10px;
 }
 
+#partitioner
+{
+	position:relative;
+	height:1px;
+	background-color:#4089f7;
+	top:130px;
+}
+#wiki_main
+{
+	position:relative;
+	top:120px;
+	height:600px;
 
+}
+.panel
+{
+	position:relative;
+	margin-left:10px;
+	margin-top:10px;
+
+	height:90px;
+	width:160px;
+	float:left;
+}
+.panel_header
+{
+	position:relative;
+	height:100%;
+	top:0px;
+
+}
+.panel_front
+{
+	position:relative;
+	top:0px;
+	height:90px;
+	width:160px;
+}
 #newpage {
     position: absolute;
-    top:80px;
-    left:170px;
+    top:40px;
+    left:-100px;
     z-index:15;
     background-color:red:
 }
 #editor {
     position: absolute;
-    top:80px;
-    left:400px;
+    top:0px;
+    left:130px;
     z-index:15;
     background-color:red:
 }
-
+.page_container
+{
+	width:400px;
+	margin-right:auto;
+	margin-left:auto;
+	position:relative;
+}
 #newpost {
     line-height:130%;
     border: 1px solid #bcbcbc;
@@ -258,7 +301,7 @@ textarea {
 }
 #ind-document
 {
-	height:400px;
+	height:900px;
 	width:70%;
 	left:30%;
 	top:-300px;
@@ -340,7 +383,15 @@ textarea:focus {
 h1 {
     color:#737373;
 }
-.center {
+.center
+{
+	text-align:center;
+}
+.centerEd {
+	position:relative;
+	top:900px;
+	height:900px;
+	width:70%;
     text-align:center;
 }
 .blockcenter {
