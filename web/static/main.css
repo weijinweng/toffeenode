@@ -213,7 +213,7 @@ textarea {
 	left:0px;
 	width:70%;
 	height:900px;
-	background-color:black;
+	background-color:transparent;
 }
 #sidebar
 {
@@ -221,7 +221,7 @@ textarea {
 	float:right;
 	width:29%;
 	top:-900px;
-	background-color:black;
+	background-color:transparent;
 	height:900px;
 }
 
