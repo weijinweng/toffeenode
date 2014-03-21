@@ -259,8 +259,10 @@ textarea {
     border-radius:5px;
     text-align:left;
 }
-#container
-{
+
+
+
+#container {
 	position:relative;
 	width:100%;
 	min-width:1024px;
@@ -273,9 +275,8 @@ textarea {
 	float:left;
     top:0px;
 	left:0px;
-	width:70%;
+	width:80%;
 	height:900px;
-
 }
 #ind-title
 {
@@ -283,45 +284,40 @@ textarea {
 	top:0px;
 	left:0px;
 	height:100px;
-	width:30%;
-	font-size:48px;
+	width:25%;
+	font-size:45px;
 	text-align:center;
 	line-height:48px;
 }
-#ind-school
-{
+#ind-school {
 	left:0px;
 	height:50px;
-	width:30%;
+	width:25%;
 	font-size:36px;
 	text-align:center;
 }
-#ind-description
-{
+#ind-description {
 	height:50px;
-	width:30%;
+	width:25%;
 	text-align:center;
 
 }
-#edit-button
-{
-	height:30px;
-	width:30%;
-	cursor:pointer;
-	text-align:center;
-	z-index:0;
-}
-#ind-document
-{
+#ind-document {
 	height:900px;
-	width:70%;
-	left:30%;
+	width:75%;
+	left:25%;
 	top:-230px;
 	position:relative;
 	float:left;
 	overflow:auto;
 }
-
+#edit-button {
+	height:30px;
+	width:25%;
+	cursor:pointer;
+	text-align:center;
+	z-index:0;
+}
 
 
 
@@ -330,13 +326,13 @@ textarea {
 {
 	position:relative;
 	float:left;
-	width:29%;
+	width:20%;
 	top:0px;
 	height:900px;
 	border-left:1px solid #4089f7;
 }
 .title {
-    font-size:50px;
+    font-size:30px;
     cursor:pointer;
 }
 .school {
