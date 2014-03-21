@@ -333,7 +333,7 @@ io.sockets.on('connection', function (socket) {
 				});
 	socket.on('edit', function(Title, Document)
 	{
-		database.Page.find({title:Title}, function(err, docs)
+		database.Page.findOne({title:Title}, function(err, docs)
 			{
 				if(err||docs==null)
 				{
@@ -343,7 +343,8 @@ io.sockets.on('connection', function (socket) {
 				else
 				{
 					docs.document = Document;
-					docs.save(function(){
+					docs.save(function(err){
+					if(err) return console.log("Error");
 						console.log("Edit succeeded");
 						socket.emit("edit-yes");
 					});
