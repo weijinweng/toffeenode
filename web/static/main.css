@@ -2,7 +2,7 @@ body {
     font-family: 'Lucida Grande', Tahoma, Verdana, Arial, sans-serif;
     margin:0 auto;
     padding:0;
-	overflow-y:scroll;
+
 }
 .background {
     width:100%;
@@ -166,9 +166,12 @@ input:focus {
 
 
 #basicinfo {
-    position: absolute;
-    top:80px;
-    left:300px;
+    position: relative;
+	height:100px;
+	width:100%;
+    top:0px;
+    left:0px;
+	background-color:black;
 }
 #newpage {
     position: absolute;
@@ -209,19 +212,51 @@ textarea {
 }
 #ind-page {
     position:relative;
+	float:left;
     top:0px;
 	left:0px;
 	width:70%;
 	height:900px;
 	background-color:transparent;
 }
+#ind-title
+{
+	position:relative;
+	top:0px;
+	left:0px;
+	height:200px;
+	width:30%;
+	background-color:black;
+}
+#ind-school
+{
+	left:0px;
+	height:100px;
+	width:30%;
+	background-color:black;
+}
+#ind-description
+{
+	height:100px;
+	width:30%;
+	background-color:blue;
+}
+#ind-document
+{
+	height:400px;
+	width:70%;
+	left:30%;
+	top:-400px;
+	position:relative;
+	float:left;
+	background-color:black;
+}
 #sidebar
 {
 	position:relative;
-	float:right;
+	float:left;
 	width:29%;
-	top:-900px;
-	background-color:transparent;
+	top:0px;
 	height:900px;
 }
 
