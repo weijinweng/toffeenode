@@ -191,10 +191,10 @@ if (url.indexOf("/home") != -1) {
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
 	$('.loading').hide();
-	$('#basicinfo').append('<div id="' + title + '">'
+	$('#basicinfo').append('<div id="' + removespace(title) + '">'
                             + '<button class = "bookmarked blank">bookmarked</button>'
                             + '<button class = "bookmark blank">bookmark</button>'
-                            + '<div2 id = "' + title + '" class = "title">' + title + '</div2>'
+                            + '<div2 id = "' + removespace(title) + '" class = "title">' + title + '</div2>'
                             + '<div class = "school sevenbelow">' + school + '</div>'
                             + '<div class = "description sevenbelow">' + description + '</div>'
                             + '<button class = "link">open</button>'
@@ -205,7 +205,7 @@ socket.on('post-newest', function(title, school, description) {
 
 //LINK TO INDIVIDUAL PAGE
 $('#basicinfo').on('click','.link', function() {
-     var title = $(this).parent().attr('id');
+    var title = $(this).parent().attr('id');
     socket.emit('page-request',title);
 });
     
@@ -214,7 +214,6 @@ socket.on('page-response', function(title, school, description, document) {
     $("#ind-title").text(title);
     $("#ind-school").text(school);
     $("#ind-description").text(description);
-	alert(document);
     $("#ind-document").html(document);
 });
                    
@@ -226,13 +225,13 @@ $('#basicinfo').on('click','div2', function() {
     
 //BOOKMARK STATUS BY QUERY RESULT
 socket.on('bookmark-yes', function(title) {
-	$('#basicinfo').children('#'+title).children('.bookmark').hide();
-    $('#basicinfo').children('#'+title).children('.bookmarked').show();
+	$('#basicinfo').children('#'+removespace(title)).children('.bookmark').hide();
+    $('#basicinfo').children('#'+removespace(title)).children('.bookmarked').show();
 });         
     
 socket.on('bookmark-no', function(title) {
-    $('#basicinfo').children('#'+title).children('.bookmarked').hide();
-    $('#basicinfo').children('#'+title).children('.bookmark').show();
+    $('#basicinfo').children('#'+removespace(title)).children('.bookmarked').hide();
+    $('#basicinfo').children('#'+removespace(title)).children('.bookmark').show();
 });
    
 //TOGGLE BOOKMARK STATUS
@@ -245,7 +244,10 @@ $('#basicinfo').on('click','.bookmark', function() {
     socket.emit('bookmark-this', title);
 });
                  
-
+function removespace(title) {
+    return title.replace(/\s/g , "-");
+}
+    
 //EDIT
 $('#edit-button').on('click', function() {
     if ($(this).text() == 'cancel') {
@@ -283,8 +285,8 @@ $('#edit-button').on('click', function() {
 $('#update-button').on('click', function() {
         
     var title = $('#ind-title').text();
-    title.replace(/\s+/g, '-').toLowerCase();
-        
+    title.replace(/\s/g , "-");  
+    
     var document = $('#newpost').html();
 
     $('#edit-button').text('edit');
@@ -325,7 +327,7 @@ $('#newpage-button').on('click', function() {
 //SUBMIT NEW WIKI, HIDE INPUT
 $('#submit-post').on('click', function() {
     var title = $('#page-title').val();
-    title.replace(/\s+/g, '-').toLowerCase();
+    title.replace(/\s/g , "-");
     
     var question = $('#page-question').val();
     var description = $('#page-description').val();
