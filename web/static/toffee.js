@@ -253,7 +253,9 @@ $('#basicinfo').on('click','.bookmark', function() {
 //NEW WIKIPAGE: EXPAND
 $('#newpage-button').on('click', function() {
     if ($(this).text() == 'cancel') {
-      
+       $('#newpage').addClass('blank');
+        $('#editor').addClass('blank');
+        $('#newpage-button').text('new wiki page');
     } else {
         $('#newpage').removeClass('blank');
         $('#editor').removeClass('blank');
