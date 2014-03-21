@@ -18,6 +18,7 @@
     <span id = "homeheader">toffee</span>
     <input type="text" id = "home-question" placeholder = "topic, course..."></input>
     <button type="submit" id = "search-button" class = "button next-button blank" style = "display:none;">find</button>
+    <span id = "edit-button">edit</span>
     <span id = "newpage-button">new wiki page</span>
 
     <a href = "/logout" id = "logout-link">log out</a>
@@ -42,20 +43,23 @@
     <div id = "ind-school"></div>
     <div id = "ind-description"></div>
     <div id = "ind-document"></div>
-
-
     </div>
+    
+    
 <div id = "sidebar">
 	<div id = "basicinfo"></div>
 </div>
+    
+    
 <div class = "centerEd">
     <div class="page_container">
+        
     <div id = "newpage" class = "blank">
         <div class = "sevenbelow"><input type="text" id = "page-title" placeholder = "Course wiki title"></input></div>
         <div class = "sevenbelow"><input type="text" id = "page-question" placeholder = "School (i.e. sam fox)"></input></div>
         <div class = "sevenbelow"><textarea type="text" id = "page-description" placeholder = "Description"></textarea></div>
         <button id = "submit-post" class = "button publish-button">publish!</button>
-    </div>
+        </div>
 
     <div id = "editor" class = "blank" div class = "sevenbelow">
         
@@ -70,11 +74,14 @@
         <button class = "editor-button" onclick="toggleHead();">header</button>
     
         <div id = "newpost" contentEditable = "true" style="height:776px;width:600px;"></div>
-        
+        <button id = "update-button" class = "blank button publish-button spaceup">update!</button>
         </div>
 	</div>
         
    </div>
+
+    
+
 </div>
 </body>
 </html>

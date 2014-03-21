@@ -248,17 +248,59 @@ $('#basicinfo').on('click','.bookmark', function() {
     socket.emit('bookmark-this', title);
 });
                  
-                  
-                  
+
+//EDIT
+$('#edit-button').on('click', function() {
+      
+    if ($(this).text() == 'cancel') {
+
+        $('#edit-button').text('edit');
+		$('.centerEd').animate({top:'900px'},200);
+		$('#sidebar').animate({left:'0px'},200);
+         $('#update-button').addClass('blank');
+        
+    } else {
+        
+        $('#edit-button').text('cancel');
+        $('#editor').removeClass('blank');
+		$('.centerEd').animate({top:'0px'},200);
+		$('#sidebar').animate({left:'100%'},200);
+        $('#update-button').removeClass('blank');
+		
+    }
+    
+});
+    
+//UPDATE EDITS
+$('#update-button').on('click', function() {
+        
+    var title = $('#ind-title').text();
+    title.replace(/\s+/g, '-').toLowerCase();
+        
+    var document = $('#newpost').html();
+
+    $('#edit-button').text('edit');
+    $('.centerEd').animate({top:'900px'},200);
+    $('#sidebar').animate({left:'0px'},200);
+    
+    socket.emit('edit', title, document);
+    
+});
+    
+    
+    
 //NEW WIKIPAGE: EXPAND
 $('#newpage-button').on('click', function() {
+    
     if ($(this).text() == 'cancel') {
 
         $('#newpage-button').text('new wiki page');
 		$('.centerEd').animate({top:'900px'},200);
 		$('#sidebar').animate({left:'0px'},200);
 		$('#ind-page').animate({left:'0px'},200);
+        
     } else {
+        
         $('#newpage').removeClass('blank');
         $('#editor').removeClass('blank');
         $('#newpage-button').text('cancel');
@@ -267,6 +309,7 @@ $('#newpage-button').on('click', function() {
 		$('#sidebar').animate({left:'100%'},200);
 		
     }
+    
 });
 
 //SUBMIT NEW WIKI, HIDE INPUT
