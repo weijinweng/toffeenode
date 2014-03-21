@@ -171,6 +171,7 @@ input:focus {
 	width:100%;
     top:0px;
     left:0px;
+	margin-left:10px;
 }
 
 
@@ -263,7 +264,7 @@ textarea {
 	top:-300px;
 	position:relative;
 	float:left;
-
+	overflow:auto;
 }
 #sidebar
 {
@@ -272,6 +273,7 @@ textarea {
 	width:29%;
 	top:0px;
 	height:900px;
+	border-left:1px solid #4089f7;
 }
 
 .editor-button {
