@@ -190,6 +190,7 @@ if (url.indexOf("/home") != -1) {
     
 //NEWEST POSTS
 socket.on('post-newest', function(title, school, description) {
+	$('.loading').hide();
 	$('#basicinfo').append('<div id="' + title + '">'
                             + '<button class = "bookmarked blank">bookmarked</button>'
                             + '<button class = "bookmark blank">bookmark</button>'
@@ -318,6 +319,7 @@ $('#newpage-button').on('click', function() {
 		$('#ind-page').animate({left:'-70%'},200);
 		$('#sidebar').animate({left:'100%'},200);
 		$('#submit-button').removeClass('blank');
+		$('#submit-post').removeClass('blank');
     }
     
 });

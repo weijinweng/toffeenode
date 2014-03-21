@@ -290,14 +290,14 @@ textarea {
 #ind-school
 {
 	left:0px;
-	height:100px;
+	height:50px;
 	width:30%;
 	font-size:36px;
 	text-align:center;
 }
 #ind-description
 {
-	height:100px;
+	height:50px;
 	width:30%;
 	text-align:center;
 
@@ -315,7 +315,7 @@ textarea {
 	height:900px;
 	width:70%;
 	left:30%;
-	top:-300px;
+	top:-200px;
 	position:relative;
 	float:left;
 	overflow:auto;

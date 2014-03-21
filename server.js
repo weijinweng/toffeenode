@@ -218,7 +218,12 @@ io.sockets.on('connection', function (socket) {
 						console.log("Successful verification " + doc._id);
 						socket.emit('verified', doc._id);
 					}
-				else socket.emit('notverified');
+				else 
+					{
+						socket.emit('verification-failed');
+						console.log("Error");
+					}
+				
 				});
 				}
 			});
@@ -277,6 +282,8 @@ io.sockets.on('connection', function (socket) {
 				var clientId = new database.ObjectID(clients[socket.id]);
 				console.log('client ID = ' + clientId);
 				database.User.findById(clientId, function(err, data){
+						if(err||data==null)
+							return console.log("error");
 						var followed = data.following;
 						console.log("Following " + data.following);
 						if (followed.indexOf(Title) != -1)
