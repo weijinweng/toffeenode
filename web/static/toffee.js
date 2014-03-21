@@ -102,6 +102,7 @@ socket.on('error-validation', function() {
 //COMMIT USER: EMIT EMAIL/PW/USERNAME
 $('#pw-next').on('click',function() {
     var password = $('#signup-pw').val();
+    $('#welcome').addClass('blank');
     
     if (password.length != 0) {
         $('#signup-pw').hide();
@@ -276,6 +277,8 @@ $('#submit-post').on('click', function() {
     $('#newpage-button').text('new wiki page');
    
 });
+    
+    
     
 });
    
