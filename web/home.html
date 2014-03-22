@@ -73,13 +73,17 @@
                 <button class = "editor-button" onclick="toggleRight();">right</button>
                 
                 <button class = "editor-button" onclick="toggleHead();">header</button>
-                <button class = "editor-button" onclick="toggleSection();">+section</button>
+                <button id = "newsection-button" class = "editor-button" onclick="toggleSection();">+section</button>
 
             
                 <div id = "newpost" contentEditable = "true" style="height:770px;width:600px;"></div>
                 
                 <button id = "update-button" class = "blank button publish-button spaceup">update!</button>
                 <button id = "cancel-button" class = "button publish-button cancel-button spaceup">cancel</button>
+                
+                <input id = "newsection-input" class = "blank"></input>
+                <button id = "newsection-submit" class = "blank cancel-button">new section</button>
+
                 
             </div>
         

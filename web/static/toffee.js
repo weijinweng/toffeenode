@@ -271,6 +271,21 @@ $('#edit-button').on('click', function() {
     
 });
   
+    
+//NEW SECTION
+$('#newsection-button').on('click', function() {
+    $('#newsection-input').removeClass('blank');
+    $('#newsection-submit').removeClass('blank');
+});
+    
+$('#newsection-submit').on('click', function() {
+    $('#newsection-input').addClass('blank');
+    $('#newsection-submit').addClass('blank');
+    
+    var section = $('#newsection-input').val();
+});
+
+    
  $('#cancel-button').on('click', function(){
 		$('#ind-page').animate({left:'0px'},200);
         $('#edit-button').text('edit');

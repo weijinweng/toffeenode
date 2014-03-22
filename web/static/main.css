@@ -219,15 +219,30 @@ input:focus {
     top:40px;
     left:-100px;
     z-index:15;
-    background-color:red:
+    background-color:white:
 }
 #editor {
     position: absolute;
     top:0px;
     left:130px;
     z-index:15;
-    background-color:red:
+    background-color:white:
 }
+#newsection-input {
+    position:absolute;
+    top:0px;
+    left:600px;
+    z-index:15;
+}
+#newsection-submit {
+    position:absolute;
+    top:20px;
+    left:600px;
+    z-index:15;
+}
+
+
+
 .page_container
 {
 	width:400px;
@@ -278,8 +293,7 @@ textarea {
 	width:80%;
 	height:900px;
 }
-#ind-title
-{
+#ind-title {
 	position:relative;
 	top:0px;
 	left:0px;
@@ -374,7 +388,6 @@ textarea {
 
     transition-duration: 400ms;
 }
-
 
 .publish-button {
     font-size:20px;
