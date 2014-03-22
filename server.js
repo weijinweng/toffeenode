@@ -242,12 +242,13 @@ io.sockets.on('connection', function (socket) {
 					});
 			});
 	//bookmarking
-	socket.on('newpage',function(Title, School, Description, Document){
+	socket.on('newpage',function(Title, School, Description, Document, Tags){
 			var newPage = new database.Page({
 								title: Title,
 								school: School,
 								description: Description,
-								document: Document
+								document: Document,
+								tags: Tags
 								});
 			newPage.save(function(){
 						console.log(newPage.title + newPage.school + newPage.document + " has been saved");
