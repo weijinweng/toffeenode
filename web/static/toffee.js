@@ -3,6 +3,19 @@ $(document).ready(function(){
 var socket = io.connect('http://54.186.95.160');
 var url = document.URL;
     
+    
+//SEARCH STUFF
+$('#home-search-button').on('click', function() {
+    var item = $('#home-search-button').val();
+    socket.emit('search', item);
+});
+    
+socket.on('search-result', document) {
+    $('.centerEd').animate({top:'0px'},200);
+    $('#sidebar').animate({left:'100%'},200);
+    $('#ind-page').text(document);
+});
+    
 //VERIFY EMAIL
 function okayemail(email) {
     if ((email.split('@').length-1) == 1 && (email.substring(email.length-4, email.length))) {
