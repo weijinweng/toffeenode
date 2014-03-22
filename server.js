@@ -279,6 +279,21 @@ io.sockets.on('connection', function (socket) {
 					}
 				});
 		});
+	socket.on('search', function(text)
+		{
+			database.Page.find({title: text},function(docs){
+					docs.forEach(function(doc)
+					{
+						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
+					});
+				});
+			database.Page.find({tags: text},function(docs){
+					docs.forEach(function(doc)
+					{
+						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
+					});
+				});
+		});
 	socket.on('bookmark-status', function(Title)
 				{
 				var clientId = new database.ObjectID(clients[socket.id]);
