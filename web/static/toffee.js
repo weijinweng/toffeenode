@@ -230,7 +230,7 @@ socket.on('page-response', function(title, school, description, document, tags) 
     $("#ind-school").text(school);
     $("#ind-description").text(description);
     $("#ind-document").html(document);
-    $("#ind-title").text(tags);
+    $("#ind-tags").text(tags);
     
     //APPEND SECTION HEADERS TO TB
     $("#ind-tb").html("");
