@@ -220,7 +220,7 @@ socket.on('page-response', function(title, school, description, document) {
     //APPEND SECTION HEADERS TO TB
     $("#ind-tb").html("");
     for (var i=0; i < $('#ind-document').children('.section_headers').length; i++) {
-        var text = $('#newpage').children('#' + i).text();
+        var text = $('#ind-document').children('#' + i).text();
         $("#ind-tb").append(i + ". " + text);
     }
 });
@@ -293,7 +293,7 @@ $('#newsection-submit').on('click', function() {
 	var count = $('.section_headers').length;
 	
     var section = $('#newsection-input').val();
-	$('#newpost').append('<div class="section_headers" id="' + count + '">' + section + '</div>');
+	$('#newpost').append('<h1 class="section_headers" id="' + count + '">' + section + '</h1>')
     $('#tb').append('<div><a class="tabocont" id = "' + count + '">' + section + '</a></div>');
     
 });
