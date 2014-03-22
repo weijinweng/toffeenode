@@ -216,7 +216,7 @@ socket.on('page-response', function(title, school, description, document) {
     $("#ind-school").text(school);
     $("#ind-description").text(description);
     $("#ind-document").html(document);
-    alert($('#ind-document').children('.section_headers').length);
+
     //APPEND SECTION HEADERS TO TB
     $("#ind-tb").html("");
     for (var i=0; i < $('#ind-document').children('.section_headers').length; i++) {
