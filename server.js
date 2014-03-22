@@ -16,7 +16,8 @@ var transport = nodemailer.createTransport("SMTP", {
 					}
 				});
 
-https.listen(8080);
+https.listen(8080, '54.186.95.160');
+
 
 //email template
 //transport.sendMail(mailOptions, function(error, response)
