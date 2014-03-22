@@ -291,7 +291,8 @@ io.sockets.on('connection', function (socket) {
 						socket.emit('search-result',doc.title,doc.school,doc.description,doc.tags);
 					});
 				});
-			database.Page.find({tags: text},function( err, docs){
+			var tag = text.split(' ');
+			database.Page.find({tags: tag},function( err, docs){
 					if(err || docs == null)
 						return console.log("No search results");
 					docs.forEach(function(err, doc)
