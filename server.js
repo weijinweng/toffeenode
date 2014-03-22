@@ -286,6 +286,7 @@ io.sockets.on('connection', function (socket) {
 							return console.log("error");
 						var followed = data.following;
 						console.log("Following " + data.following);
+						console.log(Title);
 						if (followed.indexOf(Title) != -1)
 							{
 								socket.emit('bookmark-yes', Title);

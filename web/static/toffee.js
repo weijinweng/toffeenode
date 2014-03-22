@@ -223,12 +223,11 @@ socket.on('page-response', function(title, school, description, document) {
         var text = $('#newpage').children('#' + i).text();
         $("#ind-tb").append(i + ". " + text);
     }
-    
 });
                    
 //QUERY FOR BOOKMARK STATUS
 $('#basicinfo').on('click','div2', function() {
-    socket.emit('bookmark-status', $(this).attr('id'));
+    socket.emit('bookmark-status', $(this).text());
 });
 
     
@@ -272,7 +271,7 @@ $('#edit-button').on('click', function() {
         $('#editor').removeClass('blank');
 		$('.centerEd').animate({top:'0px'},200);
 		$('#sidebar').animate({left:'100%'},200);
-		$('#ind-page').animate({left:'-70%'},200);
+		$('#ind-page').animate({left:'-80%'},200);
         $('#update-button').removeClass('blank');
 		$('#submit-post').addClass('blank');
 		
@@ -349,7 +348,7 @@ $('#newpage-button').on('click', function() {
         $('#editor').removeClass('blank');
         $('#newpage-button').text('cancel');
 		$('.centerEd').animate({top:'0px'},200);
-		$('#ind-page').animate({left:'-70%'},200);
+		$('#ind-page').animate({left:'-80%'},200);
 		$('#sidebar').animate({left:'100%'},200);
 		$('#submit-button').removeClass('blank');
 		$('#submit-post').removeClass('blank');
