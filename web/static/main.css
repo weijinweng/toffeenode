@@ -135,10 +135,12 @@ input:focus {
     width:100%;
 }
 #homeheader {
+    position:absolute;
     margin:0 auto;
     margin-left:50px;
     
-    font-size:30px;
+    font-size:35px;
+    margin-top:0px;
     font-weight:bold;
     color:#3f90ff;
 }
@@ -149,20 +151,26 @@ input:focus {
     font-size:20px;
     max-width:40vw;
     min-width:500px;
-    margin-top:-30px;
+    margin-top:0px;
 }
 
 
 #newpage-button {
+    color:grey;
+    font-size:18px;
     position:absolute;
-    top:10px;
+    margin-top:-30px;
     right:90px;
     width:130px;
     text-align:center;
+    cursor:pointer;
+}
+#newpage-button:hover {
+    color:black;
 }
 #logout-link {
     position:absolute;
-    top:10px;
+    margin-top:-30px;
     right:20px;
 }
 

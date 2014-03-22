@@ -206,7 +206,7 @@ socket.on('post-newest', function(title, school, description) {
 //LINK TO INDIVIDUAL PAGE
 $('#basicinfo').on('click','.link', function() {
     var title = $(this).parent().children('.title').text();
-    socket.emit('page-request',title);
+    socket.emit('page-request', title);
 });
     
 //IND PAGE RESPONSE
@@ -227,29 +227,31 @@ socket.on('page-response', function(title, school, description, document) {
                    
 //QUERY FOR BOOKMARK STATUS
 $('#basicinfo').on('click','div2', function() {
-    socket.emit('bookmark-status', $(this).text());
+    socket.emit('bookmark-status', removespace($(this).text()));
 });
 
     
-//BOOKMARK STATUS BY QUERY RESULT
+//UPDATE BOOKMARK STATUS
 socket.on('bookmark-yes', function(title) {
 	$('#basicinfo').children('#'+removespace(title)).children('.bookmark').hide();
     $('#basicinfo').children('#'+removespace(title)).children('.bookmarked').show();
+    $('#basicinfo').children('#'+removespace(title)).children('.bookmarked').delay(3000).fadeOut();
 });         
     
 socket.on('bookmark-no', function(title) {
     $('#basicinfo').children('#'+removespace(title)).children('.bookmarked').hide();
     $('#basicinfo').children('#'+removespace(title)).children('.bookmark').show();
+    $('#basicinfo').children('#'+removespace(title)).children('.bookmark').delay(3000).fadeOut();
 });
    
 //TOGGLE BOOKMARK STATUS
 $('#basicinfo').on('click','.bookmarked', function() {
     var title = $(this).parent().children('.title').text();
-    socket.emit('unfollow', title);
+    socket.emit('unfollow', removespace(title));
 });
 $('#basicinfo').on('click','.bookmark', function() {
     var title = $(this).parent().children('.title').text();
-    socket.emit('bookmark-this', title);
+    socket.emit('bookmark-this', removespace(title));
 });
                  
 function removespace(title) {
