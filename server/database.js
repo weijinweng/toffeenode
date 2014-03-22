@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/12");
+mongoose.connect("mongodb://localhost/toffee");
 var Schema = mongoose.Schema;
 var db = mongoose.connection;
 var ObjectID = mongoose.Types.ObjectId;
