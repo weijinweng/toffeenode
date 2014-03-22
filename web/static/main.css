@@ -342,6 +342,15 @@ textarea {
 	text-align:center;
     margin-bottom:15px;
 }
+#ind-tags {
+	left:0px;
+    color:grey;
+	width:25%;
+	font-size:15px;
+	text-align:center;
+    margin-bottom:15px;
+}
+
 #ind-description {
 	width:25%;
 	text-align:center;
