@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-var socket = io.connect('http://54.186.101.5');
+var socket = io.connect('http://54.186.95.160');
 var url = document.URL;
     
 //VERIFY EMAIL
@@ -96,7 +96,7 @@ socket.on('validation-email', function(data) {
     
 //CODE 404
 socket.on('error-validation', function() {
-    window.location.replace("http://54.186.101.5/error");
+    window.location.replace("http://54.186.95.160/error");
 });
 
 //COMMIT USER: EMIT EMAIL/PW/USERNAME
@@ -116,7 +116,7 @@ $('#pw-next').on('click',function() {
             if (username.length != 0) {
                 var email = $('#welcome').text().substring(9, $('#welcome').text().length);
                 socket.emit('finish-signup', email, password, username);
-                //window.location.replace("http://54.186.101.5/");
+                //window.location.replace("http://54.186.95.160/");
             } else {
                 $('blank-err').show();
             } 
@@ -174,14 +174,14 @@ $('#login').on('click',function(){
     
 //USER IN DB, LOGIN!
 socket.on('verified', function(data) {
-    window.location.replace("http://54.186.101.5/almost-there?confirm="+data);
+    window.location.replace("http://54.186.95.160/almost-there?confirm="+data);
 });
     
     
 //FIN LOG IN, REDIRECT TO HOME, RENDER ALL BOOKMARKS
 socket.on('logged-in', function() {
 	if(url.indexOf('/home')==-1)
-		window.location.replace("http://54.186.101.5/home");
+		window.location.replace("http://54.186.95.160/home");
 });
 
     
@@ -193,7 +193,7 @@ $('#iforgot').on('click',function(){
 });
     
 if (url.indexOf("/logout") != -1) {
-    window.location.replace("http://54.186.101.5/");
+    window.location.replace("http://54.186.95.160/");
 }    
     
 if (url.indexOf("/home") != -1) {
