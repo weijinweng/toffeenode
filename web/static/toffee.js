@@ -285,7 +285,9 @@ $('#newsection-submit').on('click', function() {
 	var count = $('.section_headers').length;
 	
     var section = $('#newsection-input').val();
-	$('#newpost').append('<div class="section_headers" id="'+count+'">' + section + '</div>');
+	$('#newpost').append('<div class="section_headers" id="' + count + '">' + section + '</div>');
+    $('#tb').append('<div class="section_headers" id="' + count + '">' + section + '</div>');
+    
 });
 
     

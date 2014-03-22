@@ -231,13 +231,19 @@ input:focus {
 #newsection-input {
     position:absolute;
     top:0px;
-    left:600px;
+    left:650px;
     z-index:15;
 }
 #newsection-submit {
     position:absolute;
     top:20px;
-    left:600px;
+    left:650px;
+    z-index:15;
+}
+#tb {
+    position:absolute;
+    top:40px;
+    left:650px;
     z-index:15;
 }
 
