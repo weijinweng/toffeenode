@@ -16,7 +16,7 @@ var transport = nodemailer.createTransport("SMTP", {
 					}
 				});
 
-https.listen(8080, '54.186.95.160');
+https.listen(8080);
 
 
 //email template
@@ -336,7 +336,7 @@ io.sockets.on('connection', function (socket) {
 							else
 								{
 									console.log("serving page " + Title);
-									socket.emit('page-response',doc.title,doc.school, doc.description, doc.document,doc.tags);
+									socket.emit('page-response',doc.title,doc.school, doc.description, doc.document);
 								}
 						});
 				});
