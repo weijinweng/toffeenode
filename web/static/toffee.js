@@ -10,10 +10,18 @@ $('#home-search-button').on('click', function() {
     socket.emit('search', item);
 });
     
-socket.on('search-result', document) {
+socket.on('search-result', title, school, description, tags) {
     $('.centerEd').animate({top:'0px'},200);
     $('#sidebar').animate({left:'100%'},200);
-    $('#ind-page').text(document);
+    $('#ind-page').append('<div id="' + removespace(title) + '">'
+                            + '<div2 id = "' + removespace(title) + '" class = "title">' + title + '</div2>'
+                            + '<button class = "bookmarked blank bookmark-button">bookmarked</button>'
+                            + '<button class = "bookmark blank bookmark-button">bookmark</button>'
+                            + '<div class = "school sevenbelow">' + school + '</div>'
+                            + '<div class = "description sevenbelow">' + description + '</div>'
+                            + '<div class = "tags sevenbelow">' + tags + '</div>'
+                            + '<button class = "link">peek</button>'
+                            + '</div>');
 });
     
 //VERIFY EMAIL
