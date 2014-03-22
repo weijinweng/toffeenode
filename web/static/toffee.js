@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-var socket = io.connect('http://localhost:8080');
+var socket = io.connect('http://54.186.101.5');
 var url = document.URL;
     
 //VERIFY EMAIL
