@@ -6,7 +6,7 @@ var url = document.URL;
     
 //SEARCH STUFF
 $('#home-search-button').on('click', function() {
-    var item = $('#home-search-button').val();
+    var item = $('#home-question').val();
     socket.emit('search', item);
 });
     
