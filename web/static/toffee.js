@@ -282,7 +282,10 @@ $('#newsection-submit').on('click', function() {
     $('#newsection-input').addClass('blank');
     $('#newsection-submit').addClass('blank');
     
+	var count = $('.section_headers').length;
+	
     var section = $('#newsection-input').val();
+	$('#newpost').append('<div class="section_headers" id="'+count+'">' + section + '</div>');
 });
 
     
