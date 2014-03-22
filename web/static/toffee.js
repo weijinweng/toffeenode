@@ -1,6 +1,6 @@
 $(document).ready(function(){
     
-var socket = io.connect('http://localhost:8000');
+var socket = io.connect('http://localhost:8080');
 var url = document.URL;
     
 //VERIFY EMAIL
@@ -96,7 +96,7 @@ socket.on('validation-email', function(data) {
     
 //CODE 404
 socket.on('error-validation', function() {
-    window.location.replace("http://localhost:8000/error");
+    window.location.replace("http://localhost:8080/error");
 });
 
 //COMMIT USER: EMIT EMAIL/PW/USERNAME
@@ -116,7 +116,7 @@ $('#pw-next').on('click',function() {
             if (username.length != 0) {
                 var email = $('#welcome').text().substring(9, $('#welcome').text().length);
                 socket.emit('finish-signup', email, password, username);
-                //window.location.replace("http://localhost:8000/");
+                //window.location.replace("http://localhost:8080/");
             } else {
                 $('blank-err').show();
             } 
@@ -147,6 +147,20 @@ $("#question").keyup(function() {
     }
 
 });
+    
+//QUESTION GO UP, APPEND SEARCH BUTTON
+$("#home-question").keyup(function() {
+    var question = $("#home-question").val();
+    
+    if (question.length == 0) {
+        $("#home-search-button").hide();
+    }
+    else {
+        $("#home-search-button").show();
+    }
+
+});
+    
  
      
     
@@ -156,18 +170,18 @@ $('#login').on('click',function(){
     var password = $('#password').val();
     socket.emit('login', email, password);
 });
-    
+ 
     
 //USER IN DB, LOGIN!
 socket.on('verified', function(data) {
-    window.location.replace("http://localhost:8000/almost-there?confirm="+data);
+    window.location.replace("http://localhost:8080/almost-there?confirm="+data);
 });
     
     
 //FIN LOG IN, REDIRECT TO HOME, RENDER ALL BOOKMARKS
 socket.on('logged-in', function() {
 	if(url.indexOf('/home')==-1)
-		window.location.replace("http://localhost:8000/home");
+		window.location.replace("http://localhost:8080/home");
 });
 
     
@@ -179,7 +193,7 @@ $('#iforgot').on('click',function(){
 });
     
 if (url.indexOf("/logout") != -1) {
-    window.location.replace("http://localhost:8000/");
+    window.location.replace("http://localhost:8080/");
 }    
     
 if (url.indexOf("/home") != -1) {
@@ -367,7 +381,10 @@ $('#submit-post').on('click', function() {
     var description = $('#page-description').val();
     var document = $('#newpost').html();
     
-    socket.emit('newpage', title, question, description, document);
+    var tags = $('#page-tags').val();
+    tags = tags.split(' ');
+    
+    socket.emit('newpage', title, question, description, document, tags);
     
     $('#newpage').addClass('blank');
     $('#editor').addClass('blank');

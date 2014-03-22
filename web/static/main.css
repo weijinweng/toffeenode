@@ -153,6 +153,23 @@ input:focus {
     min-width:500px;
     margin-top:0px;
 }
+#home-search-button {
+    position:absolute;
+    font-size:20px;
+    width:90px;
+    top:0px;
+    display:block;
+    margin:0 auto;
+    display:inline;
+    background-color:white;
+    color:#3687f5;
+}
+#home-search-button:hover {
+    display:inline;
+    background-color:#3687f5;
+    color:white;
+}
+
 
 
 #newpage-button {
