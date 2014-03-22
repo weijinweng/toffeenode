@@ -288,7 +288,7 @@ io.sockets.on('connection', function (socket) {
 					docs.forEach(function(doc)
 					{
 						console.log("match found");
-						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
+						socket.emit('search-result',doc.title,doc.school,doc.description,doc.tags);
 					});
 				});
 			database.Page.find({tags: text},function( err, docs){
@@ -297,7 +297,7 @@ io.sockets.on('connection', function (socket) {
 					docs.forEach(function(err, doc)
 					{
 						console.log("match found");
-						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
+						socket.emit('search-result',doc.title,doc.school,doc.description,doc.tags);
 					});
 				});
 		});
