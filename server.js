@@ -85,7 +85,7 @@ io.sockets.on('connection', function (socket) {
 						from:"toffeebot@gmail.com",
 						to: Email,
 						subject:"Hello,",
-						text:'Here is your validation link: http://localhost:8080/verify?v='+validationcode,
+						text:'Here is your validation link: http://54.189.95.160/verify?v='+validationcode,
 
 						}
 						transport.sendMail(mailOptions, function(error, response)
@@ -126,7 +126,7 @@ io.sockets.on('connection', function (socket) {
 						from:"toffeebot@gmail.com",
 						to: Email,
 						subject:"Hello,",
-						text:'Here is your validation link: http://localhost:8080/verify?v='+validationcode,
+						text:'Here is your validation link: http://54.186.95.160/verify?v='+validationcode,
 
 						}
 						transport.sendMail(mailOptions, function(error, response)
