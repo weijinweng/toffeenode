@@ -287,6 +287,7 @@ io.sockets.on('connection', function (socket) {
 						return console.log("No search results");
 					docs.forEach(function(doc)
 					{
+						console.log("match found");
 						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
 					});
 				});
@@ -295,6 +296,7 @@ io.sockets.on('connection', function (socket) {
 						return console.log("No search results");
 					docs.forEach(function(err, doc)
 					{
+						console.log("match found");
 						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
 					});
 				});
