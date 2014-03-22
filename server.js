@@ -336,7 +336,7 @@ io.sockets.on('connection', function (socket) {
 							else
 								{
 									console.log("serving page " + Title);
-									socket.emit('page-response',doc.title,doc.school, doc.description, doc.document);
+									socket.emit('page-response',doc.title,doc.school, doc.description, doc.document,doc.tags);
 								}
 						});
 				});
