@@ -281,14 +281,19 @@ io.sockets.on('connection', function (socket) {
 		});
 	socket.on('search', function(text)
 		{
-			database.Page.find({title: text},function(docs){
+			console.log("Search request received for " + text);
+			database.Page.find({title: text},function( err, docs){
+					if(err||docs == null)
+						return console.log("No search results");
 					docs.forEach(function(doc)
 					{
 						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
 					});
 				});
 			database.Page.find({tags: text},function(docs){
-					docs.forEach(function(doc)
+					if(err || docs == null)
+						return console.log("No search results");
+					docs.forEach(function(err, doc)
 					{
 						socket.emit('results',doc.title,doc.school,doc.description,doc.tags);
 					});
