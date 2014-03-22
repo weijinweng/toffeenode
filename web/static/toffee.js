@@ -10,7 +10,7 @@ $('#home-search-button').on('click', function() {
     socket.emit('search', item);
 });
     
-socket.on('search-result', title, school, description, tags) {
+socket.on('search-result', function(title, school, description, tags) {
     $('.centerEd').animate({top:'0px'},200);
     $('#sidebar').animate({left:'100%'},200);
     $('#ind-page').append('<div id="' + removespace(title) + '">'
