@@ -192,12 +192,12 @@ if (url.indexOf("/home") != -1) {
 socket.on('post-newest', function(title, school, description) {
 	$('.loading').hide();
 	$('#basicinfo').append('<div id="' + removespace(title) + '">'
-                            + '<button class = "bookmarked blank">bookmarked</button>'
-                            + '<button class = "bookmark blank">bookmark</button>'
                             + '<div2 id = "' + removespace(title) + '" class = "title">' + title + '</div2>'
+                            + '<button class = "bookmarked blank bookmark-button">bookmarked</button>'
+                            + '<button class = "bookmark blank bookmark-button">bookmark</button>'
                             + '<div class = "school sevenbelow">' + school + '</div>'
                             + '<div class = "description sevenbelow">' + description + '</div>'
-                            + '<button class = "link">open</button>'
+                            + '<button class = "link">peek</button>'
                             + '</div>');
 });
    
