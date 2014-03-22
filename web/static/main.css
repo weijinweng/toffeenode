@@ -154,19 +154,19 @@ input:focus {
     margin-top:0px;
 }
 #home-search-button {
-    position:absolute;
-    font-size:20px;
-    width:90px;
-    top:0px;
+   position:relative;
     display:block;
     margin:0 auto;
-    display:inline;
-    background-color:white;
+    font-size:20px;
+    max-width:40vw;
+    min-width:500px;
+    margin-top:0px;
+      background-color:white;
     color:#3687f5;
+    
 }
 #home-search-button:hover {
-    display:inline;
-    background-color:#3687f5;
+     background-color:#3687f5;
     color:white;
 }
 
@@ -176,7 +176,7 @@ input:focus {
     color:grey;
     font-size:18px;
     position:absolute;
-    margin-top:-30px;
+    top:14px;
     right:90px;
     width:130px;
     text-align:center;
@@ -187,7 +187,7 @@ input:focus {
 }
 #logout-link {
     position:absolute;
-    margin-top:-30px;
+    top:14px;
     right:20px;
 }
 
