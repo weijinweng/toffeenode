@@ -224,13 +224,14 @@ $('#basicinfo').on('click','.link', function() {
 });
     
 //IND PAGE RESPONSE
-socket.on('page-response', function(title, school, description, document) {
+socket.on('page-response', function(title, school, description, document, tags) {
     
     $("#ind-title").text(title);
     $("#ind-school").text(school);
     $("#ind-description").text(description);
     $("#ind-document").html(document);
-
+    $("#ind-title").text(tags);
+    
     //APPEND SECTION HEADERS TO TB
     $("#ind-tb").html("");
     for (var i=0; i < $('#ind-document').children('.section_headers').length; i++) {
