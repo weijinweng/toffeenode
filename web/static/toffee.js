@@ -286,11 +286,15 @@ $('#newsection-submit').on('click', function() {
 	
     var section = $('#newsection-input').val();
 	$('#newpost').append('<div class="section_headers" id="' + count + '">' + section + '</div>');
-    $('#tb').append('<a id = "' + count + '">' + section + '</a>');
+    $('#tb').append('<div><a class="tabocont" id = "' + count + '">' + section + '</a></div>');
     
 });
 
-    
+   $('#tb').on('click','.tabocont',function(){
+		var tab = $(this).attr('id');
+
+		$('#newpost').animate({	scrollTop: $('#newpost').children('#'+tab).offset().top},200);
+   });
  $('#cancel-button').on('click', function(){
 		$('#ind-page').animate({left:'0px'},200);
         $('#edit-button').text('edit');
